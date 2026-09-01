@@ -73,7 +73,6 @@
         .boton-descargar { background: var(--blanco); color: var(--negro); padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; border: 2px solid var(--negro); transition: 0.3s; }
         .tarjeta-descarga:hover .boton-descargar { background: var(--negro); color: var(--blanco); }
 
-        /* LÓGICA PARA OCULTAR LA TARJETA INTERNA */
         .oculto-interno { display: none; }
         .seccion-descargas:target .oculto-interno { display: block; }
 
@@ -82,7 +81,7 @@
         .grid-fotos img, .grid-fotos video { width: 100%; height: 200px; object-fit: cover; border: 3px solid var(--negro); transition: all 0.3s; cursor: pointer; }
         .grid-fotos img:hover, .grid-fotos video:hover { filter: grayscale(80%); transform: scale(1.02); border-color: var(--acento); }
 
-        /* VISOR LIGHTBOX (AMPLIAR IMAGEN) */
+        /* VISOR LIGHTBOX (AMPLIAR IMAGEN) CORREGIDO */
         .lightbox {
             display: none; 
             position: fixed; 
@@ -93,9 +92,21 @@
             justify-content: center; 
             align-items: center;
             flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .lightbox.activo { display: flex; }
-        .lightbox img, .lightbox video { max-width: 90%; max-height: 80%; border: 3px solid var(--blanco); }
+        
+        .lightbox img, .lightbox video {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain; /* Imagen completa sin recortes */
+            border: 3px solid var(--blanco);
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
         .lightbox-cerrar { position: absolute; top: 20px; right: 30px; font-size: 3rem; color: var(--blanco); cursor: pointer; }
         .lightbox-anterior, .lightbox-siguiente { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3rem; color: var(--blanco); cursor: pointer; user-select: none; padding: 20px; }
         .lightbox-anterior { left: 20px; }
@@ -265,7 +276,6 @@
         <p style="text-align: center; margin-bottom: 50px;">Consulta nuestros catálogos y descarga nuestro brochure.</p>
         
         <div class="grid-descargas">
-            <!-- Brochure General (PÚBLICO) -->
             <div class="tarjeta-descarga">
                 <i class="fas fa-file-pdf"></i>
                 <h3>Brochure General</h3>
@@ -273,7 +283,6 @@
                 <a href="https://drive.google.com/file/d/172tVXVX6GBXfG6grzs9RkUZ52c8DppmT/preview" target="_blank" class="boton-descargar">Ver / Descargar</a>
             </div>
 
-            <!-- Catálogo de Equipos (PÚBLICO) -->
             <div class="tarjeta-descarga">
                 <i class="fab fa-whatsapp"></i>
                 <h3>Catálogo de Equipos</h3>
@@ -281,8 +290,6 @@
                 <a href="https://wa.me/p/9527643680651639/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
             </div>
 
-            <!-- Software y Drivers (OCULTO PARA EL PÚBLICO) -->
-            <!-- Solo visible si la URL termina en #descargas-internas -->
             <div class="tarjeta-descarga oculto-interno">
                 <i class="fas fa-download"></i>
                 <h3>Software y Drivers</h3>
@@ -306,24 +313,20 @@
         </div>
     </section>
 
-    <!-- GALERÍA CON CAPACIDAD DE ZOOM -->
+    <!-- GALERÍA -->
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo">NUESTRO TRABAJO</h2>
         <div class="grid-fotos">
-            <!-- Puedes agregar aquí más imágenes o videos con la misma estructura -->
             <img src="img/foto6.jpg" alt="Equipo Gamer" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto1.jpg" alt="Mantenimiento laptop 1" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto2.jpg" alt="Mantenimiento laptop 2" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto3.jpg" alt="Reparación de equipos" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto5.jpg" alt="Instalación de seguridad" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto4.jpg" alt="Infraestructura de Red" class="item-galeria" onclick="abrirLightbox(this)">
-            
-            <!-- EJEMPLO DE CÓMO AGREGAR UN VIDEO: -->
-            <!-- <video src="img/mi-video.mp4" class="item-galeria" onclick="abrirLightbox(this)"></video> -->
         </div>
     </section>
 
-    <!-- VISOR LIGHTBOX (OCULTO HASTA QUE SE HAGA CLIC) -->
+    <!-- VISOR LIGHTBOX -->
     <div id="lightbox" class="lightbox">
         <div class="lightbox-cerrar" onclick="cerrarLightbox()">&times;</div>
         <div class="lightbox-anterior" onclick="cambiarLightbox(-1)">&#10094;</div>
@@ -364,7 +367,7 @@
             
             <div class="info-cobertura">
                 <h3>Zona de cobertura</h3>
-                <p>Medellín · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
+                <p>El Poblado · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
             </div>
         </div>
     </section>
@@ -386,13 +389,11 @@
     </footer>
 
     <script>
-        // Menú móvil
         function toggleMenu() {
             var nav = document.getElementById('menuNav');
             nav.classList.toggle('active');
         }
 
-        // Animación de aparición
         window.addEventListener('scroll', function() {
             var secciones = document.querySelectorAll('.seccion');
             secciones.forEach(function(seccion) {
@@ -404,7 +405,6 @@
             });
         });
 
-        // FORMULARIO WHATSAPP
         document.getElementById('formularioContacto').addEventListener('submit', function(e) {
             e.preventDefault();
             const nombre = document.getElementById('nombre').value;
@@ -420,13 +420,8 @@
         let elementosGaleria = [];
 
         function abrirLightbox(elemento) {
-            // Recolectar todos los elementos de la galería
             elementosGaleria = document.querySelectorAll('.item-galeria');
-            
-            // Encontrar el índice del elemento clickeado
             indiceActual = Array.from(elementosGaleria).indexOf(elemento);
-            
-            // Mostrar el lightbox
             document.getElementById('lightbox').classList.add('activo');
             actualizarLightbox();
         }
@@ -434,20 +429,16 @@
         function actualizarLightbox() {
             const contenido = document.getElementById('lightbox-contenido');
             const contador = document.getElementById('lightbox-contador');
-            
-            // Limpiar contenido anterior
             contenido.innerHTML = '';
             
             const elemento = elementosGaleria[indiceActual];
             
-            // Si es una imagen
             if (elemento.tagName === 'IMG') {
                 const img = document.createElement('img');
                 img.src = elemento.src;
                 img.alt = elemento.alt;
                 contenido.appendChild(img);
             } 
-            // Si es un video
             else if (elemento.tagName === 'VIDEO') {
                 const video = document.createElement('video');
                 video.src = elemento.src;
@@ -456,22 +447,13 @@
                 contenido.appendChild(video);
             }
             
-            // Actualizar contador (ej: 3 de 6)
             contador.textContent = `${indiceActual + 1} de ${elementosGaleria.length}`;
         }
 
         function cambiarLightbox(direccion) {
             indiceActual += direccion;
-            
-            // Si pasa del último, vuelve al primero
-            if (indiceActual >= elementosGaleria.length) {
-                indiceActual = 0;
-            }
-            // Si pasa del primero, va al último
-            if (indiceActual < 0) {
-                indiceActual = elementosGaleria.length - 1;
-            }
-            
+            if (indiceActual >= elementosGaleria.length) indiceActual = 0;
+            if (indiceActual < 0) indiceActual = elementosGaleria.length - 1;
             actualizarLightbox();
         }
 
@@ -480,7 +462,6 @@
             document.getElementById('lightbox-contenido').innerHTML = '';
         }
 
-        // Cerrar con tecla ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') cerrarLightbox();
             if (e.key === 'ArrowLeft') cambiarLightbox(-1);
