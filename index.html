@@ -79,8 +79,28 @@
 
         /* GALERÍA */
         .grid-fotos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .grid-fotos img { width: 100%; height: 200px; object-fit: cover; border: 3px solid var(--negro); transition: all 0.3s; }
-        .grid-fotos img:hover { filter: grayscale(80%); transform: scale(1.02); border-color: var(--acento); }
+        .grid-fotos img, .grid-fotos video { width: 100%; height: 200px; object-fit: cover; border: 3px solid var(--negro); transition: all 0.3s; cursor: pointer; }
+        .grid-fotos img:hover, .grid-fotos video:hover { filter: grayscale(80%); transform: scale(1.02); border-color: var(--acento); }
+
+        /* VISOR LIGHTBOX (AMPLIAR IMAGEN) */
+        .lightbox {
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.95); 
+            z-index: 10000; 
+            justify-content: center; 
+            align-items: center;
+            flex-direction: column;
+        }
+        .lightbox.activo { display: flex; }
+        .lightbox img, .lightbox video { max-width: 90%; max-height: 80%; border: 3px solid var(--blanco); }
+        .lightbox-cerrar { position: absolute; top: 20px; right: 30px; font-size: 3rem; color: var(--blanco); cursor: pointer; }
+        .lightbox-anterior, .lightbox-siguiente { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3rem; color: var(--blanco); cursor: pointer; user-select: none; padding: 20px; }
+        .lightbox-anterior { left: 20px; }
+        .lightbox-siguiente { right: 20px; }
+        .lightbox-contador { color: var(--blanco); margin-top: 20px; font-size: 1.2rem; font-weight: bold; }
 
         /* CONTACTO */
         .contacto-seccion { background-color: var(--gris-claro); padding: 80px 8%; display: flex; flex-wrap: wrap; gap: 40px; border-top: 3px solid var(--negro); }
@@ -268,7 +288,6 @@
                 <h3>Software y Drivers</h3>
                 <p>Acceso interno para instalación de software y soporte técnico.</p>
                 
-                <!-- AQUÍ ESTÁN TUS ARCHIVOS OCULTOS -->
                 <div style="margin-top: 15px; text-align: left;">
                     <p style="border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 10px; font-size: 0.85rem;">
                         <strong>Actualizar Windows 11</strong><br>
@@ -287,17 +306,31 @@
         </div>
     </section>
 
+    <!-- GALERÍA CON CAPACIDAD DE ZOOM -->
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo">NUESTRO TRABAJO</h2>
         <div class="grid-fotos">
-            <img src="img/foto6.jpg" alt="Equipo Gamer">
-            <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
-            <img src="img/foto2.jpg" alt="Mantenimiento laptop 2">
-            <img src="img/foto3.jpg" alt="Reparación de equipos">
-            <img src="img/foto5.jpg" alt="Instalación de seguridad">
-            <img src="img/foto4.jpg" alt="Infraestructura de Red">
+            <!-- Puedes agregar aquí más imágenes o videos con la misma estructura -->
+            <img src="img/foto6.jpg" alt="Equipo Gamer" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto1.jpg" alt="Mantenimiento laptop 1" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto2.jpg" alt="Mantenimiento laptop 2" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto3.jpg" alt="Reparación de equipos" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto5.jpg" alt="Instalación de seguridad" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto4.jpg" alt="Infraestructura de Red" class="item-galeria" onclick="abrirLightbox(this)">
+            
+            <!-- EJEMPLO DE CÓMO AGREGAR UN VIDEO: -->
+            <!-- <video src="img/mi-video.mp4" class="item-galeria" onclick="abrirLightbox(this)"></video> -->
         </div>
     </section>
+
+    <!-- VISOR LIGHTBOX (OCULTO HASTA QUE SE HAGA CLIC) -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-cerrar" onclick="cerrarLightbox()">&times;</div>
+        <div class="lightbox-anterior" onclick="cambiarLightbox(-1)">&#10094;</div>
+        <div class="lightbox-siguiente" onclick="cambiarLightbox(1)">&#10095;</div>
+        <div id="lightbox-contenido"></div>
+        <div id="lightbox-contador" class="lightbox-contador"></div>
+    </div>
 
     <section id="contacto" class="contacto-seccion">
         <div class="formulario tarjeta">
@@ -311,11 +344,9 @@
                 </button>
             </form>
             
-            <!-- AQUÍ SE AGREGAN CONTACTOS ADICIONALES EN EL FORMULARIO -->
             <div style="margin-top: 20px; font-size: 0.9rem;">
                 <h4 style="margin: 0;">Métodos de pago</h4>
                 <p>🏠 Servicio a domicilio · 💻 Soporte remoto · 💰 Efectivo · Transferencia · Nequi / Bancolombia</p>
-                
                 <h4 style="margin: 15px 0 5px 0;">Síguenos y escríbenos</h4>
                 <p style="margin: 0;">
                     <i class="fab fa-instagram"></i> 
@@ -342,10 +373,8 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- PIE DE PÁGINA CON REDES Y CORREO -->
     <footer>
         <p>© 2026 M R Sistemas y Servicios. Todos los derechos reservados.</p>
-        
         <div style="margin: 15px 0;">
             <i class="fab fa-instagram"></i> 
             <a href="https://www.instagram.com/mrsolutionsmed" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">@mrsolutionsmed</a>
@@ -353,16 +382,17 @@
             <i class="fas fa-envelope"></i> 
             <a href="mailto:mrsistemasyservicio@gmail.com" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">mrsistemasyservicio@gmail.com</a>
         </div>
-
         <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
     </footer>
 
     <script>
+        // Menú móvil
         function toggleMenu() {
             var nav = document.getElementById('menuNav');
             nav.classList.toggle('active');
         }
 
+        // Animación de aparición
         window.addEventListener('scroll', function() {
             var secciones = document.querySelectorAll('.seccion');
             secciones.forEach(function(seccion) {
@@ -374,6 +404,7 @@
             });
         });
 
+        // FORMULARIO WHATSAPP
         document.getElementById('formularioContacto').addEventListener('submit', function(e) {
             e.preventDefault();
             const nombre = document.getElementById('nombre').value;
@@ -382,6 +413,78 @@
             const texto = `Hola, soy ${nombre}. Necesito el siguiente servicio: ${mensaje}.`;
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
+        });
+
+        // LÓGICA DEL LIGHTBOX (ZOOM DE GALERÍA)
+        let indiceActual = 0;
+        let elementosGaleria = [];
+
+        function abrirLightbox(elemento) {
+            // Recolectar todos los elementos de la galería
+            elementosGaleria = document.querySelectorAll('.item-galeria');
+            
+            // Encontrar el índice del elemento clickeado
+            indiceActual = Array.from(elementosGaleria).indexOf(elemento);
+            
+            // Mostrar el lightbox
+            document.getElementById('lightbox').classList.add('activo');
+            actualizarLightbox();
+        }
+
+        function actualizarLightbox() {
+            const contenido = document.getElementById('lightbox-contenido');
+            const contador = document.getElementById('lightbox-contador');
+            
+            // Limpiar contenido anterior
+            contenido.innerHTML = '';
+            
+            const elemento = elementosGaleria[indiceActual];
+            
+            // Si es una imagen
+            if (elemento.tagName === 'IMG') {
+                const img = document.createElement('img');
+                img.src = elemento.src;
+                img.alt = elemento.alt;
+                contenido.appendChild(img);
+            } 
+            // Si es un video
+            else if (elemento.tagName === 'VIDEO') {
+                const video = document.createElement('video');
+                video.src = elemento.src;
+                video.controls = true;
+                video.autoplay = true;
+                contenido.appendChild(video);
+            }
+            
+            // Actualizar contador (ej: 3 de 6)
+            contador.textContent = `${indiceActual + 1} de ${elementosGaleria.length}`;
+        }
+
+        function cambiarLightbox(direccion) {
+            indiceActual += direccion;
+            
+            // Si pasa del último, vuelve al primero
+            if (indiceActual >= elementosGaleria.length) {
+                indiceActual = 0;
+            }
+            // Si pasa del primero, va al último
+            if (indiceActual < 0) {
+                indiceActual = elementosGaleria.length - 1;
+            }
+            
+            actualizarLightbox();
+        }
+
+        function cerrarLightbox() {
+            document.getElementById('lightbox').classList.remove('activo');
+            document.getElementById('lightbox-contenido').innerHTML = '';
+        }
+
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') cerrarLightbox();
+            if (e.key === 'ArrowLeft') cambiarLightbox(-1);
+            if (e.key === 'ArrowRight') cambiarLightbox(1);
         });
     </script>
 </body>
