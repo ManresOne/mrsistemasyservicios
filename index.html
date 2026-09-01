@@ -81,7 +81,7 @@
         .grid-fotos img, .grid-fotos video { width: 100%; height: 200px; object-fit: cover; border: 3px solid var(--negro); transition: all 0.3s; cursor: pointer; }
         .grid-fotos img:hover, .grid-fotos video:hover { filter: grayscale(80%); transform: scale(1.02); border-color: var(--acento); }
 
-        /* VISOR LIGHTBOX (AMPLIAR IMAGEN) CORREGIDO */
+        /* VISOR LIGHTBOX */
         .lightbox {
             display: none; 
             position: fixed; 
@@ -100,7 +100,7 @@
         .lightbox img, .lightbox video {
             max-width: 100%;
             max-height: 85vh;
-            object-fit: contain; /* Imagen completa sin recortes */
+            object-fit: contain;
             border: 3px solid var(--blanco);
             border-radius: 8px;
             display: block;
@@ -313,16 +313,30 @@
         </div>
     </section>
 
-    <!-- GALERÍA -->
+    <!-- GALERÍA CON NUEVOS ARCHIVOS -->
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo">NUESTRO TRABAJO</h2>
         <div class="grid-fotos">
-            <img src="img/foto6.jpg" alt="Equipo Gamer" class="item-galeria" onclick="abrirLightbox(this)">
+            <!-- Imágenes -->
             <img src="img/foto1.jpg" alt="Mantenimiento laptop 1" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto2.jpg" alt="Mantenimiento laptop 2" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto3.jpg" alt="Reparación de equipos" class="item-galeria" onclick="abrirLightbox(this)">
-            <img src="img/foto5.jpg" alt="Instalación de seguridad" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto4.jpg" alt="Infraestructura de Red" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto5.jpg" alt="Instalación de seguridad" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto6.jpg" alt="Equipo Gamer" class="item-galeria" onclick="abrirLightbox(this)">
+            
+            <!-- Nuevas imágenes (foto7 a foto13) -->
+            <img src="img/foto7.jpg" alt="Trabajo 7" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto8.jpg" alt="Trabajo 8" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto9.jpg" alt="Trabajo 9" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto10.jpg" alt="Trabajo 10" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto11.jpg" alt="Trabajo 11" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto12.jpg" alt="Trabajo 12" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto13.jpg" alt="Trabajo 13" class="item-galeria" onclick="abrirLightbox(this)">
+
+            <!-- Nuevos Videos (video1 y video2) -->
+            <video src="img/video1.mp4" class="item-galeria" onclick="abrirLightbox(this)"></video>
+            <video src="img/video2.mp4" class="item-galeria" onclick="abrirLightbox(this)"></video>
         </div>
     </section>
 
@@ -367,7 +381,7 @@
             
             <div class="info-cobertura">
                 <h3>Zona de cobertura</h3>
-                <p>El Poblado · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
+                <p>Medellín · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
             </div>
         </div>
     </section>
@@ -415,7 +429,7 @@
             window.open(url, '_blank');
         });
 
-        // LÓGICA DEL LIGHTBOX (ZOOM DE GALERÍA)
+        // LÓGICA DEL LIGHTBOX
         let indiceActual = 0;
         let elementosGaleria = [];
 
