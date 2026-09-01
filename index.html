@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M R Sistemas y Servicios | Soporte Técnico, Redes y Seguridad en Medellín</title>
+    <meta name="description" content="Computadores, seguridad electrónica y redes de datos. Soporte especializado para tu casa o tu oficina.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --negro: #111111;
+            --blanco: #ffffff;
+            --gris-claro: #f4f4f4;
+            --gris-oscuro: #333333;
+            --acento: #007BFF; 
+            --verde-wsp: #25D366; 
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: var(--blanco); color: var(--negro); }
+
+        .tarjeta {
+            background: var(--blanco); border-radius: 12px; padding: 25px;
+            box-shadow: 8px 8px 0px var(--negro); border: 2px solid var(--negro);
+            transition: all 0.3s ease; 
+            display: flex; flex-direction: column;
+        }
+        .tarjeta:hover { transform: translateY(-5px); box-shadow: 10px 10px 0px var(--acento); }
+
+        header { display: flex; align-items: center; justify-content: space-between; padding: 15px 40px; background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 4px solid var(--negro); }
+        header img { max-height: 70px; }
+        nav a { text-decoration: none; color: var(--negro); font-weight: bold; margin-left: 20px; font-size: 14px; }
+        nav a:hover { color: var(--acento); text-decoration: underline; }
+
+        .menu-btn { display: none; font-size: 2rem; background: none; border: none; color: var(--negro); cursor: pointer; }
+        @media (max-width: 768px) {
+            .menu-btn { display: block; }
+            nav { display: none; width: 100%; flex-direction: column; position: absolute; top: 80px; left: 0; background: var(--blanco); border-bottom: 3px solid var(--negro); padding: 20px; }
+            nav.active { display: flex; }
+            nav a { margin: 10px 0; }
+        }
+
+        .hero { height: 85vh; width: 100%; display: flex; align-items: center; justify-content: center; color: var(--blanco); position: relative; overflow: hidden; }
+        .video-fondo { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 0; transform: translateX(-50%) translateY(-50%); object-fit: cover; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75); z-index: 1; }
+        .hero-contenido { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 20px; }
+        .hero p { font-size: 2rem; font-weight: 600; line-height: 1.5; text-shadow: 3px 3px 8px rgba(0,0,0,0.9); margin: 0; }
+
+        .seccion { padding: 80px 8%; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .seccion.visible { opacity: 1; transform: translateY(0); }
+        .seccion-titulo { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--negro); }
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: stretch; }
+        
+        ul { list-style: none; padding: 0; line-height: 1.8; }
+        ul li::before { content: '▸ '; color: var(--acento); font-weight: bold; }
+
+        .contenedor-garantias { margin-top: auto; padding-top: 25px; }
+        .detalle-garantia { background: var(--negro); color: var(--blanco); padding: 12px; text-align: center; font-weight: bold; border-radius: 5px; width: 100%; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; transition: 0.3s; }
+        .detalle-garantia:hover { background: var(--acento); }
+
+        .grid-fotos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .grid-fotos img { width: 100%; height: 200px; object-fit: cover; border: 3px solid var(--negro); transition: all 0.3s; }
+        .grid-fotos img:hover { filter: grayscale(80%); transform: scale(1.02); border-color: var(--acento); }
+
+        .contacto-seccion { background-color: var(--gris-claro); padding: 80px 8%; display: flex; flex-wrap: wrap; gap: 40px; border-top: 3px solid var(--negro); }
+        .formulario, .mapa-container { flex: 1; min-width: 300px; }
+
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid var(--negro); font-family: inherit; background: var(--blanco); }
+        
+        .boton-whatsapp { display: flex; align-items: center; justify-content: center; background-color: var(--verde-wsp); color: white; border: none; padding: 15px; font-size: 1.2rem; font-weight: bold; cursor: pointer; border: 2px solid var(--negro); box-shadow: 6px 6px 0px var(--negro); transition: all 0.2s; width: 100%; text-transform: uppercase; }
+        .boton-whatsapp:hover { transform: translateY(-2px); box-shadow: 8px 8px 0px var(--negro); }
+        .boton-whatsapp i { margin-right: 10px; font-size: 1.5rem; }
+
+        /* MAPA CON COLORES NATIVOS (SIN FILTROS) */
+        iframe { width: 100%; height: 400px; border: 3px solid var(--negro); }
+        
+        .info-cobertura { background: var(--negro); color: white; padding: 20px; margin-top: 15px; border-radius: 5px; text-align: center; font-weight: bold; }
+
+        .boton-flotante { position: fixed; bottom: 25px; right: 25px; z-index: 9999; background-color: var(--verde-wsp); color: white; border-radius: 50%; width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; box-shadow: 4px 4px 10px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; }
+        .boton-flotante:hover { transform: scale(1.1); }
+
+        footer { background: var(--negro); color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="img/logo.png" alt="Logo M R Sistemas y Servicios">
+        <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <nav id="menuNav">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#galeria">Galería</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <video autoplay muted loop playsinline class="video-fondo">
+            <source src="img/video-fondo.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+        <div class="hero-contenido">
+            <p>Computadores, seguridad electrónica y redes de datos.<br>Soporte especializado para tu casa o tu oficina.</p>
+        </div>
+    </section>
+
+    <section id="servicios" class="seccion">
+        <h2 class="seccion-titulo">NUESTROS SERVICIOS</h2>
+        <div class="grid-servicios">
+            <div class="tarjeta">
+                <div style="font-size: 2.5rem; color: var(--acento);">💻</div>
+                <h3 style="margin-top: 0;">01 · Computadores</h3>
+                <h4>Hardware</h4>
+                <ul>
+                    <li>Pantallas rotas o fracturadas</li>
+                    <li>Cambio de batería</li>
+                    <li>Cambio de teclado de portátil</li>
+                    <li>Cambio de cargador</li>
+                    <li>Cambio de pasta térmica</li>
+                    <li>Cambio de disco duro a SSD</li>
+                    <li>Reparación de laptops y equipos de escritorio</li>
+                </ul>
+                <h4>Software</h4>
+                <ul>
+                    <li>Formateo e instalación de software</li>
+                    <li>Actualización de programas</li>
+                    <li>Eliminación de virus</li>
+                    <li>Optimización de equipos lentos</li>
+                    <li>Soporte remoto</li>
+                </ul>
+                <h4>Equipos y WiFi</h4>
+                <ul>
+                    <li>Redes y WiFi para casa u oficina</li>
+                    <li>Venta de equipos nuevos y usados</li>
+                    <li>Venta de periféricos</li>
+                    <li>Mantenimiento preventivo</li>
+                </ul>
+                <div class="contenedor-garantias">
+                    <div class="detalle-garantia">1 año nuevo · 3 meses usado</div>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <div style="font-size: 2.5rem; color: var(--acento);">🔒</div>
+                <h3 style="margin-top: 0;">02 · Seguridad Electrónica</h3>
+                <h4>Videovigilancia</h4>
+                <ul>
+                    <li>Instalación de cámaras interiores y exteriores</li>
+                    <li>Cámaras con panel solar (sin cableado)</li>
+                    <li>Monitoreo remoto desde el celular</li>
+                    <li>Configuración de DVR / NVR</li>
+                    <li>Mantenimiento de sistemas existentes</li>
+                    <li>Cableado y puntos de cámara</li>
+                </ul>
+                <div class="contenedor-garantias">
+                    <div class="detalle-garantia">Cotización sin costo · Garantía 1 año</div>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <div style="font-size: 2.5rem; color: var(--acento);">🌐</div>
+                <h3 style="margin-top: 0;">03 · Redes de Datos</h3>
+                <h4>Cableado estructurado</h4>
+                <ul>
+                    <li>Cableado estructurado</li>
+                    <li>Instalación y organización de racks</li>
+                    <li>Configuración de switches</li>
+                    <li>Puntos de red certificados</li>
+                    <li>Etiquetado y documentación</li>
+                    <li>Soporte y mantenimiento de red</li>
+                </ul>
+                <h4>Para empresas</h4>
+                <ul>
+                    <li>Organizamos tu rack y cableado</li>
+                    <li>Red fácil de mantener y ampliar</li>
+                </ul>
+                <div class="contenedor-garantias">
+                    <div class="detalle-garantia">Instalación certificada</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="seccion">
+        <h2 class="seccion-titulo">NUESTRO TRABAJO</h2>
+        <div class="grid-fotos">
+            <img src="img/foto6.jpg" alt="Equipo Gamer">
+            <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
+            <img src="img/foto2.jpg" alt="Mantenimiento laptop 2">
+            <img src="img/foto3.jpg" alt="Reparación de equipos">
+            <img src="img/foto5.jpg" alt="Instalación de seguridad">
+            <img src="img/foto4.jpg" alt="Infraestructura de Red">
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto-seccion">
+        <div class="formulario tarjeta">
+            <h2 style="margin-top: 0;">¿Listo para resolver tu problema?</h2>
+            <p>Cuéntanos tu problema; te damos la solución de forma clara y rápida.</p>
+            <form id="formularioContacto">
+                <input type="text" id="nombre" placeholder="Tu Nombre" required>
+                <input type="text" id="mensaje" placeholder="¿Qué servicio necesitas?" required>
+                <button type="submit" class="boton-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Contáctanos ahora
+                </button>
+            </form>
+            <div style="margin-top: 20px; font-size: 0.9rem;">
+                <h4 style="margin: 0;">Métodos de pago</h4>
+                <p>🏠 Servicio a domicilio · 💻 Soporte remoto · 💰 Efectivo · Transferencia · Nequi / Bancolombia</p>
+            </div>
+        </div>
+
+        <div class="mapa-container tarjeta">
+            <h2 style="margin-top: 0;">Mapa de Cobertura</h2>
+            <!-- MAPA CENTRADO EN 6.153965, -75.533979 -->
+            <iframe src="https://www.google.com/maps?q=6.153965,-75.533979&z=13&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            
+            <div class="info-cobertura">
+                <h3>Zona de cobertura</h3>
+                <p>Medellín · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" class="boton-flotante">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>© 2026 M R Sistemas y Servicios. Todos los derechos reservados.</p>
+        <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById('menuNav');
+            nav.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+            var secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(function(seccion) {
+                var posicion = seccion.getBoundingClientRect().top;
+                var pantalla = window.innerHeight;
+                if (posicion < pantalla - 100) {
+                    seccion.classList.add('visible');
+                }
+            });
+        });
+
+        document.getElementById('formularioContacto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const mensaje = document.getElementById('mensaje').value;
+            const numeroWhatsApp = "573113944320"; 
+            const texto = `Hola, soy ${nombre}. Necesito el siguiente servicio: ${mensaje}.`;
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>
