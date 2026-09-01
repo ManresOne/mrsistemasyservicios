@@ -18,6 +18,7 @@
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: var(--blanco); color: var(--negro); }
 
+        /* EFECTOS DE PROFUNDIDAD */
         .tarjeta {
             background: var(--blanco); border-radius: 12px; padding: 25px;
             box-shadow: 8px 8px 0px var(--negro); border: 2px solid var(--negro);
@@ -57,10 +58,38 @@
         .detalle-garantia { background: var(--negro); color: var(--blanco); padding: 12px; text-align: center; font-weight: bold; border-radius: 5px; width: 100%; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; transition: 0.3s; }
         .detalle-garantia:hover { background: var(--acento); }
 
+        /* SECCIÓN DE VENTA DE EQUIPOS */
+        .seccion-venta { background-color: var(--negro); color: var(--blanco); padding: 80px 8%; border-top: 4px solid var(--acento); border-bottom: 4px solid var(--acento); }
+        
+        /* NUEVO ESTILO DE TÍTULO PARA VENTA DE EQUIPOS */
+        .titulo-venta { text-align: center; font-size: 2.5rem; margin: 0 0 30px 0; color: var(--blanco); letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
+        .titulo-venta::after { content: ''; display: block; width: 80px; height: 4px; background: var(--acento); margin: 15px auto 0; }
+
+        .tarjeta-venta { background: var(--gris-oscuro); color: var(--blanco); border: 2px solid var(--blanco); box-shadow: 8px 8px 0px var(--acento); border-radius: 12px; padding: 25px; display: flex; flex-direction: column; height: 100%; }
+        .tarjeta-venta:hover { transform: translateY(-5px); background: var(--negro); box-shadow: 10px 10px 0px var(--blanco); }
+        .tarjeta-venta h4 { margin-top: 15px; font-size: 1.3rem; color: var(--acento); }
+        .boton-venta-wsp { background: var(--verde-wsp); color: white; border: none; padding: 12px; margin-top: auto; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none; text-align: center; display: block; transition: 0.3s; }
+        .boton-venta-wsp:hover { background: white; color: var(--verde-wsp); }
+
+        /* SECCIÓN DE DESCARGAS (OCULTA PARA EL PÚBLICO) */
+        .seccion-descargas { padding: 80px 8%; background: var(--blanco); display: none; } /* Oculto por defecto */
+        .seccion-descargas:target { display: block; } /* Solo se muestra si la URL termina en #descargas */
+        
+        .grid-descargas { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; }
+        .tarjeta-descarga { background: var(--negro); color: var(--blanco); padding: 25px; border-radius: 10px; border: 3px solid var(--acento); box-shadow: 6px 6px 0px var(--acento); text-align: center; transition: transform 0.3s; }
+        .tarjeta-descarga:hover { transform: translateY(-5px); background: var(--acento); }
+        .tarjeta-descarga i { font-size: 3rem; margin-bottom: 15px; }
+        .tarjeta-descarga h3 { margin: 0 0 10px 0; font-size: 1.5rem; }
+        .tarjeta-descarga p { font-size: 0.9rem; margin-bottom: 20px; }
+        .boton-descargar { background: var(--blanco); color: var(--negro); padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; border: 2px solid var(--negro); transition: 0.3s; }
+        .tarjeta-descarga:hover .boton-descargar { background: var(--negro); color: var(--blanco); }
+
+        /* GALERÍA */
         .grid-fotos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .grid-fotos img { width: 100%; height: 200px; object-fit: cover; border: 3px solid var(--negro); transition: all 0.3s; }
         .grid-fotos img:hover { filter: grayscale(80%); transform: scale(1.02); border-color: var(--acento); }
 
+        /* CONTACTO */
         .contacto-seccion { background-color: var(--gris-claro); padding: 80px 8%; display: flex; flex-wrap: wrap; gap: 40px; border-top: 3px solid var(--negro); }
         .formulario, .mapa-container { flex: 1; min-width: 300px; }
 
@@ -70,7 +99,6 @@
         .boton-whatsapp:hover { transform: translateY(-2px); box-shadow: 8px 8px 0px var(--negro); }
         .boton-whatsapp i { margin-right: 10px; font-size: 1.5rem; }
 
-        /* MAPA CON COLORES NATIVOS (SIN FILTROS) */
         iframe { width: 100%; height: 400px; border: 3px solid var(--negro); }
         
         .info-cobertura { background: var(--negro); color: white; padding: 20px; margin-top: 15px; border-radius: 5px; text-align: center; font-weight: bold; }
@@ -89,6 +117,7 @@
         <nav id="menuNav">
             <a href="#inicio">Inicio</a>
             <a href="#servicios">Servicios</a>
+            <a href="#venta">Venta de Equipos</a>
             <a href="#galeria">Galería</a>
             <a href="#contacto">Contacto</a>
         </nav>
@@ -97,7 +126,6 @@
     <section id="inicio" class="hero">
         <video autoplay muted loop playsinline class="video-fondo">
             <source src="img/video-fondo.mp4" type="video/mp4">
-            Tu navegador no soporta la etiqueta de video.
         </video>
         <div class="hero-contenido">
             <p>Computadores, seguridad electrónica y redes de datos.<br>Soporte especializado para tu casa o tu oficina.</p>
@@ -181,6 +209,77 @@
         </div>
     </section>
 
+    <!-- SECCIÓN DE VENTA DE EQUIPOS -->
+    <section id="venta" class="seccion-venta">
+        <h2 class="titulo-venta">Venta de Equipos</h2>
+        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px;">Computadores nuevos y de segunda. ¡Pregunta por nuestro stock disponible!</p>
+        
+        <div class="grid-servicios">
+            <div class="tarjeta-venta">
+                <div style="font-size: 3rem; color: var(--acento);">🏢</div>
+                <h4>Equipos Corporativos</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6;">Portátiles y de escritorio de alta durabilidad, perfectos para oficinas, trabajos de oficina y gestión empresarial.</p>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20corporativo." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+            </div>
+
+            <div class="tarjeta-venta">
+                <div style="font-size: 3rem; color: var(--acento);">🛒</div>
+                <h4>Equipos de Consumo</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6;">Ideal para el hogar, estudio, navegación y multimedia. Equipos económicos y de excelente rendimiento.</p>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20de%20consumo." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+            </div>
+
+            <div class="tarjeta-venta">
+                <div style="font-size: 3rem; color: var(--acento);">🎮</div>
+                <h4>Equipos Gamer</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6;">Máquinas de alto rendimiento para los videojuegos más exigentes. Con las mejores gráficas y procesadores.</p>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20Gamer." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+            </div>
+
+            <div class="tarjeta-venta">
+                <div style="font-size: 3rem; color: var(--acento);">💳</div>
+                <h4>POS (Punto de Venta)</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6;">Sistemas y equipos robustos para comercios, restaurantes y tiendas. Compatibles con tus sistemas de facturación.</p>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20POS." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE DESCARGAS (OCULTA, SOLO ACCESO CON #descargas) -->
+    <section id="descargas" class="seccion-descargas">
+        <h2 class="seccion-titulo">DESCARGAS</h2>
+        <p style="text-align: center; margin-bottom: 50px;">Recursos internos para técnicos y personal autorizado.</p>
+        
+        <div class="grid-descargas">
+            <!-- Brochure General -->
+            <div class="tarjeta-descarga">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Brochure General</h3>
+                <p>Vista previa y descarga del portafolio de servicios.</p>
+                <!-- ENLACE DE GOOGLE DRIVE PARA VER EN PANTALLA -->
+                <a href="https://drive.google.com/file/d/172tVXVX6GBXfG6grzs9RkUZ52c8DppmT/preview" target="_blank" class="boton-descargar">Ver / Descargar</a>
+            </div>
+
+            <!-- Catálogo de WhatsApp Business -->
+            <div class="tarjeta-descarga">
+                <i class="fab fa-whatsapp"></i>
+                <h3>Catálogo de Equipos</h3>
+                <p>Ver nuestro catálogo actualizado en WhatsApp Business.</p>
+                <!-- ENLACE DIRECTO AL CATÁLOGO DE WHATSAPP -->
+                <a href="https://wa.me/p/9527643680651639/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
+            </div>
+
+            <!-- Descargas internas (ocultas para clientes) -->
+            <div class="tarjeta-descarga">
+                <i class="fas fa-download"></i>
+                <h3>Software y Drivers</h3>
+                <p>Acceso interno para instalación de software y soporte técnico.</p>
+                <!-- Aquí agregas tus enlaces internos de Drive cuando los tengas -->
+                <a href="#" target="_blank" class="boton-descargar">Acceder</a>
+            </div>
+        </div>
+    </section>
+
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo">NUESTRO TRABAJO</h2>
         <div class="grid-fotos">
@@ -212,7 +311,6 @@
 
         <div class="mapa-container tarjeta">
             <h2 style="margin-top: 0;">Mapa de Cobertura</h2>
-            <!-- MAPA CENTRADO EN 6.153965, -75.533979 -->
             <iframe src="https://www.google.com/maps?q=6.153965,-75.533979&z=13&output=embed" allowfullscreen="" loading="lazy"></iframe>
             
             <div class="info-cobertura">
