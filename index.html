@@ -107,7 +107,6 @@
             width: max-content;
             animation: desplazamiento 45s linear infinite;
         }
-        /* Pausar el carrusel cuando el mouse está encima */
         .carrusel-trabajos:hover .carrusel-items { animation-play-state: paused; }
 
         .item-carrusel {
@@ -123,7 +122,6 @@
         }
         .item-carrusel img, .item-carrusel video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
         
-        /* Efecto de zoom al pasar el mouse */
         .item-carrusel:hover { border-color: var(--acento); transform: scale(1.05); z-index: 10; }
         .item-carrusel:hover img, .item-carrusel:hover video { transform: scale(1.1); }
 
@@ -149,11 +147,10 @@
         .lightbox-siguiente { right: 20px; }
         .lightbox-contador { color: var(--blanco); margin-top: 20px; font-size: 1.2rem; font-weight: bold; }
 
-        /* SECCIÓN DE MARCAS */
+        /* SECCIÓN DE MARCAS (SOLO UNA LÍNEA) */
         .seccion-marcas { background: var(--gris-claro); padding: 60px 0; text-align: center; overflow: hidden; }
         .seccion-marcas p { font-size: 1.1rem; color: var(--gris-oscuro); margin-bottom: 40px; }
         
-        /* Carrusel de logos con CSS puro */
         .logos { width: 100%; overflow: hidden; }
         .logo_items {
             display: flex;
@@ -304,37 +301,11 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE MARCAS CON CARRUSEL CSS PURO -->
+    <!-- SECCIÓN DE MARCAS (UNA SOLA LÍNEA) -->
     <section class="seccion-marcas">
         <h2 class="seccion-titulo"><img src="img/marcas.png" alt="Icono Marcas"> TRABAJAMOS CON LAS MEJORES MARCAS DEL MERCADO</h2>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
         <div class="logos">
-            <div class="logo_items">
-                <img src="img/intel.png" alt="Intel">
-                <img src="img/amd.png" alt="AMD">
-                <img src="img/nvidia.png" alt="NVIDIA">
-                <img src="img/hp.png" alt="HP">
-                <img src="img/lenovo.png" alt="Lenovo">
-                <img src="img/dell.png" alt="Dell">
-                <img src="img/asus.png" alt="Asus">
-                <img src="img/windows.png" alt="Windows">
-                <img src="img/linux.png" alt="Linux">
-                <img src="img/debian.png" alt="Debian">
-                <img src="img/google.png" alt="Google">
-                <img src="img/mikrotik.png" alt="MikroTik">
-                <img src="img/fortinet.png" alt="Fortinet">
-                <img src="img/ruijie.png" alt="Ruijie">
-                <img src="img/dlink.png" alt="D-Link">
-                <img src="img/tplink.png" alt="TP-Link">
-                <img src="img/wifi.png" alt="WiFi">
-                <img src="img/hikvision.png" alt="Hikvision">
-                <img src="img/dahua.png" alt="Dahua">
-                <img src="img/hilook.png" alt="HiLook">
-                <img src="img/zkteco.png" alt="ZKTeco">
-                <img src="img/ezviz.png" alt="EZVIZ">
-                <img src="img/epson.png" alt="Epson">
-            </div>
-            <!-- Segunda copia para efecto infinito -->
             <div class="logo_items">
                 <img src="img/intel.png" alt="Intel">
                 <img src="img/amd.png" alt="AMD">
@@ -447,7 +418,6 @@
         <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
         <div class="carrusel-trabajos">
             <div class="carrusel-items">
-                <!-- Primera pasada -->
                 <div class="item-carrusel" onclick="abrirLightbox(this)">
                     <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
                 </div>
@@ -495,7 +465,6 @@
                     <video src="img/video2.mp4" muted></video>
                     <div class="icono-play"><i class="fas fa-play"></i></div>
                 </div>
-
                 <!-- Segunda copia para el efecto infinito -->
                 <div class="item-carrusel" onclick="abrirLightbox(this)">
                     <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
@@ -656,10 +625,10 @@
         let elementosGaleria = [];
 
         function abrirLightbox(elemento) {
-            // Recolectar los elementos únicos (solo la primera copia del carrusel)
+            // Recolectar los elementos únicos (solo la primera copia)
             elementosGaleria = [];
             const items = document.querySelectorAll('.item-carrusel');
-            const total = items.length / 2; // Solo tomamos la primera mitad
+            const total = items.length / 2; // Tomamos solo la primera mitad
             for (let i = 0; i < total; i++) {
                 elementosGaleria.push(items[i]);
             }
