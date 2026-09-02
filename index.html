@@ -86,6 +86,7 @@
         .boton-descargar { background: var(--blanco); color: var(--negro); padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; border: 2px solid var(--negro); transition: 0.3s; }
         .tarjeta-descarga:hover .boton-descargar { background: var(--negro); color: var(--blanco); }
 
+        /* OCULTAR SECCIÓN INTERNA */
         .oculto-interno { display: none; }
         .seccion-descargas:target .oculto-interno { display: block; }
 
@@ -108,31 +109,22 @@
         .seccion-marcas { background: var(--gris-claro); padding: 60px 8%; text-align: center; }
         .seccion-marcas h3 { margin: 0 0 10px 0; font-size: 2rem; color: var(--negro); }
         .seccion-marcas p { font-size: 1.1rem; color: var(--gris-oscuro); margin-bottom: 40px; }
-
         .grid-marcas { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        
-        .tarjeta-marca {
-            background: var(--blanco);
-            border: 2px solid var(--negro);
-            border-radius: 10px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 5px 5px 0px var(--negro);
-            transition: all 0.3s;
-        }
+        .tarjeta-marca { background: var(--blanco); border: 2px solid var(--negro); border-radius: 10px; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 5px 5px 0px var(--negro); transition: all 0.3s; }
         .tarjeta-marca:hover { transform: translateY(-5px); box-shadow: 7px 7px 0px var(--acento); }
-        
         .tarjeta-marca img { max-width: 100%; max-height: 60px; object-fit: contain; }
 
-        /* BANNER DE SERVICIO A DOMICILIO */
+        /* BANNER DE SERVICIO A DOMICILIO CON LOGO */
         .banner-domicilio { background: var(--acento); color: white; padding: 40px 8%; text-align: center; }
+        .banner-domicilio img { max-height: 80px; margin-bottom: 10px; }
         .banner-domicilio h2 { margin: 0 0 10px 0; font-size: 2rem; text-transform: uppercase; letter-spacing: 1px; }
         .banner-domicilio p { margin: 0; font-size: 1.2rem; font-weight: 500; }
         .banner-domicilio a { display: inline-block; margin-top: 20px; background: var(--negro); color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 8px; border: 2px solid var(--negro); transition: 0.3s; }
         .banner-domicilio a:hover { background: white; color: var(--negro); }
+
+        /* SECCIÓN COTIZAR APP */
+        .seccion-cotizar-app { background: var(--blanco); padding: 80px 8%; text-align: center; }
+        .seccion-cotizar-app iframe { width: 100%; height: 600px; border: 3px solid var(--negro); border-radius: 12px; }
 
         /* SECCIÓN FAQ */
         .faq-seccion { background: var(--blanco); padding: 80px 8%; }
@@ -147,20 +139,14 @@
         /* CONTACTO */
         .contacto-seccion { background-color: var(--gris-claro); padding: 80px 8%; display: flex; flex-wrap: wrap; gap: 40px; border-top: 3px solid var(--negro); }
         .formulario, .mapa-container { flex: 1; min-width: 300px; }
-
         input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid var(--negro); font-family: inherit; background: var(--blanco); }
-        
         .boton-whatsapp { display: flex; align-items: center; justify-content: center; background-color: var(--verde-wsp); color: white; border: none; padding: 15px; font-size: 1.2rem; font-weight: bold; cursor: pointer; border: 2px solid var(--negro); box-shadow: 6px 6px 0px var(--negro); transition: all 0.2s; width: 100%; text-transform: uppercase; }
         .boton-whatsapp:hover { transform: translateY(-2px); box-shadow: 8px 8px 0px var(--negro); }
         .boton-whatsapp i { margin-right: 10px; font-size: 1.5rem; }
-
         iframe { width: 100%; height: 400px; border: 3px solid var(--negro); }
-        
         .info-cobertura { background: var(--negro); color: white; padding: 20px; margin-top: 15px; border-radius: 5px; text-align: center; font-weight: bold; }
-
         .boton-flotante { position: fixed; bottom: 25px; right: 25px; z-index: 9999; background-color: var(--verde-wsp); color: white; border-radius: 50%; width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; box-shadow: 4px 4px 10px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; }
         .boton-flotante:hover { transform: scale(1.1); }
-
         footer { background: var(--negro); color: white; text-align: center; padding: 20px; margin-top: 40px; }
     </style>
 </head>
@@ -175,6 +161,7 @@
             <a href="#venta">Venta de Equipos</a>
             <a href="#descargas">Descargas</a>
             <a href="#galeria">Galería</a>
+            <a href="#cotizar">Cotizar App</a>
             <a href="#faq">FAQ</a>
             <a href="#contacto">Contacto</a>
         </nav>
@@ -266,13 +253,11 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE MARCAS (SOLO LOGOS, SIN NOMBRES) -->
+    <!-- SECCIÓN DE MARCAS (SOLO LOGOS) -->
     <section class="seccion-marcas">
         <h3>⚡ Trabajamos con las mejores marcas del mercado</h3>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
-        
         <div class="grid-marcas">
-            <!-- Hardware y Componentes -->
             <div class="tarjeta-marca"><img src="img/intel.png" alt="Intel"></div>
             <div class="tarjeta-marca"><img src="img/amd.png" alt="AMD"></div>
             <div class="tarjeta-marca"><img src="img/nvidia.png" alt="NVIDIA"></div>
@@ -280,41 +265,33 @@
             <div class="tarjeta-marca"><img src="img/lenovo.png" alt="Lenovo"></div>
             <div class="tarjeta-marca"><img src="img/dell.png" alt="Dell"></div>
             <div class="tarjeta-marca"><img src="img/asus.png" alt="Asus"></div>
-            
-            <!-- Sistemas Operativos y Software -->
             <div class="tarjeta-marca"><img src="img/windows.png" alt="Windows"></div>
             <div class="tarjeta-marca"><img src="img/linux.png" alt="Linux"></div>
             <div class="tarjeta-marca"><img src="img/debian.png" alt="Debian"></div>
             <div class="tarjeta-marca"><img src="img/google.png" alt="Google"></div>
-            
-            <!-- Redes y WiFi -->
             <div class="tarjeta-marca"><img src="img/mikrotik.png" alt="MikroTik"></div>
             <div class="tarjeta-marca"><img src="img/fortinet.png" alt="Fortinet"></div>
             <div class="tarjeta-marca"><img src="img/ruijie.png" alt="Ruijie"></div>
             <div class="tarjeta-marca"><img src="img/dlink.png" alt="D-Link"></div>
             <div class="tarjeta-marca"><img src="img/tplink.png" alt="TP-Link"></div>
             <div class="tarjeta-marca"><img src="img/wifi.png" alt="WiFi"></div>
-
-            <!-- Seguridad Electrónica -->
             <div class="tarjeta-marca"><img src="img/hikvision.png" alt="Hikvision"></div>
             <div class="tarjeta-marca"><img src="img/dahua.png" alt="Dahua"></div>
             <div class="tarjeta-marca"><img src="img/hilook.png" alt="HiLook"></div>
             <div class="tarjeta-marca"><img src="img/zkteco.png" alt="ZKTeco"></div>
             <div class="tarjeta-marca"><img src="img/ezviz.png" alt="EZVIZ"></div>
-            
-            <!-- Impresoras y Otros -->
             <div class="tarjeta-marca"><img src="img/epson.png" alt="Epson"></div>
-
-            <!-- MARCAS PENDIENTES (Descomenta cuando subas los logos) -->
+            <!-- Descomenta cuando subas los logos -->
             <!-- <div class="tarjeta-marca"><img src="img/ubiquiti.png" alt="Ubiquiti"></div> -->
             <!-- <div class="tarjeta-marca"><img src="img/office.png" alt="Office"></div> -->
             <!-- <div class="tarjeta-marca"><img src="img/ubuntu.png" alt="Ubuntu"></div> -->
         </div>
     </section>
 
-    <!-- BANNER DE SERVICIO A DOMICILIO -->
+    <!-- BANNER DE SERVICIO A DOMICILIO CON LOGO -->
     <section class="banner-domicilio">
-        <h2>⚡ Servicio Express a Domicilio</h2>
+        <img src="img/domicilio.png" alt="Servicio a Domicilio">
+        <h2>Servicio Express a Domicilio</h2>
         <p>Llegamos a tu casa u oficina en Medellín y el Valle de Aburrá. ¡No muevas tu equipo!</p>
         <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20servicio%20a%20domicilio." target="_blank">Agendar Visita</a>
     </section>
@@ -323,7 +300,6 @@
     <section id="venta" class="seccion-venta">
         <h2 class="titulo-venta">Venta de Equipos</h2>
         <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px;">Computadores nuevos y de segunda. ¡Pregunta por nuestro stock disponible!</p>
-        
         <div class="grid-servicios">
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🏢</div>
@@ -331,21 +307,18 @@
                 <p style="font-size: 0.9rem; line-height: 1.6;">Portátiles y de escritorio de alta durabilidad, perfectos para oficinas, trabajos de oficina y gestión empresarial.</p>
                 <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20corporativo." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
             </div>
-
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🛒</div>
                 <h4>Equipos de Consumo</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Ideal para el hogar, estudio, navegación y multimedia. Equipos económicos y de excelente rendimiento.</p>
                 <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20de%20consumo." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
             </div>
-
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🎮</div>
                 <h4>Equipos Gamer</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Máquinas de alto rendimiento para los videojuegos más exigentes. Con las mejores gráficas y procesadores.</p>
                 <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20Gamer." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
             </div>
-
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">💳</div>
                 <h4>POS (Punto de Venta)</h4>
@@ -359,7 +332,6 @@
     <section id="descargas" class="seccion-descargas">
         <h2 class="seccion-titulo">DESCARGAS</h2>
         <p style="text-align: center; margin-bottom: 50px;">Consulta nuestros catálogos y descarga nuestro brochure.</p>
-        
         <div class="grid-descargas">
             <div class="tarjeta-descarga">
                 <i class="fas fa-file-pdf"></i>
@@ -367,14 +339,13 @@
                 <p>Vista previa y descarga del portafolio de servicios.</p>
                 <a href="https://drive.google.com/file/d/172tVXVX6GBXfG6grzs9RkUZ52c8DppmT/preview" target="_blank" class="boton-descargar">Ver / Descargar</a>
             </div>
-
             <div class="tarjeta-descarga">
                 <i class="fab fa-whatsapp"></i>
                 <h3>Catálogo de Equipos</h3>
                 <p>Ver nuestro catálogo actualizado en WhatsApp Business.</p>
                 <a href="https://wa.me/p/9527643680651639/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
             </div>
-
+            <!-- SECCIÓN OCULTA (SOLO APARECE CON #descargas-internas) -->
             <div class="tarjeta-descarga oculto-interno">
                 <i class="fas fa-download"></i>
                 <h3>Software y Drivers</h3>
@@ -397,7 +368,181 @@
         </div>
     </section>
 
+    <!-- SECCIÓN COTIZAR APP (EMBEBIDA) -->
+    <section id="cotizar" class="seccion-cotizar-app">
+        <h2 class="seccion-titulo">Cotizar App</h2>
+        <p style="margin-bottom: 30px;">Realiza tu cotización directamente en nuestra aplicación.</p>
+        <iframe src="https://manresone.github.io/mr" frameborder="0" allowfullscreen></iframe>
+    </section>
+
     <!-- GALERÍA -->
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo">NUESTRO TRABAJO</h2>
-        <div class="grid
+        <div class="grid-fotos">
+            <img src="img/foto1.jpg" alt="Mantenimiento laptop 1" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto2.jpg" alt="Mantenimiento laptop 2" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto3.jpg" alt="Reparación de equipos" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto4.jpg" alt="Infraestructura de Red" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto5.jpg" alt="Instalación de seguridad" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto6.jpg" alt="Equipo Gamer" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto7.jpg" alt="Trabajo 7" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto8.jpg" alt="Trabajo 8" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto9.jpg" alt="Trabajo 9" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto10.jpg" alt="Trabajo 10" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto11.jpg" alt="Trabajo 11" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto12.jpg" alt="Trabajo 12" class="item-galeria" onclick="abrirLightbox(this)">
+            <img src="img/foto13.jpg" alt="Trabajo 13" class="item-galeria" onclick="abrirLightbox(this)">
+            <video src="img/video1.mp4" class="item-galeria" onclick="abrirLightbox(this)"></video>
+            <video src="img/video2.mp4" class="item-galeria" onclick="abrirLightbox(this)"></video>
+        </div>
+    </section>
+
+    <!-- SECCIÓN FAQ -->
+    <section id="faq" class="faq-seccion">
+        <h2 class="seccion-titulo">PREGUNTAS FRECUENTES</h2>
+        <div class="faq-item">
+            <div class="faq-pregunta" onclick="toggleFaq(this)">¿Cuánto tiempo tarda una reparación?<i class="fas fa-chevron-down"></i></div>
+            <div class="faq-respuesta"><p>Depende de la falla. Reparaciones de software suelen tardar de 1 a 2 horas. Cambios de pantalla o hardware pueden tardar de 1 a 3 días dependiendo de la disponibilidad del repuesto.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-pregunta" onclick="toggleFaq(this)">¿Los equipos usados tienen garantía?<i class="fas fa-chevron-down"></i></div>
+            <div class="faq-respuesta"><p>Sí. Todos nuestros equipos nuevos tienen 1 año de garantía, y los equipos usados tienen 3 meses de garantía por defectos de fábrica.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-pregunta" onclick="toggleFaq(this)">¿Puedo pagar con Nequi o Bancolombia?<i class="fas fa-chevron-down"></i></div>
+            <div class="faq-respuesta"><p>Sí, aceptamos pagos en efectivo, transferencia bancaria, Nequi y Bancolombia.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-pregunta" onclick="toggleFaq(this)">¿Atienden a domicilio?<i class="fas fa-chevron-down"></i></div>
+            <div class="faq-respuesta"><p>Sí. Ofrecemos servicio a domicilio en Medellín y el Valle de Aburrá para reparaciones, instalaciones de cámaras y redes.</p></div>
+        </div>
+    </section>
+
+    <!-- VISOR LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-cerrar" onclick="cerrarLightbox()">&times;</div>
+        <div class="lightbox-anterior" onclick="cambiarLightbox(-1)">&#10094;</div>
+        <div class="lightbox-siguiente" onclick="cambiarLightbox(1)">&#10095;</div>
+        <div id="lightbox-contenido"></div>
+        <div id="lightbox-contador" class="lightbox-contador"></div>
+    </div>
+
+    <section id="contacto" class="contacto-seccion">
+        <div class="formulario tarjeta">
+            <h2 style="margin-top: 0;">¿Listo para resolver tu problema?</h2>
+            <p>Cuéntanos tu problema; te damos la solución de forma clara y rápida.</p>
+            <form id="formularioContacto">
+                <input type="text" id="nombre" placeholder="Tu Nombre" required>
+                <input type="text" id="mensaje" placeholder="¿Qué servicio necesitas?" required>
+                <button type="submit" class="boton-whatsapp"><i class="fab fa-whatsapp"></i> Contáctanos ahora</button>
+            </form>
+            <div style="margin-top: 20px; font-size: 0.9rem;">
+                <h4 style="margin: 0;">Métodos de pago</h4>
+                <p>🏠 Servicio a domicilio · 💻 Soporte remoto · 💰 Efectivo · Transferencia · Nequi / Bancolombia</p>
+                <h4 style="margin: 15px 0 5px 0;">Síguenos y escríbenos</h4>
+                <p style="margin: 0;">
+                    <i class="fab fa-instagram"></i> <a href="https://www.instagram.com/mrsolutionsmed" target="_blank" style="color: var(--negro); font-weight: bold;">@mrsolutionsmed</a><br>
+                    <i class="fas fa-envelope"></i> <a href="mailto:mrsistemasyservicio@gmail.com" style="color: var(--negro); font-weight: bold;">mrsistemasyservicio@gmail.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="mapa-container tarjeta">
+            <h2 style="margin-top: 0;">Mapa de Cobertura</h2>
+            <iframe src="https://www.google.com/maps?q=6.153965,-75.533979&z=13&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            <div class="info-cobertura">
+                <h3>Zona de cobertura</h3>
+                <p>Medellín · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" class="boton-flotante"><i class="fab fa-whatsapp"></i></a>
+
+    <footer>
+        <p>© 2026 M R Sistemas y Servicios. Todos los derechos reservados.</p>
+        <div style="margin: 15px 0;">
+            <i class="fab fa-instagram"></i> <a href="https://www.instagram.com/mrsolutionsmed" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">@mrsolutionsmed</a>
+            <span style="margin: 0 10px; color: #555;">|</span>
+            <i class="fas fa-envelope"></i> <a href="mailto:mrsistemasyservicio@gmail.com" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">mrsistemasyservicio@gmail.com</a>
+        </div>
+        <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById('menuNav');
+            nav.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+            var secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(function(seccion) {
+                var posicion = seccion.getBoundingClientRect().top;
+                var pantalla = window.innerHeight;
+                if (posicion < pantalla - 100) {
+                    seccion.classList.add('visible');
+                }
+            });
+        });
+
+        function toggleFaq(elemento) {
+            var item = elemento.parentElement;
+            item.classList.toggle('abierto');
+        }
+
+        document.getElementById('formularioContacto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const mensaje = document.getElementById('mensaje').value;
+            const numeroWhatsApp = "573113944320"; 
+            const texto = `Hola, soy ${nombre}. Necesito el siguiente servicio: ${mensaje}.`;
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        });
+
+        // LIGHTBOX
+        let indiceActual = 0;
+        let elementosGaleria = [];
+        function abrirLightbox(elemento) {
+            elementosGaleria = document.querySelectorAll('.item-galeria');
+            indiceActual = Array.from(elementosGaleria).indexOf(elemento);
+            document.getElementById('lightbox').classList.add('activo');
+            actualizarLightbox();
+        }
+        function actualizarLightbox() {
+            const contenido = document.getElementById('lightbox-contenido');
+            const contador = document.getElementById('lightbox-contador');
+            contenido.innerHTML = '';
+            const elemento = elementosGaleria[indiceActual];
+            if (elemento.tagName === 'IMG') {
+                const img = document.createElement('img');
+                img.src = elemento.src;
+                img.alt = elemento.alt;
+                contenido.appendChild(img);
+            } else if (elemento.tagName === 'VIDEO') {
+                const video = document.createElement('video');
+                video.src = elemento.src;
+                video.controls = true;
+                video.autoplay = true;
+                contenido.appendChild(video);
+            }
+            contador.textContent = `${indiceActual + 1} de ${elementosGaleria.length}`;
+        }
+        function cambiarLightbox(direccion) {
+            indiceActual += direccion;
+            if (indiceActual >= elementosGaleria.length) indiceActual = 0;
+            if (indiceActual < 0) indiceActual = elementosGaleria.length - 1;
+            actualizarLightbox();
+        }
+        function cerrarLightbox() {
+            document.getElementById('lightbox').classList.remove('activo');
+            document.getElementById('lightbox-contenido').innerHTML = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') cerrarLightbox();
+            if (e.key === 'ArrowLeft') cambiarLightbox(-1);
+            if (e.key === 'ArrowRight') cambiarLightbox(1);
+        });
+    </script>
+</body>
+</html>
