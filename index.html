@@ -34,16 +34,18 @@
         .tarjeta { background: var(--blanco); border-radius: 12px; padding: 25px; box-shadow: 8px 8px 0px var(--negro); border: 2px solid var(--negro); transition: all 0.3s ease; display: flex; flex-direction: column; }
         .tarjeta:hover { transform: translateY(-5px); box-shadow: 10px 10px 0px var(--acento); }
 
-        header { display: flex; align-items: center; justify-content: space-between; padding: 15px 40px; background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 4px solid var(--negro); }
+        /* HEADER SIN LÍNEA NEGRA Y CON LOGO CLICKEABLE */
+        header { display: flex; align-items: center; justify-content: space-between; padding: 15px 40px; background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(5px); }
+        header a.logo-link { display: flex; align-items: center; text-decoration: none; }
         header img { max-height: 70px; }
         
-        /* Botón Cotizar App en el Header */
+        /* Botón Cotizar App (Color gris oscuro elegante) */
         .boton-header-cotizar {
-            background: var(--verde-wsp); color: var(--blanco); text-decoration: none;
+            background: var(--gris-oscuro); color: var(--blanco); text-decoration: none;
             padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 14px;
             border: 2px solid var(--negro); transition: all 0.3s; margin-left: 20px;
         }
-        .boton-header-cotizar:hover { background: var(--negro); color: var(--blanco); }
+        .boton-header-cotizar:hover { background: var(--acento); border-color: var(--acento); }
 
         nav a { text-decoration: none; color: var(--negro); font-weight: bold; margin-left: 20px; font-size: 14px; }
         nav a:hover { color: var(--acento); text-decoration: underline; }
@@ -66,7 +68,7 @@
         .seccion { padding: 80px 8%; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .seccion.visible { opacity: 1; transform: translateY(0); }
 
-        /* TÍTULOS CON ICONOS Y MAYÚSCULAS SOSTENIDAS */
+        /* TÍTULOS CON ICONOS Y MAYÚSCULAS */
         .seccion-titulo { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--negro); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .seccion-titulo img { max-height: 50px; object-fit: contain; }
 
@@ -162,7 +164,10 @@
 <body>
 
     <header>
-        <img src="img/logo.png" alt="Logo M R Sistemas y Servicios">
+        <!-- Logo clickeable hacia el inicio -->
+        <a href="#inicio" class="logo-link">
+            <img src="img/logo.png" alt="Logo M R Sistemas y Servicios">
+        </a>
         <div style="display: flex; align-items: center;">
             <nav id="menuNav">
                 <a href="#inicio">Inicio</a>
@@ -174,7 +179,7 @@
                 <a href="#contacto">Contacto</a>
             </nav>
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            <!-- Botón Cotizar App -->
+            <!-- Botón Cotizar App (Color gris oscuro) -->
             <a href="https://manresone.github.io/mr" target="_blank" class="boton-header-cotizar">Cotizar App</a>
         </div>
     </header>
@@ -265,7 +270,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE MARCAS (SOLO LOGOS) -->
+    <!-- SECCIÓN DE MARCAS -->
     <section class="seccion-marcas">
         <h2 class="seccion-titulo"><img src="img/marcas.png" alt="Icono Marcas"> TRABAJAMOS CON LAS MEJORES MARCAS DEL MERCADO</h2>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
@@ -293,10 +298,6 @@
             <div class="tarjeta-marca"><img src="img/zkteco.png" alt="ZKTeco"></div>
             <div class="tarjeta-marca"><img src="img/ezviz.png" alt="EZVIZ"></div>
             <div class="tarjeta-marca"><img src="img/epson.png" alt="Epson"></div>
-            <!-- Descomenta cuando subas los logos -->
-            <!-- <div class="tarjeta-marca"><img src="img/ubiquiti.png" alt="Ubiquiti"></div> -->
-            <!-- <div class="tarjeta-marca"><img src="img/office.png" alt="Office"></div> -->
-            <!-- <div class="tarjeta-marca"><img src="img/ubuntu.png" alt="Ubuntu"></div> -->
         </div>
     </section>
 
