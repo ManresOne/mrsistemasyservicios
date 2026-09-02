@@ -19,6 +19,10 @@
     }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Estilos del plugin del carrusel de logos -->
+    <link rel="stylesheet" href="https://unpkg.com/infinite-logo-carousel@1.0.0/src/infinite-logo-carousel.css">
+    
     <style>
         :root {
             --negro: #111111;
@@ -39,7 +43,7 @@
         header a.logo-link { display: flex; align-items: center; text-decoration: none; }
         header img { max-height: 70px; }
         
-        /* Botón Cotizar App (Color gris oscuro elegante) */
+        /* Botón Cotizar App */
         .boton-header-cotizar {
             background: var(--gris-oscuro); color: var(--blanco); text-decoration: none;
             padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 14px;
@@ -106,9 +110,12 @@
         .oculto-interno { display: none; }
         .seccion-descargas:target .oculto-interno { display: block; }
 
-        /* GALERÍA */
-        .grid-fotos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .grid-fotos img, .grid-fotos video { width: 100%; height: 200px; object-fit: cover; border: 3px solid var(--negro); transition: all 0.3s; cursor: pointer; }
+        /* GALERÍA CON CUADRÍCULA COMPACTA */
+        .grid-fotos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; } /* 4 columnas en escritorio */
+        @media (max-width: 768px) {
+            .grid-fotos { grid-template-columns: repeat(2, 1fr); } /* 2 columnas en celular, mucho menos scroll */
+        }
+        .grid-fotos img, .grid-fotos video { width: 100%; height: 150px; object-fit: cover; border: 2px solid var(--negro); transition: all 0.3s; cursor: pointer; }
         .grid-fotos img:hover, .grid-fotos video:hover { filter: grayscale(80%); transform: scale(1.02); border-color: var(--acento); }
 
         /* VISOR LIGHTBOX */
@@ -121,13 +128,14 @@
         .lightbox-siguiente { right: 20px; }
         .lightbox-contador { color: var(--blanco); margin-top: 20px; font-size: 1.2rem; font-weight: bold; }
 
-        /* SECCIÓN DE MARCAS */
-        .seccion-marcas { background: var(--gris-claro); padding: 60px 8%; text-align: center; }
+        /* SECCIÓN DE MARCAS: CARRUSEL ANIMADO */
+        .seccion-marcas { background: var(--gris-claro); padding: 60px 0; text-align: center; overflow: hidden; }
         .seccion-marcas p { font-size: 1.1rem; color: var(--gris-oscuro); margin-bottom: 40px; }
-        .grid-marcas { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .tarjeta-marca { background: var(--blanco); border: 2px solid var(--negro); border-radius: 10px; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 5px 5px 0px var(--negro); transition: all 0.3s; }
-        .tarjeta-marca:hover { transform: translateY(-5px); box-shadow: 7px 7px 0px var(--acento); }
-        .tarjeta-marca img { max-width: 100%; max-height: 60px; object-fit: contain; }
+        
+        .logos { width: 100%; margin: 0 auto; }
+        .logo_items { display: flex; gap: 20px; padding: 0 20px; }
+        .logo_items img { width: 120px; height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s; }
+        .logo_items img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
 
         /* BANNER DE SERVICIO A DOMICILIO */
         .banner-domicilio { background: var(--acento); color: white; padding: 40px 8%; text-align: center; }
@@ -164,7 +172,6 @@
 <body>
 
     <header>
-        <!-- Logo clickeable hacia el inicio -->
         <a href="#inicio" class="logo-link">
             <img src="img/logo.png" alt="Logo M R Sistemas y Servicios">
         </a>
@@ -179,7 +186,6 @@
                 <a href="#contacto">Contacto</a>
             </nav>
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            <!-- Botón Cotizar App (Color gris oscuro) -->
             <a href="https://manresone.github.io/mr" target="_blank" class="boton-header-cotizar">Cotizar App</a>
         </div>
     </header>
@@ -270,34 +276,39 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE MARCAS -->
+    <!-- SECCIÓN DE MARCAS CON CARRUSEL INFINITO -->
     <section class="seccion-marcas">
         <h2 class="seccion-titulo"><img src="img/marcas.png" alt="Icono Marcas"> TRABAJAMOS CON LAS MEJORES MARCAS DEL MERCADO</h2>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
-        <div class="grid-marcas">
-            <div class="tarjeta-marca"><img src="img/intel.png" alt="Intel"></div>
-            <div class="tarjeta-marca"><img src="img/amd.png" alt="AMD"></div>
-            <div class="tarjeta-marca"><img src="img/nvidia.png" alt="NVIDIA"></div>
-            <div class="tarjeta-marca"><img src="img/hp.png" alt="HP"></div>
-            <div class="tarjeta-marca"><img src="img/lenovo.png" alt="Lenovo"></div>
-            <div class="tarjeta-marca"><img src="img/dell.png" alt="Dell"></div>
-            <div class="tarjeta-marca"><img src="img/asus.png" alt="Asus"></div>
-            <div class="tarjeta-marca"><img src="img/windows.png" alt="Windows"></div>
-            <div class="tarjeta-marca"><img src="img/linux.png" alt="Linux"></div>
-            <div class="tarjeta-marca"><img src="img/debian.png" alt="Debian"></div>
-            <div class="tarjeta-marca"><img src="img/google.png" alt="Google"></div>
-            <div class="tarjeta-marca"><img src="img/mikrotik.png" alt="MikroTik"></div>
-            <div class="tarjeta-marca"><img src="img/fortinet.png" alt="Fortinet"></div>
-            <div class="tarjeta-marca"><img src="img/ruijie.png" alt="Ruijie"></div>
-            <div class="tarjeta-marca"><img src="img/dlink.png" alt="D-Link"></div>
-            <div class="tarjeta-marca"><img src="img/tplink.png" alt="TP-Link"></div>
-            <div class="tarjeta-marca"><img src="img/wifi.png" alt="WiFi"></div>
-            <div class="tarjeta-marca"><img src="img/hikvision.png" alt="Hikvision"></div>
-            <div class="tarjeta-marca"><img src="img/dahua.png" alt="Dahua"></div>
-            <div class="tarjeta-marca"><img src="img/hilook.png" alt="HiLook"></div>
-            <div class="tarjeta-marca"><img src="img/zkteco.png" alt="ZKTeco"></div>
-            <div class="tarjeta-marca"><img src="img/ezviz.png" alt="EZVIZ"></div>
-            <div class="tarjeta-marca"><img src="img/epson.png" alt="Epson"></div>
+        
+        <!-- Inicio del carrusel -->
+        <div class="logos" data-direction="left-to-right" data-speed="40s">
+            <div class="logo_items">
+                <img src="img/intel.png" alt="Intel">
+                <img src="img/amd.png" alt="AMD">
+                <img src="img/nvidia.png" alt="NVIDIA">
+                <img src="img/hp.png" alt="HP">
+                <img src="img/lenovo.png" alt="Lenovo">
+                <img src="img/dell.png" alt="Dell">
+                <img src="img/asus.png" alt="Asus">
+                <img src="img/windows.png" alt="Windows">
+                <img src="img/linux.png" alt="Linux">
+                <img src="img/debian.png" alt="Debian">
+                <img src="img/google.png" alt="Google">
+                <img src="img/mikrotik.png" alt="MikroTik">
+                <img src="img/fortinet.png" alt="Fortinet">
+                <img src="img/ruijie.png" alt="Ruijie">
+                <img src="img/dlink.png" alt="D-Link">
+                <img src="img/tplink.png" alt="TP-Link">
+                <img src="img/wifi.png" alt="WiFi">
+                <img src="img/hikvision.png" alt="Hikvision">
+                <img src="img/dahua.png" alt="Dahua">
+                <img src="img/hilook.png" alt="HiLook">
+                <img src="img/zkteco.png" alt="ZKTeco">
+                <img src="img/ezviz.png" alt="EZVIZ">
+                <img src="img/epson.png" alt="Epson">
+            </div>
+            <!-- El plugin duplica automáticamente los logos para el efecto infinito -->
         </div>
     </section>
 
@@ -381,7 +392,7 @@
         </div>
     </section>
 
-    <!-- GALERÍA -->
+    <!-- GALERÍA CON CUADRÍCULA COMPACTA -->
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
         <div class="grid-fotos">
@@ -474,7 +485,18 @@
         <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
     </footer>
 
+    <!-- Scripts del plugin del carrusel de logos -->
+    <script src="https://unpkg.com/infinite-logo-carousel@1.0.0/src/infinite-logo-carousel.js"></script>
+
     <script>
+        // Inicializar el carrusel de logos
+        document.addEventListener('DOMContentLoaded', function() {
+            new InfiniteLogoCarousel(document.querySelector('.logos'), {
+                direction: 'left-to-right',
+                speed: 40
+            });
+        });
+
         function toggleMenu() {
             var nav = document.getElementById('menuNav');
             nav.classList.toggle('active');
