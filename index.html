@@ -36,6 +36,15 @@
 
         header { display: flex; align-items: center; justify-content: space-between; padding: 15px 40px; background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 4px solid var(--negro); }
         header img { max-height: 70px; }
+        
+        /* Botón Cotizar App en el Header */
+        .boton-header-cotizar {
+            background: var(--verde-wsp); color: var(--blanco); text-decoration: none;
+            padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 14px;
+            border: 2px solid var(--negro); transition: all 0.3s; margin-left: 20px;
+        }
+        .boton-header-cotizar:hover { background: var(--negro); color: var(--blanco); }
+
         nav a { text-decoration: none; color: var(--negro); font-weight: bold; margin-left: 20px; font-size: 14px; }
         nav a:hover { color: var(--acento); text-decoration: underline; }
 
@@ -45,6 +54,7 @@
             nav { display: none; width: 100%; flex-direction: column; position: absolute; top: 80px; left: 0; background: var(--blanco); border-bottom: 3px solid var(--negro); padding: 20px; }
             nav.active { display: flex; }
             nav a { margin: 10px 0; }
+            .boton-header-cotizar { margin-left: 0; margin-top: 10px; display: inline-block; }
         }
 
         .hero { height: 85vh; width: 100%; display: flex; align-items: center; justify-content: center; color: var(--blanco); position: relative; overflow: hidden; }
@@ -55,7 +65,11 @@
 
         .seccion { padding: 80px 8%; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .seccion.visible { opacity: 1; transform: translateY(0); }
-        .seccion-titulo { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--negro); }
+
+        /* TÍTULOS CON ICONOS Y MAYÚSCULAS SOSTENIDAS */
+        .seccion-titulo { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--negro); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .seccion-titulo img { max-height: 50px; object-fit: contain; }
+
         .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: stretch; }
         
         ul { list-style: none; padding: 0; line-height: 1.8; }
@@ -66,8 +80,8 @@
         .detalle-garantia:hover { background: var(--acento); }
 
         .seccion-venta { background-color: var(--negro); color: var(--blanco); padding: 80px 8%; border-top: 4px solid var(--acento); border-bottom: 4px solid var(--acento); }
-        .titulo-venta { text-align: center; font-size: 2.5rem; margin: 0 0 30px 0; color: var(--blanco); letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
-        .titulo-venta::after { content: ''; display: block; width: 80px; height: 4px; background: var(--acento); margin: 15px auto 0; }
+        .titulo-venta { text-align: center; font-size: 2.5rem; margin: 0 0 30px 0; color: var(--blanco); letter-spacing: 2px; text-transform: uppercase; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .titulo-venta img { max-height: 50px; object-fit: contain; }
 
         .tarjeta-venta { background: var(--gris-oscuro); color: var(--blanco); border: 2px solid var(--blanco); box-shadow: 8px 8px 0px var(--acento); border-radius: 12px; padding: 25px; display: flex; flex-direction: column; height: 100%; }
         .tarjeta-venta:hover { transform: translateY(-5px); background: var(--negro); box-shadow: 10px 10px 0px var(--blanco); }
@@ -105,26 +119,21 @@
         .lightbox-siguiente { right: 20px; }
         .lightbox-contador { color: var(--blanco); margin-top: 20px; font-size: 1.2rem; font-weight: bold; }
 
-        /* SECCIÓN DE MARCAS (SOLO LOGOS) */
+        /* SECCIÓN DE MARCAS */
         .seccion-marcas { background: var(--gris-claro); padding: 60px 8%; text-align: center; }
-        .seccion-marcas h3 { margin: 0 0 10px 0; font-size: 2rem; color: var(--negro); }
         .seccion-marcas p { font-size: 1.1rem; color: var(--gris-oscuro); margin-bottom: 40px; }
         .grid-marcas { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
         .tarjeta-marca { background: var(--blanco); border: 2px solid var(--negro); border-radius: 10px; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 5px 5px 0px var(--negro); transition: all 0.3s; }
         .tarjeta-marca:hover { transform: translateY(-5px); box-shadow: 7px 7px 0px var(--acento); }
         .tarjeta-marca img { max-width: 100%; max-height: 60px; object-fit: contain; }
 
-        /* BANNER DE SERVICIO A DOMICILIO CON LOGO */
+        /* BANNER DE SERVICIO A DOMICILIO */
         .banner-domicilio { background: var(--acento); color: white; padding: 40px 8%; text-align: center; }
         .banner-domicilio img { max-height: 80px; margin-bottom: 10px; }
         .banner-domicilio h2 { margin: 0 0 10px 0; font-size: 2rem; text-transform: uppercase; letter-spacing: 1px; }
         .banner-domicilio p { margin: 0; font-size: 1.2rem; font-weight: 500; }
         .banner-domicilio a { display: inline-block; margin-top: 20px; background: var(--negro); color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 8px; border: 2px solid var(--negro); transition: 0.3s; }
         .banner-domicilio a:hover { background: white; color: var(--negro); }
-
-        /* SECCIÓN COTIZAR APP */
-        .seccion-cotizar-app { background: var(--blanco); padding: 80px 8%; text-align: center; }
-        .seccion-cotizar-app iframe { width: 100%; height: 600px; border: 3px solid var(--negro); border-radius: 12px; }
 
         /* SECCIÓN FAQ */
         .faq-seccion { background: var(--blanco); padding: 80px 8%; }
@@ -154,17 +163,20 @@
 
     <header>
         <img src="img/logo.png" alt="Logo M R Sistemas y Servicios">
-        <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-        <nav id="menuNav">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#venta">Venta de Equipos</a>
-            <a href="#descargas">Descargas</a>
-            <a href="#galeria">Galería</a>
-            <a href="#cotizar">Cotizar App</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
+        <div style="display: flex; align-items: center;">
+            <nav id="menuNav">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#venta">Venta de Equipos</a>
+                <a href="#descargas">Descargas</a>
+                <a href="#galeria">Galería</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            <!-- Botón Cotizar App -->
+            <a href="https://manresone.github.io/mr" target="_blank" class="boton-header-cotizar">Cotizar App</a>
+        </div>
     </header>
 
     <section id="inicio" class="hero">
@@ -177,7 +189,7 @@
     </section>
 
     <section id="servicios" class="seccion">
-        <h2 class="seccion-titulo">NUESTROS SERVICIOS</h2>
+        <h2 class="seccion-titulo"><img src="img/servicios.png" alt="Icono Servicios"> NUESTROS SERVICIOS</h2>
         <div class="grid-servicios">
             <div class="tarjeta">
                 <div style="font-size: 2.5rem; color: var(--acento);">💻</div>
@@ -255,7 +267,7 @@
 
     <!-- SECCIÓN DE MARCAS (SOLO LOGOS) -->
     <section class="seccion-marcas">
-        <h3>⚡ Trabajamos con las mejores marcas del mercado</h3>
+        <h2 class="seccion-titulo"><img src="img/marcas.png" alt="Icono Marcas"> TRABAJAMOS CON LAS MEJORES MARCAS DEL MERCADO</h2>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
         <div class="grid-marcas">
             <div class="tarjeta-marca"><img src="img/intel.png" alt="Intel"></div>
@@ -288,7 +300,7 @@
         </div>
     </section>
 
-    <!-- BANNER DE SERVICIO A DOMICILIO CON LOGO -->
+    <!-- BANNER DE SERVICIO A DOMICILIO -->
     <section class="banner-domicilio">
         <img src="img/domicilio.png" alt="Servicio a Domicilio">
         <h2>Servicio Express a Domicilio</h2>
@@ -298,7 +310,7 @@
 
     <!-- SECCIÓN DE VENTA DE EQUIPOS -->
     <section id="venta" class="seccion-venta">
-        <h2 class="titulo-venta">Venta de Equipos</h2>
+        <h2 class="titulo-venta"><img src="img/ventas.png" alt="Icono Ventas"> VENTA DE EQUIPOS</h2>
         <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px;">Computadores nuevos y de segunda. ¡Pregunta por nuestro stock disponible!</p>
         <div class="grid-servicios">
             <div class="tarjeta-venta">
@@ -328,9 +340,9 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE DESCARGAS (PÚBLICA) -->
+    <!-- SECCIÓN DE DESCARGAS -->
     <section id="descargas" class="seccion-descargas">
-        <h2 class="seccion-titulo">DESCARGAS</h2>
+        <h2 class="seccion-titulo"><img src="img/descargas.png" alt="Icono Descargas"> DESCARGAS</h2>
         <p style="text-align: center; margin-bottom: 50px;">Consulta nuestros catálogos y descarga nuestro brochure.</p>
         <div class="grid-descargas">
             <div class="tarjeta-descarga">
@@ -345,7 +357,7 @@
                 <p>Ver nuestro catálogo actualizado en WhatsApp Business.</p>
                 <a href="https://wa.me/p/9527643680651639/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
             </div>
-            <!-- SECCIÓN OCULTA (SOLO APARECE CON #descargas-internas) -->
+            <!-- SECCIÓN OCULTA -->
             <div class="tarjeta-descarga oculto-interno">
                 <i class="fas fa-download"></i>
                 <h3>Software y Drivers</h3>
@@ -368,16 +380,9 @@
         </div>
     </section>
 
-    <!-- SECCIÓN COTIZAR APP (EMBEBIDA) -->
-    <section id="cotizar" class="seccion-cotizar-app">
-        <h2 class="seccion-titulo">Cotizar App</h2>
-        <p style="margin-bottom: 30px;">Realiza tu cotización directamente en nuestra aplicación.</p>
-        <iframe src="https://manresone.github.io/mr" frameborder="0" allowfullscreen></iframe>
-    </section>
-
     <!-- GALERÍA -->
     <section id="galeria" class="seccion">
-        <h2 class="seccion-titulo">NUESTRO TRABAJO</h2>
+        <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
         <div class="grid-fotos">
             <img src="img/foto1.jpg" alt="Mantenimiento laptop 1" class="item-galeria" onclick="abrirLightbox(this)">
             <img src="img/foto2.jpg" alt="Mantenimiento laptop 2" class="item-galeria" onclick="abrirLightbox(this)">
@@ -399,7 +404,7 @@
 
     <!-- SECCIÓN FAQ -->
     <section id="faq" class="faq-seccion">
-        <h2 class="seccion-titulo">PREGUNTAS FRECUENTES</h2>
+        <h2 class="seccion-titulo"><img src="img/faqs.png" alt="Icono FAQs"> PREGUNTAS FRECUENTES</h2>
         <div class="faq-item">
             <div class="faq-pregunta" onclick="toggleFaq(this)">¿Cuánto tiempo tarda una reparación?<i class="fas fa-chevron-down"></i></div>
             <div class="faq-respuesta"><p>Depende de la falla. Reparaciones de software suelen tardar de 1 a 2 horas. Cambios de pantalla o hardware pueden tardar de 1 a 3 días dependiendo de la disponibilidad del repuesto.</p></div>
