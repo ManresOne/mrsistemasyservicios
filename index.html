@@ -20,9 +20,6 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Estilos del plugin del carrusel -->
-    <link rel="stylesheet" href="https://unpkg.com/infinite-logo-carousel@1.0.0/src/infinite-logo-carousel.css">
-    
     <style>
         :root {
             --negro: #111111;
@@ -102,27 +99,44 @@
         .oculto-interno { display: none; }
         .seccion-descargas:target .oculto-interno { display: block; }
 
-        /* GALERÍA: CARRUSEL INFINITO DE FOTOS */
-        .carrusel-trabajos { width: 100%; overflow: hidden; padding: 20px 0; }
-        .carrusel-items { display: flex; gap: 15px; padding: 0 15px; }
+        /* GALERÍA CON CARRUSEL CSS PURO */
+        .carrusel-trabajos { width: 100%; overflow: hidden; position: relative; padding: 10px 0; }
+        .carrusel-items {
+            display: flex;
+            gap: 15px;
+            width: max-content;
+            animation: desplazamiento 45s linear infinite;
+        }
+        /* Pausar el carrusel cuando el mouse está encima */
+        .carrusel-trabajos:hover .carrusel-items { animation-play-state: paused; }
+
         .item-carrusel {
             flex: 0 0 auto;
-            width: 300px;
-            height: 200px;
+            width: 350px;
+            height: 220px;
             border: 3px solid var(--negro);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s;
             position: relative;
+            transition: all 0.4s ease;
         }
-        .item-carrusel:hover { transform: scale(1.05); border-color: var(--acento); }
-        .item-carrusel img, .item-carrusel video { width: 100%; height: 100%; object-fit: cover; }
+        .item-carrusel img, .item-carrusel video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        
+        /* Efecto de zoom al pasar el mouse */
+        .item-carrusel:hover { border-color: var(--acento); transform: scale(1.05); z-index: 10; }
+        .item-carrusel:hover img, .item-carrusel:hover video { transform: scale(1.1); }
+
         .item-carrusel .icono-play {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: rgba(0,0,0,0.7); color: white; border-radius: 50%; width: 50px; height: 50px;
             display: flex; justify-content: center; align-items: center; font-size: 1.5rem;
             pointer-events: none;
+        }
+
+        @keyframes desplazamiento {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* VISOR LIGHTBOX */
@@ -138,8 +152,16 @@
         /* SECCIÓN DE MARCAS */
         .seccion-marcas { background: var(--gris-claro); padding: 60px 0; text-align: center; overflow: hidden; }
         .seccion-marcas p { font-size: 1.1rem; color: var(--gris-oscuro); margin-bottom: 40px; }
-        .logos { width: 100%; margin: 0 auto; }
-        .logo_items { display: flex; gap: 20px; padding: 0 20px; }
+        
+        /* Carrusel de logos con CSS puro */
+        .logos { width: 100%; overflow: hidden; }
+        .logo_items {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: desplazamiento 30s linear infinite;
+        }
+        .seccion-marcas:hover .logo_items { animation-play-state: paused; }
         .logo_items img { width: 120px; height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s; }
         .logo_items img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
 
@@ -282,11 +304,37 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE MARCAS CON CARRUSEL INFINITO -->
+    <!-- SECCIÓN DE MARCAS CON CARRUSEL CSS PURO -->
     <section class="seccion-marcas">
         <h2 class="seccion-titulo"><img src="img/marcas.png" alt="Icono Marcas"> TRABAJAMOS CON LAS MEJORES MARCAS DEL MERCADO</h2>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
-        <div class="logos" data-direction="left-to-right" data-speed="40s">
+        <div class="logos">
+            <div class="logo_items">
+                <img src="img/intel.png" alt="Intel">
+                <img src="img/amd.png" alt="AMD">
+                <img src="img/nvidia.png" alt="NVIDIA">
+                <img src="img/hp.png" alt="HP">
+                <img src="img/lenovo.png" alt="Lenovo">
+                <img src="img/dell.png" alt="Dell">
+                <img src="img/asus.png" alt="Asus">
+                <img src="img/windows.png" alt="Windows">
+                <img src="img/linux.png" alt="Linux">
+                <img src="img/debian.png" alt="Debian">
+                <img src="img/google.png" alt="Google">
+                <img src="img/mikrotik.png" alt="MikroTik">
+                <img src="img/fortinet.png" alt="Fortinet">
+                <img src="img/ruijie.png" alt="Ruijie">
+                <img src="img/dlink.png" alt="D-Link">
+                <img src="img/tplink.png" alt="TP-Link">
+                <img src="img/wifi.png" alt="WiFi">
+                <img src="img/hikvision.png" alt="Hikvision">
+                <img src="img/dahua.png" alt="Dahua">
+                <img src="img/hilook.png" alt="HiLook">
+                <img src="img/zkteco.png" alt="ZKTeco">
+                <img src="img/ezviz.png" alt="EZVIZ">
+                <img src="img/epson.png" alt="Epson">
+            </div>
+            <!-- Segunda copia para efecto infinito -->
             <div class="logo_items">
                 <img src="img/intel.png" alt="Intel">
                 <img src="img/amd.png" alt="AMD">
@@ -394,13 +442,12 @@
         </div>
     </section>
 
-    <!-- GALERÍA: CARRUSEL INFINITO DE TRABAJOS -->
+    <!-- GALERÍA CON CARRUSEL CSS PURO -->
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
-        
-        <div class="carrusel-trabajos" data-direction="left-to-right" data-speed="30s">
+        <div class="carrusel-trabajos">
             <div class="carrusel-items">
-                <!-- Fotos -->
+                <!-- Primera pasada -->
                 <div class="item-carrusel" onclick="abrirLightbox(this)">
                     <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
                 </div>
@@ -440,7 +487,55 @@
                 <div class="item-carrusel" onclick="abrirLightbox(this)">
                     <img src="img/foto13.jpg" alt="Trabajo 13">
                 </div>
-                <!-- Videos con icono de play -->
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <video src="img/video1.mp4" muted></video>
+                    <div class="icono-play"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <video src="img/video2.mp4" muted></video>
+                    <div class="icono-play"><i class="fas fa-play"></i></div>
+                </div>
+
+                <!-- Segunda copia para el efecto infinito -->
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto2.jpg" alt="Mantenimiento laptop 2">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto3.jpg" alt="Reparación de equipos">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto4.jpg" alt="Infraestructura de Red">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto5.jpg" alt="Instalación de seguridad">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto6.jpg" alt="Equipo Gamer">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto7.jpg" alt="Trabajo 7">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto8.jpg" alt="Trabajo 8">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto9.jpg" alt="Trabajo 9">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto10.jpg" alt="Trabajo 10">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto11.jpg" alt="Trabajo 11">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto12.jpg" alt="Trabajo 12">
+                </div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)">
+                    <img src="img/foto13.jpg" alt="Trabajo 13">
+                </div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)">
                     <video src="img/video1.mp4" muted></video>
                     <div class="icono-play"><i class="fas fa-play"></i></div>
@@ -524,24 +619,7 @@
         <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
     </footer>
 
-    <!-- Scripts del plugin del carrusel -->
-    <script src="https://unpkg.com/infinite-logo-carousel@1.0.0/src/infinite-logo-carousel.js"></script>
-
     <script>
-        // Inicializar carrusel de logos
-        document.addEventListener('DOMContentLoaded', function() {
-            new InfiniteLogoCarousel(document.querySelector('.logos'), {
-                direction: 'left-to-right',
-                speed: 40
-            });
-            
-            // Inicializar carrusel de trabajos
-            new InfiniteLogoCarousel(document.querySelector('.carrusel-trabajos'), {
-                direction: 'left-to-right',
-                speed: 30
-            });
-        });
-
         function toggleMenu() {
             var nav = document.getElementById('menuNav');
             nav.classList.toggle('active');
@@ -573,16 +651,21 @@
             window.open(url, '_blank');
         });
 
-        // LIGHTBOX (Ahora funciona con el carrusel)
+        // LIGHTBOX
         let indiceActual = 0;
         let elementosGaleria = [];
-        
+
         function abrirLightbox(elemento) {
-            // Recolectar todos los elementos del carrusel
-            elementosGaleria = document.querySelectorAll('.item-carrusel');
+            // Recolectar los elementos únicos (solo la primera copia del carrusel)
+            elementosGaleria = [];
+            const items = document.querySelectorAll('.item-carrusel');
+            const total = items.length / 2; // Solo tomamos la primera mitad
+            for (let i = 0; i < total; i++) {
+                elementosGaleria.push(items[i]);
+            }
             
-            // Encontrar el índice del elemento clickeado dentro del carrusel
-            indiceActual = Array.from(elementosGaleria).indexOf(elemento);
+            // Encontrar el índice real (si el clic fue en la segunda copia, buscar su espejo)
+            indiceActual = Array.from(items).indexOf(elemento) % total;
             
             document.getElementById('lightbox').classList.add('activo');
             actualizarLightbox();
@@ -594,8 +677,6 @@
             contenido.innerHTML = '';
             
             const elemento = elementosGaleria[indiceActual];
-            
-            // Obtener la imagen o video dentro del elemento
             const media = elemento.querySelector('img, video');
             
             if (media.tagName === 'IMG') {
