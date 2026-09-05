@@ -96,8 +96,45 @@
         .boton-descargar { background: var(--blanco); color: var(--negro); padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; border: 2px solid var(--negro); transition: 0.3s; }
         .tarjeta-descarga:hover .boton-descargar { background: var(--negro); color: var(--blanco); }
 
-        .oculto-interno { display: none; }
-        .seccion-descargas:target .oculto-interno { display: block; }
+        /* ACCESO PRIVADO - SOLO APARECE CON #acceso-interno */
+        .acceso-privado {
+            display: none;
+            background: var(--blanco);
+            border: 3px solid var(--negro);
+            border-radius: 12px;
+            box-shadow: 8px 8px 0px var(--negro);
+            padding: 30px;
+            max-width: 500px;
+            margin: 40px auto 0;
+            text-align: center;
+        }
+        .seccion-descargas:target .acceso-privado { display: block; } /* Aparece solo si la URL es #acceso-interno */
+
+        .acceso-privado input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid var(--negro);
+            font-family: inherit;
+            background: var(--blanco);
+            text-align: center;
+        }
+        .acceso-privado button {
+            background: var(--negro);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .acceso-privado button:hover { background: var(--acento); }
+        .acceso-privado .mensaje-error { color: red; font-weight: bold; margin-top: 10px; display: none; }
+
+        /* ÁREA INTERNA OCULTA */
+        .area-interna-oculta { display: none; margin-top: 30px; }
+        .area-interna-oculta.visible { display: block; }
 
         /* GALERÍA CON CARRUSEL CSS PURO */
         .carrusel-trabajos { width: 100%; overflow: hidden; position: relative; padding: 10px 0; }
@@ -147,7 +184,7 @@
         .lightbox-siguiente { right: 20px; }
         .lightbox-contador { color: var(--blanco); margin-top: 20px; font-size: 1.2rem; font-weight: bold; }
 
-        /* SECCIÓN DE MARCAS (SOLO UNA LÍNEA) */
+        /* SECCIÓN DE MARCAS */
         .seccion-marcas { background: var(--gris-claro); padding: 60px 0; text-align: center; overflow: hidden; }
         .seccion-marcas p { font-size: 1.1rem; color: var(--gris-oscuro); margin-bottom: 40px; }
         
@@ -301,7 +338,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE MARCAS (UNA SOLA LÍNEA) -->
+    <!-- SECCIÓN DE MARCAS -->
     <section class="seccion-marcas">
         <h2 class="seccion-titulo"><img src="img/marcas.png" alt="Icono Marcas"> TRABAJAMOS CON LAS MEJORES MARCAS DEL MERCADO</h2>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
@@ -374,7 +411,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE DESCARGAS -->
+    <!-- SECCIÓN DE DESCARGAS (CON ACCESO PRIVADO) -->
     <section id="descargas" class="seccion-descargas">
         <h2 class="seccion-titulo"><img src="img/descargas.png" alt="Icono Descargas"> DESCARGAS</h2>
         <p style="text-align: center; margin-bottom: 50px;">Consulta nuestros catálogos y descarga nuestro brochure.</p>
@@ -391,23 +428,35 @@
                 <p>Ver nuestro catálogo actualizado en WhatsApp Business.</p>
                 <a href="https://wa.me/p/9527643680651639/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
             </div>
-            <div class="tarjeta-descarga oculto-interno">
-                <i class="fas fa-download"></i>
-                <h3>Software y Drivers</h3>
-                <p>Acceso interno para instalación de software y soporte técnico.</p>
-                <div style="margin-top: 15px; text-align: left;">
-                    <p style="border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 10px; font-size: 0.85rem;">
-                        <strong>Actualizar Windows 11</strong><br>
-                        <a href="https://drive.google.com/uc?export=download&id=10sXg0T6iZUNokWm1RPKMLqt71Q4Lh1xo" target="_blank" class="boton-descargar" style="font-size: 0.75rem; padding: 6px 12px; margin-top: 5px;">Descargar</a>
-                    </p>
-                    <p style="border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 10px; font-size: 0.85rem;">
-                        <strong>Office para Mac</strong><br>
-                        <a href="https://drive.google.com/uc?export=download&id=1L0rdIYTe1ifcx0IZyFxk31Zncw1jWq8a" target="_blank" class="boton-descargar" style="font-size: 0.75rem; padding: 6px 12px; margin-top: 5px;">Descargar</a>
-                    </p>
-                    <p style="font-size: 0.85rem;">
-                        <strong>Office para Windows</strong><br>
-                        <a href="https://drive.google.com/uc?export=download&id=15WzeYOdWS5rEwfwKW2R_tw78lPdGBgL6" target="_blank" class="boton-descargar" style="font-size: 0.75rem; padding: 6px 12px; margin-top: 5px;">Descargar</a>
-                    </p>
+            
+            <!-- SOLO APARECE SI ESCRIBES #acceso-interno EN LA URL -->
+            <div id="acceso-privado" class="acceso-privado">
+                <h3>🔒 Acceso Interno</h3>
+                <p>Ingrese la contraseña para ver los archivos internos.</p>
+                <input type="password" id="claveAcceso" placeholder="Contraseña">
+                <button onclick="verificarAcceso()">Entrar</button>
+                <div class="mensaje-error" id="mensajeError">Contraseña incorrecta</div>
+            </div>
+        </div>
+
+        <!-- ÁREA INTERNA (SE MUESTRA AL PONER LA CONTRASEÑA) -->
+        <div id="area-interna" class="area-interna-oculta">
+            <h3 style="text-align: center; margin-bottom: 20px;">📂 Recursos Internos</h3>
+            <div class="grid-descargas">
+                <div class="tarjeta-descarga">
+                    <i class="fas fa-download"></i>
+                    <h3>Actualizar Windows 11</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=10sXg0T6iZUNokWm1RPKMLqt71Q4Lh1xo" target="_blank" class="boton-descargar">Descargar</a>
+                </div>
+                <div class="tarjeta-descarga">
+                    <i class="fas fa-download"></i>
+                    <h3>Office para Mac</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=1L0rdIYTe1ifcx0IZyFxk31Zncw1jWq8a" target="_blank" class="boton-descargar">Descargar</a>
+                </div>
+                <div class="tarjeta-descarga">
+                    <i class="fas fa-download"></i>
+                    <h3>Office para Windows</h3>
+                    <a href="https://drive.google.com/uc?export=download&id=15WzeYOdWS5rEwfwKW2R_tw78lPdGBgL6" target="_blank" class="boton-descargar">Descargar</a>
                 </div>
             </div>
         </div>
@@ -620,20 +669,33 @@
             window.open(url, '_blank');
         });
 
+        // FUNCIÓN PARA VERIFICAR LA CONTRASEÑA INTERNA
+        function verificarAcceso() {
+            var clave = document.getElementById('claveAcceso').value;
+            // ⚠️ CAMBIA ESTA CONTRASEÑA POR LA QUE QUIERAS USAR
+            var contrasenaCorrecta = "MR2026"; 
+            
+            if (clave === contrasenaCorrecta) {
+                document.getElementById('acceso-privado').style.display = 'none';
+                document.getElementById('area-interna').classList.add('visible');
+                document.getElementById('mensajeError').style.display = 'none';
+            } else {
+                document.getElementById('mensajeError').style.display = 'block';
+            }
+        }
+
         // LIGHTBOX
         let indiceActual = 0;
         let elementosGaleria = [];
 
         function abrirLightbox(elemento) {
-            // Recolectar los elementos únicos (solo la primera copia)
             elementosGaleria = [];
             const items = document.querySelectorAll('.item-carrusel');
-            const total = items.length / 2; // Tomamos solo la primera mitad
+            const total = items.length / 2;
             for (let i = 0; i < total; i++) {
                 elementosGaleria.push(items[i]);
             }
             
-            // Encontrar el índice real (si el clic fue en la segunda copia, buscar su espejo)
             indiceActual = Array.from(items).indexOf(elemento) % total;
             
             document.getElementById('lightbox').classList.add('activo');
