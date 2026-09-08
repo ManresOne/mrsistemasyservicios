@@ -108,7 +108,7 @@
             margin: 40px auto 0;
             text-align: center;
         }
-        .seccion-descargas:target .acceso-privado { display: block; } /* Aparece solo si la URL es #acceso-interno */
+        .seccion-descargas:target .acceso-privado { display: block; }
 
         .acceso-privado input {
             width: 100%;
@@ -411,7 +411,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE DESCARGAS (CON ACCESO PRIVADO) -->
+    <!-- SECCIÓN DE DESCARGAS -->
     <section id="descargas" class="seccion-descargas">
         <h2 class="seccion-titulo"><img src="img/descargas.png" alt="Icono Descargas"> DESCARGAS</h2>
         <p style="text-align: center; margin-bottom: 50px;">Consulta nuestros catálogos y descarga nuestro brochure.</p>
@@ -426,7 +426,8 @@
                 <i class="fab fa-whatsapp"></i>
                 <h3>Catálogo de Equipos</h3>
                 <p>Ver nuestro catálogo actualizado en WhatsApp Business.</p>
-                <a href="https://wa.me/p/9527643680651639/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
+                <!-- NUEVA URL DEL CATÁLOGO -->
+                <a href="https://wa.me/c/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
             </div>
             
             <!-- SOLO APARECE SI ESCRIBES #acceso-interno EN LA URL -->
@@ -439,7 +440,7 @@
             </div>
         </div>
 
-        <!-- ÁREA INTERNA (SE MUESTRA AL PONER LA CONTRASEÑA) -->
+        <!-- ÁREA INTERNA OCULTA -->
         <div id="area-interna" class="area-interna-oculta">
             <h3 style="text-align: center; margin-bottom: 20px;">📂 Recursos Internos</h3>
             <div class="grid-descargas">
