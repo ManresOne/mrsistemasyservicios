@@ -30,7 +30,6 @@
             --verde-wsp: #25D366; 
         }
 
-        /* FONDO DE PARTÍCULAS */
         #particle-canvas {
             position: fixed;
             top: 0;
@@ -50,109 +49,48 @@
         header a.logo-link { display: flex; align-items: center; text-decoration: none; }
         header img { max-height: 70px; }
         
-        /* BOTÓN LIQUID GLASS (Cotizar App) - Cambia a oscuro al pasar mouse */
-        .boton-header-cotizar {
+        /* ESTILO GLOBAL: BOTÓN LIQUID GLASS (Se usa en todos los botones) */
+        .boton-glass {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
             text-decoration: none;
             color: var(--negro);
             background: rgba(255,255,255,0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0,0,0,0.2);
             border-radius: 12px;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-weight: bold;
             font-size: 14px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255,255,255,0.4);
             transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .boton-glass:hover {
+            background: rgba(37, 211, 102, 0.9); /* Verde WhatsApp */
+            color: var(--blanco);
+            border-color: var(--verde-wsp);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Ajuste para el botón del header (más compacto) */
+        .boton-header-cotizar {
+            width: auto;
             margin-left: 20px;
+            padding: 10px 20px;
         }
         .boton-header-cotizar:hover {
-            background: rgba(17, 17, 17, 0.9);
+            background: rgba(17, 17, 17, 0.9); /* Gris oscuro en el header */
             color: var(--blanco);
             border-color: var(--negro);
             box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
-            transform: scale(1.05);
-        }
-
-        /* BOTÓN METAL 3D (Para ventas, descargas y formulario) */
-        .boton-metal {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 14px;
-            color: white;
-            text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
-            background: linear-gradient(to bottom, #b9b9b9, #969696);
-            box-shadow: 
-                0 4px 10px rgba(0,0,0,0.2),
-                inset 0 1px 0 rgba(255,255,255,0.7),
-                inset 0 -2px 4px rgba(0,0,0,0.3);
-            transition: all 0.3s cubic-bezier(0.1, 0.4, 0.2, 1);
-            text-decoration: none;
-            margin-top: 20px;
-            display: inline-block;
-        }
-        .boton-metal:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-        }
-        .boton-metal:active {
-            transform: translateY(2px) scale(0.98);
-            box-shadow: 
-                0 1px 2px rgba(0,0,0,0.2),
-                inset 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .boton-metal.azul {
-            background: linear-gradient(to bottom, #007BFF, #0056b3);
-            box-shadow: 
-                0 4px 10px rgba(0, 123, 255, 0.3),
-                inset 0 1px 0 rgba(255,255,255,0.5),
-                inset 0 -2px 4px rgba(0,0,0,0.3);
-        }
-        .boton-metal.verde {
-            background: linear-gradient(to bottom, #25D366, #1da851);
-            box-shadow: 
-                0 4px 10px rgba(37, 211, 102, 0.3),
-                inset 0 1px 0 rgba(255,255,255,0.5),
-                inset 0 -2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* BOTÓN LIQUID GLASS PARA TARJETAS DE VENTA */
-        .boton-liquido-venta {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: white;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 10px;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-            margin-top: auto;
-            text-align: center;
-            width: 100%;
-        }
-        .boton-liquido-venta:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         nav a { text-decoration: none; color: var(--negro); font-weight: bold; margin-left: 20px; font-size: 14px; }
@@ -164,7 +102,7 @@
             nav { display: none; width: 100%; flex-direction: column; position: absolute; top: 80px; left: 0; background: var(--blanco); border-bottom: 3px solid var(--negro); padding: 20px; }
             nav.active { display: flex; }
             nav a { margin: 10px 0; }
-            .boton-header-cotizar { margin-left: 0; margin-top: 10px; display: inline-block; }
+            .boton-header-cotizar { margin-left: 0; margin-top: 10px; display: inline-block; width: 100%; }
         }
 
         .hero { height: 85vh; width: 100%; display: flex; align-items: center; justify-content: center; color: var(--blanco); position: relative; overflow: hidden; }
@@ -313,7 +251,9 @@
         .banner-domicilio img { max-height: 80px; margin-bottom: 10px; }
         .banner-domicilio h2 { margin: 0 0 10px 0; font-size: 2rem; text-transform: uppercase; letter-spacing: 1px; }
         .banner-domicilio p { margin: 0; font-size: 1.2rem; font-weight: 500; }
-        .banner-domicilio a { display: inline-block; margin-top: 20px; }
+        
+        /* Ajuste para que el botón del banner no se estire */
+        .banner-domicilio .boton-glass { width: auto; margin-top: 20px; }
 
         /* SECCIÓN FAQ */
         .faq-seccion { background: rgba(255,255,255,0.9); padding: 80px 8%; }
@@ -356,7 +296,7 @@
                 <a href="#contacto">Contacto</a>
             </nav>
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            <a href="https://manresone.github.io/cotizadorApp/" target="_blank" class="boton-header-cotizar">Cotizar App</a>
+            <a href="https://manresone.github.io/cotizadorApp/" target="_blank" class="boton-glass boton-header-cotizar">Cotizar App</a>
         </div>
     </header>
 
@@ -484,7 +424,7 @@
         <img src="img/domicilio.png" alt="Servicio a Domicilio">
         <h2>Servicio Express a Domicilio</h2>
         <p>Llegamos a tu casa u oficina en El Poblado y el Valle de Aburrá. ¡No muevas tu equipo!</p>
-        <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20servicio%20a%20domicilio." target="_blank" class="boton-metal">Agendar Visita</a>
+        <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20servicio%20a%20domicilio." target="_blank" class="boton-glass">Agendar Visita</a>
     </section>
 
     <!-- SECCIÓN DE VENTA DE EQUIPOS -->
@@ -496,25 +436,25 @@
                 <div style="font-size: 3rem; color: var(--acento);">🏢</div>
                 <h4>Equipos Corporativos</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Portátiles y de escritorio de alta durabilidad, perfectos para oficinas, trabajos de oficina y gestión empresarial.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20corporativo." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20corporativo." target="_blank" class="boton-glass">Cotizar ahora</a>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🛒</div>
                 <h4>Equipos de Consumo</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Ideal para el hogar, estudio, navegación y multimedia. Equipos económicos y de excelente rendimiento.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20de%20consumo." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20de%20consumo." target="_blank" class="boton-glass">Cotizar ahora</a>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🎮</div>
                 <h4>Equipos Gamer</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Máquinas de alto rendimiento para los videojuegos más exigentes. Con las mejores gráficas y procesadores.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20Gamer." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20Gamer." target="_blank" class="boton-glass">Cotizar ahora</a>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">💳</div>
                 <h4>POS (Punto de Venta)</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Sistemas y equipos robustos para comercios, restaurantes y tiendas. Compatibles con tus sistemas de facturación.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20POS." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20POS." target="_blank" class="boton-glass">Cotizar ahora</a>
             </div>
         </div>
     </section>
@@ -528,13 +468,13 @@
                 <i class="fas fa-file-pdf"></i>
                 <h3>Brochure General</h3>
                 <p>Vista previa y descarga del portafolio de servicios.</p>
-                <a href="https://drive.google.com/file/d/172tVXVX6GBXfG6grzs9RkUZ52c8DppmT/preview" target="_blank" class="boton-metal">Ver / Descargar</a>
+                <a href="https://drive.google.com/file/d/172tVXVX6GBXfG6grzs9RkUZ52c8DppmT/preview" target="_blank" class="boton-glass">Ver / Descargar</a>
             </div>
             <div class="tarjeta-descarga">
                 <i class="fab fa-whatsapp"></i>
                 <h3>Catálogo de Equipos</h3>
                 <p>Ver nuestro catálogo actualizado en WhatsApp Business.</p>
-                <a href="https://wa.me/c/573113944320" target="_blank" class="boton-metal">Ir al Catálogo</a>
+                <a href="https://wa.me/c/573113944320" target="_blank" class="boton-glass">Ir al Catálogo</a>
             </div>
             
             <!-- SOLO APARECE SI ESCRIBES #acceso-interno EN LA URL -->
@@ -554,17 +494,17 @@
                 <div class="tarjeta-descarga">
                     <i class="fas fa-download"></i>
                     <h3>Actualizar Windows 11</h3>
-                    <a href="https://drive.google.com/uc?export=download&id=10sXg0T6iZUNokWm1RPKMLqt71Q4Lh1xo" target="_blank" class="boton-metal">Descargar</a>
+                    <a href="https://drive.google.com/uc?export=download&id=10sXg0T6iZUNokWm1RPKMLqt71Q4Lh1xo" target="_blank" class="boton-glass">Descargar</a>
                 </div>
                 <div class="tarjeta-descarga">
                     <i class="fas fa-download"></i>
                     <h3>Office para Mac</h3>
-                    <a href="https://drive.google.com/uc?export=download&id=1L0rdIYTe1ifcx0IZyFxk31Zncw1jWq8a" target="_blank" class="boton-metal">Descargar</a>
+                    <a href="https://drive.google.com/uc?export=download&id=1L0rdIYTe1ifcx0IZyFxk31Zncw1jWq8a" target="_blank" class="boton-glass">Descargar</a>
                 </div>
                 <div class="tarjeta-descarga">
                     <i class="fas fa-download"></i>
                     <h3>Office para Windows</h3>
-                    <a href="https://drive.google.com/uc?export=download&id=15WzeYOdWS5rEwfwKW2R_tw78lPdGBgL6" target="_blank" class="boton-metal">Descargar</a>
+                    <a href="https://drive.google.com/uc?export=download&id=15WzeYOdWS5rEwfwKW2R_tw78lPdGBgL6" target="_blank" class="boton-glass">Descargar</a>
                 </div>
             </div>
         </div>
@@ -711,7 +651,7 @@
             <form id="formularioContacto">
                 <input type="text" id="nombre" placeholder="Tu Nombre" required>
                 <input type="text" id="mensaje" placeholder="¿Qué servicio necesitas?" required>
-                <button type="submit" class="boton-metal verde"><i class="fab fa-whatsapp"></i> Contáctanos ahora</button>
+                <button type="submit" class="boton-glass"><i class="fab fa-whatsapp"></i> Contáctanos ahora</button>
             </form>
             <div style="margin-top: 20px; font-size: 0.9rem;">
                 <h4 style="margin: 0;">Métodos de pago</h4>
