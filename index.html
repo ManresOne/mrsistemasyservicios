@@ -120,7 +120,7 @@
         ul { list-style: none; padding: 0; line-height: 1.8; }
         ul li::before { content: '▸ '; color: var(--acento); font-weight: bold; }
 
-        /* ESTILOS DE LAS PESTAÑAS (TABS) */
+        /* ESTILOS DE LAS PESTAÑAS DE SERVICIOS */
         .tabs-contenedor {
             display: flex;
             justify-content: center;
@@ -156,7 +156,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TARJETA CENTRADA */
         .tarjeta-servicio {
             max-width: 800px;
             margin: 0 auto;
@@ -171,7 +170,7 @@
             margin-bottom: 20px;
         }
 
-        /* ACORDEONES CERRADOS POR DEFECTO */
+        /* ACORDEÓN DE SERVICIOS (CERRADO POR DEFECTO) */
         .acordeon-item {
             border: 2px solid var(--negro);
             border-radius: 8px;
@@ -343,11 +342,19 @@
         .banner-domicilio p { margin: 0; font-size: 1.2rem; font-weight: 500; }
         .banner-domicilio .boton-glass { width: auto; margin-top: 20px; }
 
-        /* CONTACTO ORIGINAL (CAMBIOS RESTAURADOS) */
+        /* SECCIÓN FAQ CON ACORDEÓN FUNCIONAL */
+        .faq-seccion { background: rgba(255,255,255,0.9); padding: 80px 8%; }
+        .faq-item { border: 2px solid var(--negro); border-radius: 10px; margin-bottom: 15px; overflow: hidden; }
+        .faq-pregunta { background: var(--negro); color: white; padding: 15px 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-pregunta i { transition: transform 0.3s; }
+        .faq-respuesta { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--gris-claro); }
+        .faq-respuesta p { padding: 15px 20px; margin: 0; }
+        .faq-item.abierto .faq-respuesta { max-height: 200px; }
+        .faq-item.abierto .faq-pregunta i { transform: rotate(180deg); }
+
+        /* CONTACTO (RESTAURADO - CAMPOS CON ESPACIO, BOTÓN REDONDEADO) */
         .contacto-seccion { background-color: rgba(244,244,244,0.9); padding: 80px 8%; display: flex; flex-wrap: wrap; gap: 40px; border-top: 3px solid var(--negro); }
         .formulario, .mapa-container { flex: 1; min-width: 300px; }
-        
-        /* CAMPOS CON ESPACIO INTERNO (NO PEGADOS AL BORDE) */
         input, textarea { 
             width: calc(100% - 24px); 
             padding: 12px; 
@@ -359,8 +366,6 @@
             border-radius: 10px;
             box-sizing: border-box;
         }
-        
-        /* BOTÓN REDONDEADO (PÍLDORA) */
         .boton-whatsapp { 
             display: flex; 
             align-items: center; 
@@ -419,7 +424,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE SERVICIOS CON TARJETA CENTRADA Y ACORDEONES CERRADOS -->
+    <!-- SECCIÓN DE SERVICIOS CON PESTAÑAS Y ACORDEONES -->
     <section id="servicios" class="seccion">
         <h2 class="seccion-titulo"><img src="img/servicios.png" alt="Icono Servicios"> NUESTROS SERVICIOS</h2>
         
@@ -585,7 +590,7 @@
         <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20servicio%20a%20domicilio." target="_blank" class="boton-glass">Agendar Visita</a>
     </section>
 
-    <!-- SECCIÓN DE VENTA DE EQUIPOS -->
+    <!-- SECCIÓN DE VENTA DE EQUIPOS (HORIZONTAL) -->
     <section id="venta" class="seccion-venta">
         <h2 class="titulo-venta"><img src="img/ventas.png" alt="Icono Ventas"> VENTA DE EQUIPOS</h2>
         <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px;">Computadores nuevos y de segunda. ¡Pregunta por nuestro stock disponible!</p>
@@ -673,106 +678,43 @@
         <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
         <div class="carrusel-trabajos">
             <div class="carrusel-items">
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto2.jpg" alt="Mantenimiento laptop 2">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto3.jpg" alt="Reparación de equipos">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto4.jpg" alt="Infraestructura de Red">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto5.jpg" alt="Instalación de seguridad">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto6.jpg" alt="Equipo Gamer">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto7.jpg" alt="Trabajo 7">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto8.jpg" alt="Trabajo 8">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto9.jpg" alt="Trabajo 9">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto10.jpg" alt="Trabajo 10">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto11.jpg" alt="Trabajo 11">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto12.jpg" alt="Trabajo 12">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto13.jpg" alt="Trabajo 13">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <video src="img/video1.mp4" muted></video>
-                    <div class="icono-play"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <video src="img/video2.mp4" muted></video>
-                    <div class="icono-play"><i class="fas fa-play"></i></div>
-                </div>
-                <!-- Segunda copia para el efecto infinito -->
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto1.jpg" alt="Mantenimiento laptop 1">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto2.jpg" alt="Mantenimiento laptop 2">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto3.jpg" alt="Reparación de equipos">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto4.jpg" alt="Infraestructura de Red">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto5.jpg" alt="Instalación de seguridad">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto6.jpg" alt="Equipo Gamer">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto7.jpg" alt="Trabajo 7">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto8.jpg" alt="Trabajo 8">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto9.jpg" alt="Trabajo 9">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto10.jpg" alt="Trabajo 10">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto11.jpg" alt="Trabajo 11">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto12.jpg" alt="Trabajo 12">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <img src="img/foto13.jpg" alt="Trabajo 13">
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <video src="img/video1.mp4" muted></video>
-                    <div class="icono-play"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="item-carrusel" onclick="abrirLightbox(this)">
-                    <video src="img/video2.mp4" muted></video>
-                    <div class="icono-play"><i class="fas fa-play"></i></div>
-                </div>
+                <!-- Primera mitad del carrusel -->
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto1.jpg" alt="Trabajo 1"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto2.jpg" alt="Trabajo 2"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto3.jpg" alt="Trabajo 3"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto4.jpg" alt="Trabajo 4"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto5.jpg" alt="Trabajo 5"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto6.jpg" alt="Trabajo 6"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto7.jpg" alt="Trabajo 7"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto8.jpg" alt="Trabajo 8"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto9.jpg" alt="Trabajo 9"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto10.jpg" alt="Trabajo 10"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto11.jpg" alt="Trabajo 11"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto12.jpg" alt="Trabajo 12"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto13.jpg" alt="Trabajo 13"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video1.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video2.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
+                <!-- Segunda mitad (copia para el efecto infinito) -->
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto1.jpg" alt="Trabajo 1"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto2.jpg" alt="Trabajo 2"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto3.jpg" alt="Trabajo 3"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto4.jpg" alt="Trabajo 4"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto5.jpg" alt="Trabajo 5"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto6.jpg" alt="Trabajo 6"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto7.jpg" alt="Trabajo 7"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto8.jpg" alt="Trabajo 8"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto9.jpg" alt="Trabajo 9"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto10.jpg" alt="Trabajo 10"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto11.jpg" alt="Trabajo 11"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto12.jpg" alt="Trabajo 12"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto13.jpg" alt="Trabajo 13"></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video1.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
+                <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video2.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN FAQ -->
+    <!-- SECCIÓN FAQ CON ACORDEÓN FUNCIONAL -->
     <section id="faq" class="faq-seccion">
         <h2 class="seccion-titulo"><img src="img/faqs.png" alt="Icono FAQs"> PREGUNTAS FRECUENTES</h2>
         <div class="faq-item">
@@ -802,7 +744,7 @@
         <div id="lightbox-contador" class="lightbox-contador"></div>
     </div>
 
-    <!-- SECCIÓN DE CONTACTO RESTAURADA (Botón redondeado, campos con espacio) -->
+    <!-- SECCIÓN DE CONTACTO -->
     <section id="contacto" class="contacto-seccion">
         <div class="formulario tarjeta">
             <h2 style="margin-top: 0;">¿Listo para resolver tu problema?</h2>
@@ -948,14 +890,22 @@
             evt.currentTarget.className += " activo";
         }
 
-        // FUNCIÓN PARA ABRIR/CERRAR ACORDEONES
+        // FUNCIÓN PARA ABRIR/CERRAR ACORDEONES DE SERVICIOS
         function toggleAcordeon(elemento) {
             var item = elemento.parentElement;
             item.classList.toggle('abierto');
         }
 
-        // Funciones del sitio
+        // FUNCIÓN PARA ABRIR/CERRAR PREGUNTAS FRECUENTES
+        function toggleFaq(elemento) {
+            var item = elemento.parentElement;
+            item.classList.toggle('abierto');
+        }
+
+        // FUNCIÓN DEL MENÚ MÓVIL
         function toggleMenu() { var nav = document.getElementById('menuNav'); nav.classList.toggle('active'); }
+
+        // ANIMACIÓN DE APARICIÓN
         window.addEventListener('scroll', function() {
             var secciones = document.querySelectorAll('.seccion');
             secciones.forEach(function(seccion) {
@@ -964,7 +914,8 @@
                 if (posicion < pantalla - 100) seccion.classList.add('visible');
             });
         });
-        function toggleFaq(elemento) { var item = elemento.parentElement; item.classList.toggle('abierto'); }
+
+        // FORMULARIO DE WHATSAPP
         document.getElementById('formularioContacto').addEventListener('submit', function(e) {
             e.preventDefault();
             const nombre = document.getElementById('nombre').value;
@@ -974,6 +925,8 @@
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
         });
+
+        // ACCESO PRIVADO
         function verificarAcceso() {
             var clave = document.getElementById('claveAcceso').value;
             var contrasenaCorrecta = "MR2026"; 
@@ -983,6 +936,8 @@
                 document.getElementById('mensajeError').style.display = 'none';
             } else { document.getElementById('mensajeError').style.display = 'block'; }
         }
+
+        // LIGHTBOX
         let indiceActual = 0; let elementosGaleria = [];
         function abrirLightbox(elemento) {
             elementosGaleria = [];
