@@ -120,7 +120,7 @@
         ul { list-style: none; padding: 0; line-height: 1.8; }
         ul li::before { content: '▸ '; color: var(--acento); font-weight: bold; }
 
-        /* ESTILOS DE LAS PESTAÑAS DE SERVICIOS */
+        /* PESTAÑAS DE SERVICIOS */
         .tabs-contenedor {
             display: flex;
             justify-content: center;
@@ -342,7 +342,7 @@
         .banner-domicilio p { margin: 0; font-size: 1.2rem; font-weight: 500; }
         .banner-domicilio .boton-glass { width: auto; margin-top: 20px; }
 
-        /* SECCIÓN FAQ CON ACORDEÓN FUNCIONAL */
+        /* SECCIÓN FAQ */
         .faq-seccion { background: rgba(255,255,255,0.9); padding: 80px 8%; }
         .faq-item { border: 2px solid var(--negro); border-radius: 10px; margin-bottom: 15px; overflow: hidden; }
         .faq-pregunta { background: var(--negro); color: white; padding: 15px 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
@@ -352,7 +352,7 @@
         .faq-item.abierto .faq-respuesta { max-height: 200px; }
         .faq-item.abierto .faq-pregunta i { transform: rotate(180deg); }
 
-        /* CONTACTO (RESTAURADO - CAMPOS CON ESPACIO, BOTÓN REDONDEADO) */
+        /* CONTACTO (BOTÓN REDONDEADO) */
         .contacto-seccion { background-color: rgba(244,244,244,0.9); padding: 80px 8%; display: flex; flex-wrap: wrap; gap: 40px; border-top: 3px solid var(--negro); }
         .formulario, .mapa-container { flex: 1; min-width: 300px; }
         input, textarea { 
@@ -590,7 +590,7 @@
         <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20servicio%20a%20domicilio." target="_blank" class="boton-glass">Agendar Visita</a>
     </section>
 
-    <!-- SECCIÓN DE VENTA DE EQUIPOS (HORIZONTAL) -->
+    <!-- SECCIÓN DE VENTA DE EQUIPOS -->
     <section id="venta" class="seccion-venta">
         <h2 class="titulo-venta"><img src="img/ventas.png" alt="Icono Ventas"> VENTA DE EQUIPOS</h2>
         <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px;">Computadores nuevos y de segunda. ¡Pregunta por nuestro stock disponible!</p>
@@ -678,7 +678,7 @@
         <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
         <div class="carrusel-trabajos">
             <div class="carrusel-items">
-                <!-- Primera mitad del carrusel -->
+                <!-- Primera mitad -->
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto1.jpg" alt="Trabajo 1"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto2.jpg" alt="Trabajo 2"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto3.jpg" alt="Trabajo 3"></div>
@@ -694,7 +694,7 @@
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto13.jpg" alt="Trabajo 13"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video1.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video2.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
-                <!-- Segunda mitad (copia para el efecto infinito) -->
+                <!-- Segunda mitad (copia para infinito) -->
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto1.jpg" alt="Trabajo 1"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto2.jpg" alt="Trabajo 2"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto3.jpg" alt="Trabajo 3"></div>
@@ -714,7 +714,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN FAQ CON ACORDEÓN FUNCIONAL -->
+    <!-- SECCIÓN FAQ -->
     <section id="faq" class="faq-seccion">
         <h2 class="seccion-titulo"><img src="img/faqs.png" alt="Icono FAQs"> PREGUNTAS FRECUENTES</h2>
         <div class="faq-item">
@@ -787,8 +787,9 @@
         <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
     </footer>
 
-    <!-- CÓDIGO DEL FONDO DE PARTÍCULAS -->
+    <!-- CÓDIGO ÚNICO Y LIMPIO (AUDITADO) -->
     <script>
+        // CONFIGURACIÓN DEL FONDO DE PARTÍCULAS (ÚNICO)
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, animationFrameId;
