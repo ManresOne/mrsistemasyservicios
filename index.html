@@ -49,7 +49,6 @@
         header a.logo-link { display: flex; align-items: center; text-decoration: none; }
         header img { max-height: 70px; }
         
-        /* ESTILO GLOBAL: BOTÓN LIQUID GLASS (Se usa en todos los botones) */
         .boton-glass {
             position: relative;
             display: inline-flex;
@@ -73,21 +72,20 @@
             box-sizing: border-box;
         }
         .boton-glass:hover {
-            background: rgba(37, 211, 102, 0.9); /* Verde WhatsApp */
+            background: rgba(37, 211, 102, 0.9);
             color: var(--blanco);
             border-color: var(--verde-wsp);
             box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255,255,255,0.3);
             transform: translateY(-2px);
         }
 
-        /* Ajuste para el botón del header (más compacto) */
         .boton-header-cotizar {
             width: auto;
             margin-left: 20px;
             padding: 10px 20px;
         }
         .boton-header-cotizar:hover {
-            background: rgba(17, 17, 17, 0.9); /* Gris oscuro en el header */
+            background: rgba(17, 17, 17, 0.9);
             color: var(--blanco);
             border-color: var(--negro);
             box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
@@ -117,10 +115,87 @@
         .seccion-titulo { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--negro); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .seccion-titulo img { max-height: 50px; object-fit: contain; }
 
-        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: stretch; }
-        
-        ul { list-style: none; padding: 0; line-height: 1.8; }
-        ul li::before { content: '▸ '; color: var(--acento); font-weight: bold; }
+        /* ESTILOS DE LAS PESTAÑAS (TABS) */
+        .tabs-contenedor {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .tab-boton {
+            background: var(--gris-claro);
+            border: 2px solid var(--negro);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0px var(--negro);
+            font-size: 16px;
+        }
+        .tab-boton.activo {
+            background: var(--negro);
+            color: var(--blanco);
+            box-shadow: 6px 6px 0px var(--acento);
+        }
+
+        .tab-contenido {
+            display: none;
+            animation: aparecerTab 0.4s ease forwards;
+        }
+        .tab-contenido.activo { display: block; }
+
+        @keyframes aparecerTab {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* IMAGEN DENTRO DE LA TARJETA */
+        .imagen-tarjeta {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--negro);
+            margin-bottom: 20px;
+        }
+
+        /* ESTILOS DEL ACORDEÓN (DENTRO DE CADA PESTAÑA) */
+        .acordeon-item {
+            border: 2px solid var(--negro);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            background: var(--blanco);
+        }
+        .acordeon-titulo {
+            background: var(--gris-claro);
+            padding: 12px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .acordeon-titulo:hover {
+            background: var(--acento);
+            color: var(--blanco);
+        }
+        .acordeon-titulo i { transition: transform 0.3s; }
+        .acordeon-item.abierto .acordeon-titulo i { transform: rotate(180deg); }
+        .acordeon-contenido {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 15px;
+            background: var(--blanco);
+        }
+        .acordeon-item.abierto .acordeon-contenido {
+            max-height: 1000px;
+            padding: 15px;
+        }
 
         .contenedor-garantias { margin-top: auto; padding-top: 25px; }
         .detalle-garantia { background: var(--negro); color: var(--blanco); padding: 12px; text-align: center; font-weight: bold; border-radius: 5px; width: 100%; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; transition: 0.3s; }
@@ -251,8 +326,6 @@
         .banner-domicilio img { max-height: 80px; margin-bottom: 10px; }
         .banner-domicilio h2 { margin: 0 0 10px 0; font-size: 2rem; text-transform: uppercase; letter-spacing: 1px; }
         .banner-domicilio p { margin: 0; font-size: 1.2rem; font-weight: 500; }
-        
-        /* Ajuste para que el botón del banner no se estire */
         .banner-domicilio .boton-glass { width: auto; margin-top: 20px; }
 
         /* SECCIÓN FAQ */
@@ -309,76 +382,124 @@
         </div>
     </section>
 
+    <!-- SECCIÓN DE SERVICIOS CON PESTAÑAS Y ACORDEONES -->
     <section id="servicios" class="seccion">
         <h2 class="seccion-titulo"><img src="img/servicios.png" alt="Icono Servicios"> NUESTROS SERVICIOS</h2>
-        <div class="grid-servicios">
+        
+        <div class="tabs-contenedor">
+            <button class="tab-boton activo" onclick="abrirTab(event, 'tab-computadores')">💻 Computadores</button>
+            <button class="tab-boton" onclick="abrirTab(event, 'tab-seguridad')">🔒 Seguridad</button>
+            <button class="tab-boton" onclick="abrirTab(event, 'tab-redes')">🌐 Redes</button>
+        </div>
+
+        <!-- TAB 1: COMPUTADORES -->
+        <div id="tab-computadores" class="tab-contenido activo">
             <div class="tarjeta">
-                <div style="font-size: 2.5rem; color: var(--acento);">💻</div>
+                <img src="img/foto1.jpg" alt="Computadores" class="imagen-tarjeta">
                 <h3 style="margin-top: 0;">01 · Computadores</h3>
-                <h4>Hardware</h4>
-                <ul>
-                    <li>Pantallas rotas o fracturadas</li>
-                    <li>Cambio de batería</li>
-                    <li>Cambio de teclado de portátil</li>
-                    <li>Cambio de cargador</li>
-                    <li>Cambio de pasta térmica</li>
-                    <li>Cambio de disco duro a SSD</li>
-                    <li>Reparación de laptops y equipos de escritorio</li>
-                </ul>
-                <h4>Software</h4>
-                <ul>
-                    <li>Formateo e instalación de software</li>
-                    <li>Actualización de programas</li>
-                    <li>Eliminación de virus</li>
-                    <li>Optimización de equipos lentos</li>
-                    <li>Soporte remoto</li>
-                </ul>
-                <h4>Equipos y WiFi</h4>
-                <ul>
-                    <li>Redes y WiFi para casa u oficina</li>
-                    <li>Venta de equipos nuevos y usados</li>
-                    <li>Venta de periféricos</li>
-                    <li>Mantenimiento preventivo</li>
-                </ul>
+                
+                <div class="acordeon-item abierto">
+                    <div class="acordeon-titulo" onclick="toggleAcordeon(this)">Hardware <i class="fas fa-chevron-down"></i></div>
+                    <div class="acordeon-contenido">
+                        <ul>
+                            <li>Pantallas rotas o fracturadas</li>
+                            <li>Cambio de batería</li>
+                            <li>Cambio de teclado de portátil</li>
+                            <li>Cambio de cargador</li>
+                            <li>Cambio de pasta térmica</li>
+                            <li>Cambio de disco duro a SSD</li>
+                            <li>Reparación de laptops y equipos de escritorio</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acordeon-item">
+                    <div class="acordeon-titulo" onclick="toggleAcordeon(this)">Software <i class="fas fa-chevron-down"></i></div>
+                    <div class="acordeon-contenido">
+                        <ul>
+                            <li>Formateo e instalación de software</li>
+                            <li>Actualización de programas</li>
+                            <li>Eliminación de virus</li>
+                            <li>Optimización de equipos lentos</li>
+                            <li>Soporte remoto</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acordeon-item">
+                    <div class="acordeon-titulo" onclick="toggleAcordeon(this)">Equipos y WiFi <i class="fas fa-chevron-down"></i></div>
+                    <div class="acordeon-contenido">
+                        <ul>
+                            <li>Redes y WiFi para casa u oficina</li>
+                            <li>Venta de equipos nuevos y usados</li>
+                            <li>Venta de periféricos</li>
+                            <li>Mantenimiento preventivo</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="contenedor-garantias">
                     <div class="detalle-garantia">1 año nuevo · 3 meses usado</div>
                 </div>
             </div>
+        </div>
 
+        <!-- TAB 2: SEGURIDAD -->
+        <div id="tab-seguridad" class="tab-contenido">
             <div class="tarjeta">
-                <div style="font-size: 2.5rem; color: var(--acento);">🔒</div>
+                <img src="img/foto5.jpg" alt="Seguridad Electrónica" class="imagen-tarjeta">
                 <h3 style="margin-top: 0;">02 · Seguridad Electrónica</h3>
-                <h4>Videovigilancia</h4>
-                <ul>
-                    <li>Instalación de cámaras interiores y exteriores</li>
-                    <li>Cámaras con panel solar (sin cableado)</li>
-                    <li>Monitoreo remoto desde el celular</li>
-                    <li>Configuración de DVR / NVR</li>
-                    <li>Mantenimiento de sistemas existentes</li>
-                    <li>Cableado y puntos de cámara</li>
-                </ul>
+                
+                <div class="acordeon-item abierto">
+                    <div class="acordeon-titulo" onclick="toggleAcordeon(this)">Videovigilancia <i class="fas fa-chevron-down"></i></div>
+                    <div class="acordeon-contenido">
+                        <ul>
+                            <li>Instalación de cámaras interiores y exteriores</li>
+                            <li>Cámaras con panel solar (sin cableado)</li>
+                            <li>Monitoreo remoto desde el celular</li>
+                            <li>Configuración de DVR / NVR</li>
+                            <li>Mantenimiento de sistemas existentes</li>
+                            <li>Cableado y puntos de cámara</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="contenedor-garantias">
                     <div class="detalle-garantia">Cotización sin costo · Garantía 1 año</div>
                 </div>
             </div>
+        </div>
 
+        <!-- TAB 3: REDES -->
+        <div id="tab-redes" class="tab-contenido">
             <div class="tarjeta">
-                <div style="font-size: 2.5rem; color: var(--acento);">🌐</div>
+                <img src="img/foto4.jpg" alt="Redes de Datos" class="imagen-tarjeta">
                 <h3 style="margin-top: 0;">03 · Redes de Datos</h3>
-                <h4>Cableado estructurado</h4>
-                <ul>
-                    <li>Cableado estructurado</li>
-                    <li>Instalación y organización de racks</li>
-                    <li>Configuración de switches</li>
-                    <li>Puntos de red certificados</li>
-                    <li>Etiquetado y documentación</li>
-                    <li>Soporte y mantenimiento de red</li>
-                </ul>
-                <h4>Para empresas</h4>
-                <ul>
-                    <li>Organizamos tu rack y cableado</li>
-                    <li>Red fácil de mantener y ampliar</li>
-                </ul>
+                
+                <div class="acordeon-item abierto">
+                    <div class="acordeon-titulo" onclick="toggleAcordeon(this)">Cableado estructurado <i class="fas fa-chevron-down"></i></div>
+                    <div class="acordeon-contenido">
+                        <ul>
+                            <li>Cableado estructurado</li>
+                            <li>Instalación y organización de racks</li>
+                            <li>Configuración de switches</li>
+                            <li>Puntos de red certificados</li>
+                            <li>Etiquetado y documentación</li>
+                            <li>Soporte y mantenimiento de red</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="acordeon-item">
+                    <div class="acordeon-titulo" onclick="toggleAcordeon(this)">Para empresas <i class="fas fa-chevron-down"></i></div>
+                    <div class="acordeon-contenido">
+                        <ul>
+                            <li>Organizamos tu rack y cableado</li>
+                            <li>Red fácil de mantener y ampliar</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="contenedor-garantias">
                     <div class="detalle-garantia">Instalación certificada</div>
                 </div>
@@ -772,6 +893,27 @@
 
         init();
         render();
+
+        // FUNCIÓN PARA LAS PESTAÑAS DE SERVICIOS
+        function abrirTab(evt, nombreTab) {
+            var i, tabContenido, tabBoton;
+            tabContenido = document.getElementsByClassName("tab-contenido");
+            for (i = 0; i < tabContenido.length; i++) {
+                tabContenido[i].className = tabContenido[i].className.replace(" activo", "");
+            }
+            tabBoton = document.getElementsByClassName("tab-boton");
+            for (i = 0; i < tabBoton.length; i++) {
+                tabBoton[i].className = tabBoton[i].className.replace(" activo", "");
+            }
+            document.getElementById(nombreTab).className += " activo";
+            evt.currentTarget.className += " activo";
+        }
+
+        // FUNCIÓN PARA ABRIR/CERRAR ACORDEONES
+        function toggleAcordeon(elemento) {
+            var item = elemento.parentElement;
+            item.classList.toggle('abierto');
+        }
 
         // Funciones del sitio
         function toggleMenu() { var nav = document.getElementById('menuNav'); nav.classList.toggle('active'); }
