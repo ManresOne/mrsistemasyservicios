@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M R Sistemas y Servicios | Soporte Técnico, Redes y Seguridad en Medellín</title>
-    <meta name="description" content="Reparación de computadores, instalación de cámaras, redes de datos y venta de equipos en Medellín. Servicio a domicilio en Envigado, Itagüí y más. ¡Cotiza gratis!">
-    <meta name="keywords" content="reparación de computadores Medellín, instalación de cámaras Envigado, venta de POS Itagüí, cableado estructurado Sabaneta, soporte técnico a domicilio, venta de computadores gamers, M R Sistemas y Servicios">
+    <title>M R Sistemas y Servicios | Soporte Técnico, Redes y Seguridad en El Poblado</title>
+    <meta name="description" content="Reparación de computadores, instalación de cámaras, redes de datos y venta de equipos en El Poblado, Medellín. Servicio a domicilio y más. ¡Cotiza gratis!">
+    <meta name="keywords" content="reparación de computadores El Poblado, instalación de cámaras Envigado, venta de POS Itagüí, cableado estructurado Sabaneta, soporte técnico a domicilio, venta de computadores gamers, M R Sistemas y Servicios">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -14,7 +14,7 @@
       "description": "Soporte técnico, reparación de computadores, seguridad electrónica y redes de datos.",
       "telephone": "+57-311-394-4320",
       "email": "mrsistemasyservicio@gmail.com",
-      "areaServed": "Medellín, Envigado, Itagüí, Sabaneta, Caldas, El Retiro, La Ceja, Guarne, Rionegro",
+      "areaServed": "El Poblado, Envigado, Itagüí, Sabaneta, Caldas, El Retiro, La Ceja, Guarne, Rionegro",
       "sameAs": ["https://www.instagram.com/mrsolutionsmed"]
     }
     </script>
@@ -30,14 +30,14 @@
             --verde-wsp: #25D366; 
         }
 
-        /* CONFIGURACIÓN DEL FONDO DE PARTÍCULAS */
+        /* FONDO DE PARTÍCULAS */
         #particle-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Se coloca DETRÁS de todo el contenido */
+            z-index: -1;
             pointer-events: none;
         }
 
@@ -50,17 +50,17 @@
         header a.logo-link { display: flex; align-items: center; text-decoration: none; }
         header img { max-height: 70px; }
         
-        /* NUEVO BOTÓN LIQUID GLASS */
+        /* BOTÓN LIQUID GLASS (Cotizar App) - Cambia a oscuro al pasar mouse */
         .boton-header-cotizar {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: #111;
-            background: rgba(255,255,255,0.1);
+            color: var(--negro);
+            background: rgba(255,255,255,0.3);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(0,0,0,0.2);
             border-radius: 12px;
             padding: 10px 20px;
             font-weight: bold;
@@ -69,22 +69,15 @@
             transition: all 0.3s ease;
             margin-left: 20px;
         }
-        .boton-header-cotizar::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            box-shadow: inset 3px 3px 4px rgba(0,0,0,0.2), inset -3px -3px 4px rgba(255,255,255,0.3);
-            opacity: 0.5;
-            pointer-events: none;
-        }
         .boton-header-cotizar:hover {
+            background: rgba(17, 17, 17, 0.9);
+            color: var(--blanco);
+            border-color: var(--negro);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
             transform: scale(1.05);
-            background: rgba(0, 123, 255, 0.2);
-            box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2), inset 0 1px 0 rgba(255,255,255,0.6);
         }
 
-        /* NUEVO BOTÓN METAL 3D (Para ventas y formulario) */
+        /* BOTÓN METAL 3D (Para ventas, descargas y formulario) */
         .boton-metal {
             position: relative;
             display: inline-flex;
@@ -106,7 +99,8 @@
                 inset 0 -2px 4px rgba(0,0,0,0.3);
             transition: all 0.3s cubic-bezier(0.1, 0.4, 0.2, 1);
             text-decoration: none;
-            width: 100%;
+            margin-top: 20px;
+            display: inline-block;
         }
         .boton-metal:hover {
             filter: brightness(1.1);
@@ -131,6 +125,34 @@
                 0 4px 10px rgba(37, 211, 102, 0.3),
                 inset 0 1px 0 rgba(255,255,255,0.5),
                 inset 0 -2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* BOTÓN LIQUID GLASS PARA TARJETAS DE VENTA */
+        .boton-liquido-venta {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            margin-top: auto;
+            text-align: center;
+            width: 100%;
+        }
+        .boton-liquido-venta:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         nav a { text-decoration: none; color: var(--negro); font-weight: bold; margin-left: 20px; font-size: 14px; }
@@ -173,8 +195,6 @@
         .tarjeta-venta { background: rgba(51,51,51,0.9); color: var(--blanco); border: 2px solid var(--blanco); box-shadow: 8px 8px 0px var(--acento); border-radius: 12px; padding: 25px; display: flex; flex-direction: column; height: 100%; }
         .tarjeta-venta:hover { transform: translateY(-5px); background: rgba(17,17,17,0.9); box-shadow: 10px 10px 0px var(--blanco); }
         .tarjeta-venta h4 { margin-top: 15px; font-size: 1.3rem; color: var(--acento); }
-        .boton-venta-wsp { background: var(--verde-wsp); color: white; border: none; padding: 12px; margin-top: auto; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none; text-align: center; display: block; transition: 0.3s; }
-        .boton-venta-wsp:hover { background: white; color: var(--verde-wsp); }
 
         /* SECCIÓN DE DESCARGAS */
         .seccion-descargas { padding: 80px 8%; background: rgba(255,255,255,0.9); }
@@ -184,8 +204,6 @@
         .tarjeta-descarga i { font-size: 3rem; margin-bottom: 15px; }
         .tarjeta-descarga h3 { margin: 0 0 10px 0; font-size: 1.5rem; }
         .tarjeta-descarga p { font-size: 0.9rem; margin-bottom: 20px; }
-        .boton-descargar { background: var(--blanco); color: var(--negro); padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; border: 2px solid var(--negro); transition: 0.3s; }
-        .tarjeta-descarga:hover .boton-descargar { background: var(--negro); color: var(--blanco); }
 
         /* ACCESO PRIVADO */
         .acceso-privado {
@@ -295,8 +313,7 @@
         .banner-domicilio img { max-height: 80px; margin-bottom: 10px; }
         .banner-domicilio h2 { margin: 0 0 10px 0; font-size: 2rem; text-transform: uppercase; letter-spacing: 1px; }
         .banner-domicilio p { margin: 0; font-size: 1.2rem; font-weight: 500; }
-        .banner-domicilio a { display: inline-block; margin-top: 20px; background: var(--negro); color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 8px; border: 2px solid var(--negro); transition: 0.3s; }
-        .banner-domicilio a:hover { background: white; color: var(--negro); }
+        .banner-domicilio a { display: inline-block; margin-top: 20px; }
 
         /* SECCIÓN FAQ */
         .faq-seccion { background: rgba(255,255,255,0.9); padding: 80px 8%; }
@@ -313,10 +330,6 @@
         .formulario, .mapa-container { flex: 1; min-width: 300px; }
         input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid var(--negro); font-family: inherit; background: var(--blanco); }
         
-        /* BOTÓN METAL VERDE PARA WHATSAPP */
-        .boton-whatsapp { background: var(--verde-wsp); color: white; border: none; padding: 15px; font-size: 1.2rem; font-weight: bold; cursor: pointer; border-radius: 8px; width: 100%; text-transform: uppercase; }
-        .boton-whatsapp:hover { filter: brightness(1.1); }
-        
         iframe { width: 100%; height: 400px; border: 3px solid var(--negro); }
         .info-cobertura { background: var(--negro); color: white; padding: 20px; margin-top: 15px; border-radius: 5px; text-align: center; font-weight: bold; }
         .boton-flotante { position: fixed; bottom: 25px; right: 25px; z-index: 9999; background-color: var(--verde-wsp); color: white; border-radius: 50%; width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; box-shadow: 4px 4px 10px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; }
@@ -326,7 +339,6 @@
 </head>
 <body>
 
-    <!-- CANVAS DE PARTÍCULAS DE FONDO -->
     <canvas id="particle-canvas"></canvas>
 
     <header>
@@ -344,7 +356,6 @@
                 <a href="#contacto">Contacto</a>
             </nav>
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            <!-- BOTÓN LIQUID GLASS -->
             <a href="https://manresone.github.io/cotizadorApp/" target="_blank" class="boton-header-cotizar">Cotizar App</a>
         </div>
     </header>
@@ -472,7 +483,7 @@
     <section class="banner-domicilio">
         <img src="img/domicilio.png" alt="Servicio a Domicilio">
         <h2>Servicio Express a Domicilio</h2>
-        <p>Llegamos a tu casa u oficina en Medellín y el Valle de Aburrá. ¡No muevas tu equipo!</p>
+        <p>Llegamos a tu casa u oficina en El Poblado y el Valle de Aburrá. ¡No muevas tu equipo!</p>
         <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20servicio%20a%20domicilio." target="_blank" class="boton-metal">Agendar Visita</a>
     </section>
 
@@ -485,25 +496,25 @@
                 <div style="font-size: 3rem; color: var(--acento);">🏢</div>
                 <h4>Equipos Corporativos</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Portátiles y de escritorio de alta durabilidad, perfectos para oficinas, trabajos de oficina y gestión empresarial.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20corporativo." target="_blank" class="boton-metal azul">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20corporativo." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🛒</div>
                 <h4>Equipos de Consumo</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Ideal para el hogar, estudio, navegación y multimedia. Equipos económicos y de excelente rendimiento.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20de%20consumo." target="_blank" class="boton-metal azul">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20de%20consumo." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🎮</div>
                 <h4>Equipos Gamer</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Máquinas de alto rendimiento para los videojuegos más exigentes. Con las mejores gráficas y procesadores.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20Gamer." target="_blank" class="boton-metal azul">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20Gamer." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">💳</div>
                 <h4>POS (Punto de Venta)</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Sistemas y equipos robustos para comercios, restaurantes y tiendas. Compatibles con tus sistemas de facturación.</p>
-                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20POS." target="_blank" class="boton-metal azul">Cotizar ahora</a>
+                <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20POS." target="_blank" class="boton-liquido-venta">Cotizar ahora</a>
             </div>
         </div>
     </section>
@@ -517,13 +528,13 @@
                 <i class="fas fa-file-pdf"></i>
                 <h3>Brochure General</h3>
                 <p>Vista previa y descarga del portafolio de servicios.</p>
-                <a href="https://drive.google.com/file/d/172tVXVX6GBXfG6grzs9RkUZ52c8DppmT/preview" target="_blank" class="boton-descargar">Ver / Descargar</a>
+                <a href="https://drive.google.com/file/d/172tVXVX6GBXfG6grzs9RkUZ52c8DppmT/preview" target="_blank" class="boton-metal">Ver / Descargar</a>
             </div>
             <div class="tarjeta-descarga">
                 <i class="fab fa-whatsapp"></i>
                 <h3>Catálogo de Equipos</h3>
                 <p>Ver nuestro catálogo actualizado en WhatsApp Business.</p>
-                <a href="https://wa.me/c/573113944320" target="_blank" class="boton-descargar">Ir al Catálogo</a>
+                <a href="https://wa.me/c/573113944320" target="_blank" class="boton-metal">Ir al Catálogo</a>
             </div>
             
             <!-- SOLO APARECE SI ESCRIBES #acceso-interno EN LA URL -->
@@ -543,17 +554,17 @@
                 <div class="tarjeta-descarga">
                     <i class="fas fa-download"></i>
                     <h3>Actualizar Windows 11</h3>
-                    <a href="https://drive.google.com/uc?export=download&id=10sXg0T6iZUNokWm1RPKMLqt71Q4Lh1xo" target="_blank" class="boton-descargar">Descargar</a>
+                    <a href="https://drive.google.com/uc?export=download&id=10sXg0T6iZUNokWm1RPKMLqt71Q4Lh1xo" target="_blank" class="boton-metal">Descargar</a>
                 </div>
                 <div class="tarjeta-descarga">
                     <i class="fas fa-download"></i>
                     <h3>Office para Mac</h3>
-                    <a href="https://drive.google.com/uc?export=download&id=1L0rdIYTe1ifcx0IZyFxk31Zncw1jWq8a" target="_blank" class="boton-descargar">Descargar</a>
+                    <a href="https://drive.google.com/uc?export=download&id=1L0rdIYTe1ifcx0IZyFxk31Zncw1jWq8a" target="_blank" class="boton-metal">Descargar</a>
                 </div>
                 <div class="tarjeta-descarga">
                     <i class="fas fa-download"></i>
                     <h3>Office para Windows</h3>
-                    <a href="https://drive.google.com/uc?export=download&id=15WzeYOdWS5rEwfwKW2R_tw78lPdGBgL6" target="_blank" class="boton-descargar">Descargar</a>
+                    <a href="https://drive.google.com/uc?export=download&id=15WzeYOdWS5rEwfwKW2R_tw78lPdGBgL6" target="_blank" class="boton-metal">Descargar</a>
                 </div>
             </div>
         </div>
@@ -680,7 +691,7 @@
         </div>
         <div class="faq-item">
             <div class="faq-pregunta" onclick="toggleFaq(this)">¿Atienden a domicilio?<i class="fas fa-chevron-down"></i></div>
-            <div class="faq-respuesta"><p>Sí. Ofrecemos servicio a domicilio en Medellín y el Valle de Aburrá para reparaciones, instalaciones de cámaras y redes.</p></div>
+            <div class="faq-respuesta"><p>Sí. Ofrecemos servicio a domicilio en El Poblado y el Valle de Aburrá para reparaciones, instalaciones de cámaras y redes.</p></div>
         </div>
     </section>
 
@@ -717,7 +728,7 @@
             <iframe src="https://www.google.com/maps?q=6.153965,-75.533979&z=13&output=embed" allowfullscreen="" loading="lazy"></iframe>
             <div class="info-cobertura">
                 <h3>Zona de cobertura</h3>
-                <p>Medellín · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
+                <p>El Poblado · Envigado · Itagüí · Sabaneta · Caldas · El Retiro · La Ceja · Guarne · Rionegro</p>
             </div>
         </div>
     </section>
