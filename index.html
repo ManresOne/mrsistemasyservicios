@@ -49,6 +49,7 @@
         header a.logo-link { display: flex; align-items: center; text-decoration: none; }
         header img { max-height: 70px; }
         
+        /* BOTÓN GLASS (para el resto del sitio) */
         .boton-glass {
             position: relative;
             display: inline-flex;
@@ -79,16 +80,43 @@
             transform: translateY(-2px);
         }
 
-        .boton-header-cotizar {
-            width: auto;
-            margin-left: 20px;
+        /* NUEVO ESTILO NEÓN PARA EL BOTÓN COTIZAR APP */
+        .boton-cotizar-app {
             padding: 10px 20px;
+            text-transform: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--negro);
+            text-shadow: none;
+            background: transparent;
+            cursor: pointer;
+            border: 2px solid var(--negro);
+            transition: 0.5s ease;
+            user-select: none;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 20px;
         }
-        .boton-header-cotizar:hover {
-            background: rgba(17, 17, 17, 0.9);
+        .boton-cotizar-app:hover,
+        .boton-cotizar-app:focus {
             color: var(--blanco);
-            border-color: var(--negro);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+            background: var(--acento);
+            border: 2px solid var(--acento);
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+            box-shadow: 0 0 5px var(--acento), 0 0 20px var(--acento), 0 0 50px var(--acento), 0 0 100px var(--acento);
+            outline: none;
+        }
+
+        /* Responsive para el botón neón */
+        @media (max-width: 768px) {
+            .boton-cotizar-app {
+                margin-left: 0;
+                margin-top: 10px;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
         }
 
         nav a { text-decoration: none; color: var(--negro); font-weight: bold; margin-left: 20px; font-size: 14px; }
@@ -100,7 +128,6 @@
             nav { display: none; width: 100%; flex-direction: column; position: absolute; top: 80px; left: 0; background: var(--blanco); border-bottom: 3px solid var(--negro); padding: 20px; }
             nav.active { display: flex; }
             nav a { margin: 10px 0; }
-            .boton-header-cotizar { margin-left: 0; margin-top: 10px; display: inline-block; width: 100%; }
         }
 
         .hero { height: 85vh; width: 100%; display: flex; align-items: center; justify-content: center; color: var(--blanco); position: relative; overflow: hidden; }
@@ -127,7 +154,26 @@
             gap: 15px;
             margin-bottom: 30px;
             flex-wrap: wrap;
+            position: relative;
+            padding-bottom: 15px;
         }
+        /* BARRA DESLIZANTE */
+        .tabs-contenedor::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: calc(50% - 150px);
+            height: 4px;
+            width: 100px;
+            background: var(--acento);
+            border-radius: 9999px;
+            transition: transform 0.5s cubic-bezier(0.33, 0.83, 0.99, 0.98);
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+        .tabs-contenedor.tab-1::after { transform: translateX(0); }
+        .tabs-contenedor.tab-2::after { transform: translateX(115px); }
+        .tabs-contenedor.tab-3::after { transform: translateX(230px); }
+
         .tab-boton {
             background: var(--gris-claro);
             border: 2px solid var(--negro);
@@ -352,7 +398,7 @@
         .faq-item.abierto .faq-respuesta { max-height: 200px; }
         .faq-item.abierto .faq-pregunta i { transform: rotate(180deg); }
 
-        /* CONTACTO (BOTÓN REDONDEADO) */
+        /* CONTACTO */
         .contacto-seccion { background-color: rgba(244,244,244,0.9); padding: 80px 8%; display: flex; flex-wrap: wrap; gap: 40px; border-top: 3px solid var(--negro); }
         .formulario, .mapa-container { flex: 1; min-width: 300px; }
         input, textarea { 
@@ -411,7 +457,8 @@
                 <a href="#contacto">Contacto</a>
             </nav>
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            <a href="https://manresone.github.io/cotizadorApp/" target="_blank" class="boton-glass boton-header-cotizar">Cotizar App</a>
+            <!-- BOTÓN COTIZAR APP CON EFECTO NEÓN -->
+            <a href="https://manresone.github.io/cotizadorApp/" target="_blank" class="boton-cotizar-app">Cotizar App</a>
         </div>
     </header>
 
@@ -424,11 +471,11 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE SERVICIOS CON PESTAÑAS Y ACORDEONES -->
+    <!-- SECCIÓN DE SERVICIOS CON PESTAÑAS Y BARRA DESLIZANTE -->
     <section id="servicios" class="seccion">
         <h2 class="seccion-titulo"><img src="img/servicios.png" alt="Icono Servicios"> NUESTROS SERVICIOS</h2>
         
-        <div class="tabs-contenedor">
+        <div class="tabs-contenedor" id="tabsContenedor">
             <button class="tab-boton activo" onclick="abrirTab(event, 'tab-computadores')">💻 Computadores</button>
             <button class="tab-boton" onclick="abrirTab(event, 'tab-seguridad')">🔒 Seguridad</button>
             <button class="tab-boton" onclick="abrirTab(event, 'tab-redes')">🌐 Redes</button>
@@ -678,7 +725,6 @@
         <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
         <div class="carrusel-trabajos">
             <div class="carrusel-items">
-                <!-- Primera mitad -->
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto1.jpg" alt="Trabajo 1"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto2.jpg" alt="Trabajo 2"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto3.jpg" alt="Trabajo 3"></div>
@@ -694,7 +740,6 @@
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto13.jpg" alt="Trabajo 13"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video1.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><video src="img/video2.mp4" muted></video><div class="icono-play"><i class="fas fa-play"></i></div></div>
-                <!-- Segunda mitad (copia para infinito) -->
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto1.jpg" alt="Trabajo 1"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto2.jpg" alt="Trabajo 2"></div>
                 <div class="item-carrusel" onclick="abrirLightbox(this)"><img src="img/foto3.jpg" alt="Trabajo 3"></div>
@@ -787,9 +832,8 @@
         <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
     </footer>
 
-    <!-- CÓDIGO ÚNICO Y LIMPIO (AUDITADO) -->
+    <!-- CÓDIGO DEL FONDO DE PARTÍCULAS Y LÓGICA -->
     <script>
-        // CONFIGURACIÓN DEL FONDO DE PARTÍCULAS (ÚNICO)
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, animationFrameId;
@@ -876,7 +920,10 @@
         init();
         render();
 
-        // FUNCIÓN PARA LAS PESTAÑAS DE SERVICIOS
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('tabsContenedor').classList.add('tab-1');
+        });
+
         function abrirTab(evt, nombreTab) {
             var i, tabContenido, tabBoton;
             tabContenido = document.getElementsByClassName("tab-contenido");
@@ -889,24 +936,18 @@
             }
             document.getElementById(nombreTab).className += " activo";
             evt.currentTarget.className += " activo";
+
+            var contenedor = document.getElementById('tabsContenedor');
+            contenedor.classList.remove('tab-1', 'tab-2', 'tab-3');
+            if (nombreTab === 'tab-computadores') contenedor.classList.add('tab-1');
+            if (nombreTab === 'tab-seguridad') contenedor.classList.add('tab-2');
+            if (nombreTab === 'tab-redes') contenedor.classList.add('tab-3');
         }
 
-        // FUNCIÓN PARA ABRIR/CERRAR ACORDEONES DE SERVICIOS
-        function toggleAcordeon(elemento) {
-            var item = elemento.parentElement;
-            item.classList.toggle('abierto');
-        }
-
-        // FUNCIÓN PARA ABRIR/CERRAR PREGUNTAS FRECUENTES
-        function toggleFaq(elemento) {
-            var item = elemento.parentElement;
-            item.classList.toggle('abierto');
-        }
-
-        // FUNCIÓN DEL MENÚ MÓVIL
+        function toggleAcordeon(elemento) { var item = elemento.parentElement; item.classList.toggle('abierto'); }
+        function toggleFaq(elemento) { var item = elemento.parentElement; item.classList.toggle('abierto'); }
         function toggleMenu() { var nav = document.getElementById('menuNav'); nav.classList.toggle('active'); }
 
-        // ANIMACIÓN DE APARICIÓN
         window.addEventListener('scroll', function() {
             var secciones = document.querySelectorAll('.seccion');
             secciones.forEach(function(seccion) {
@@ -916,7 +957,6 @@
             });
         });
 
-        // FORMULARIO DE WHATSAPP
         document.getElementById('formularioContacto').addEventListener('submit', function(e) {
             e.preventDefault();
             const nombre = document.getElementById('nombre').value;
@@ -927,7 +967,6 @@
             window.open(url, '_blank');
         });
 
-        // ACCESO PRIVADO
         function verificarAcceso() {
             var clave = document.getElementById('claveAcceso').value;
             var contrasenaCorrecta = "MR2026"; 
@@ -938,7 +977,6 @@
             } else { document.getElementById('mensajeError').style.display = 'block'; }
         }
 
-        // LIGHTBOX
         let indiceActual = 0; let elementosGaleria = [];
         function abrirLightbox(elemento) {
             elementosGaleria = [];
