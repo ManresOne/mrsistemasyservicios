@@ -13,7 +13,7 @@
       "name": "M R Sistemas y Servicios",
       "description": "Soporte técnico, reparación de computadores, seguridad electrónica y redes de datos.",
       "telephone": "+57-311-394-4320",
-      "email": "mrsistemasyservicios@gmail.com",
+      "email": "mrsistemasyservicio@gmail.com",
       "areaServed": "El Poblado, Envigado, Itagüí, Sabaneta, Caldas, El Retiro, La Ceja, Guarne, Rionegro",
       "sameAs": ["https://www.instagram.com/mrsolutionsmed"]
     }
@@ -49,7 +49,7 @@
         header a.logo-link { display: flex; align-items: center; text-decoration: none; }
         header img { max-height: 70px; }
         
-        /* BOTÓN GLASS (para el resto del sitio) */
+        /* BOTÓN GLASS */
         .boton-glass {
             position: relative;
             display: inline-flex;
@@ -80,10 +80,10 @@
             transform: translateY(-2px);
         }
 
-        /* NUEVO ESTILO NEÓN PARA EL BOTÓN COTIZAR APP */
+        /* BOTÓN COTIZAR APP CON EFECTO NEÓN */
         .boton-cotizar-app {
             padding: 10px 20px;
-            text-transform: none;
+            text-transform: uppercase;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 700;
@@ -108,7 +108,6 @@
             outline: none;
         }
 
-        /* Responsive para el botón neón */
         @media (max-width: 768px) {
             .boton-cotizar-app {
                 margin-left: 0;
@@ -157,7 +156,6 @@
             position: relative;
             padding-bottom: 15px;
         }
-        /* BARRA DESLIZANTE */
         .tabs-contenedor::after {
             content: '';
             position: absolute;
@@ -216,7 +214,7 @@
             margin-bottom: 20px;
         }
 
-        /* ACORDEÓN DE SERVICIOS (CERRADO POR DEFECTO) */
+        /* ACORDEÓN DE SERVICIOS */
         .acordeon-item {
             border: 2px solid var(--negro);
             border-radius: 8px;
@@ -266,6 +264,169 @@
         .tarjeta-venta h4 { margin-top: 15px; font-size: 1.3rem; color: var(--acento); }
         .boton-venta-wsp { background: var(--verde-wsp); color: white; border: none; padding: 12px; margin-top: auto; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none; text-align: center; display: block; transition: 0.3s; }
         .boton-venta-wsp:hover { background: white; color: var(--verde-wsp); }
+
+        /* INFO EXTRA OCULTA EN CADA CUADRO DE VENTA (APARECE AL HOVER) */
+        .info-extra {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease, margin-top 0.4s ease;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin-top: 0;
+            padding: 0 10px;
+        }
+        .tarjeta-venta:hover .info-extra {
+            max-height: 150px;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        .info-extra p {
+            margin: 0;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--blanco);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* SECCIÓN DE TABLA COMPARATIVA ANIMADA */
+        .seccion-comparativa {
+            background: rgba(255,255,255,0.95);
+            padding: 60px 8% 80px;
+            margin-top: 60px;
+            border-top: 4px solid var(--acento);
+            border-radius: 12px;
+        }
+        .seccion-comparativa h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--negro);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+        .tabla-comparativa {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: 3px solid var(--negro);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 8px 8px 0px var(--negro);
+            background: var(--blanco);
+            position: relative;
+        }
+        .tabla-comparativa::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--acento), transparent);
+            animation: barrido 3s linear infinite;
+        }
+        @keyframes barrido {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        .tabla-comparativa table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tabla-comparativa th {
+            background: var(--negro);
+            color: var(--blanco);
+            padding: 18px 10px;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .tabla-comparativa th:first-child {
+            text-align: left;
+            padding-left: 20px;
+        }
+        .tabla-comparativa tbody tr {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: filaEntra 0.5s ease forwards;
+        }
+        .tabla-comparativa tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        .tabla-comparativa tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        .tabla-comparativa tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        .tabla-comparativa tbody tr:nth-child(4) { animation-delay: 0.4s; }
+        .tabla-comparativa tbody tr:nth-child(5) { animation-delay: 0.5s; }
+        .tabla-comparativa tbody tr:nth-child(6) { animation-delay: 0.6s; }
+        .tabla-comparativa tbody tr:nth-child(7) { animation-delay: 0.7s; }
+        .tabla-comparativa tbody tr:nth-child(8) { animation-delay: 0.8s; }
+        .tabla-comparativa tbody tr:nth-child(9) { animation-delay: 0.9s; }
+        .tabla-comparativa tbody tr:nth-child(10) { animation-delay: 1s; }
+        .tabla-comparativa tbody tr:nth-child(11) { animation-delay: 1.1s; }
+        @keyframes filaEntra {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .tabla-comparativa td {
+            padding: 14px 10px;
+            border: 1px solid var(--gris-claro);
+            text-align: center;
+            font-size: 1rem;
+            color: var(--negro);
+            transition: all 0.3s ease;
+        }
+        .tabla-comparativa td:first-child {
+            text-align: left;
+            padding-left: 20px;
+            font-weight: 600;
+        }
+        .tabla-comparativa tr:nth-child(even) td {
+            background: #fafafa;
+        }
+        .tabla-comparativa tbody tr:hover td {
+            background: rgba(0, 123, 255, 0.08);
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+        }
+        .check-si {
+            color: #1da851;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: inline-block;
+            animation: pulse-verde 2s ease-in-out infinite;
+        }
+        .check-no {
+            color: #d93636;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: inline-block;
+            animation: pulse-rojo 2s ease-in-out infinite;
+        }
+        @keyframes pulse-verde {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.85; }
+        }
+        @keyframes pulse-rojo {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.85; }
+        }
+        .tabla-comparativa td:hover .check-si,
+        .tabla-comparativa td:hover .check-no {
+            animation: pop 0.4s ease;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .tabla-comparativa {
+                overflow-x: auto;
+            }
+            .tabla-comparativa table {
+                min-width: 700px;
+            }
+        }
 
         /* SECCIÓN DE DESCARGAS */
         .seccion-descargas { padding: 80px 8%; background: rgba(255,255,255,0.9); }
@@ -457,7 +618,6 @@
                 <a href="#contacto">Contacto</a>
             </nav>
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            <!-- BOTÓN COTIZAR APP CON EFECTO NEÓN -->
             <a href="https://manresone.github.io/cotizadorApp/" target="_blank" class="boton-cotizar-app">Cotizar App</a>
         </div>
     </header>
@@ -471,7 +631,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE SERVICIOS CON PESTAÑAS Y BARRA DESLIZANTE -->
     <section id="servicios" class="seccion">
         <h2 class="seccion-titulo"><img src="img/servicios.png" alt="Icono Servicios"> NUESTROS SERVICIOS</h2>
         
@@ -481,7 +640,6 @@
             <button class="tab-boton" onclick="abrirTab(event, 'tab-redes')">🌐 Redes</button>
         </div>
 
-        <!-- TAB 1: COMPUTADORES -->
         <div id="tab-computadores" class="tab-contenido activo">
             <div class="tarjeta tarjeta-servicio">
                 <img src="img/servicio-computadores.jpg" alt="Computadores" class="imagen-tarjeta">
@@ -533,7 +691,6 @@
             </div>
         </div>
 
-        <!-- TAB 2: SEGURIDAD -->
         <div id="tab-seguridad" class="tab-contenido">
             <div class="tarjeta tarjeta-servicio">
                 <img src="img/servicio-seguridad.jpg" alt="Seguridad Electrónica" class="imagen-tarjeta">
@@ -559,7 +716,6 @@
             </div>
         </div>
 
-        <!-- TAB 3: REDES -->
         <div id="tab-redes" class="tab-contenido">
             <div class="tarjeta tarjeta-servicio">
                 <img src="img/servicio-redes.jpg" alt="Redes de Datos" class="imagen-tarjeta">
@@ -596,7 +752,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE MARCAS -->
     <section class="seccion-marcas">
         <h2 class="seccion-titulo"><img src="img/marcas.png" alt="Icono Marcas"> TRABAJAMOS CON LAS MEJORES MARCAS DEL MERCADO</h2>
         <p>Especialistas en hardware, redes y seguridad electrónica.</p>
@@ -629,7 +784,6 @@
         </div>
     </section>
 
-    <!-- BANNER DE SERVICIO A DOMICILIO -->
     <section class="banner-domicilio">
         <img src="img/domicilio.png" alt="Servicio a Domicilio">
         <h2>Servicio Express a Domicilio</h2>
@@ -637,7 +791,7 @@
         <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20servicio%20a%20domicilio." target="_blank" class="boton-glass">Agendar Visita</a>
     </section>
 
-    <!-- SECCIÓN DE VENTA DE EQUIPOS -->
+    <!-- SECCIÓN DE VENTA DE EQUIPOS CON INFO EXTRA Y TABLA COMPARATIVA ANIMADA -->
     <section id="venta" class="seccion-venta">
         <h2 class="titulo-venta"><img src="img/ventas.png" alt="Icono Ventas"> VENTA DE EQUIPOS</h2>
         <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px;">Computadores nuevos y de segunda. ¡Pregunta por nuestro stock disponible!</p>
@@ -647,29 +801,72 @@
                 <h4>Equipos Corporativos</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Portátiles y de escritorio de alta durabilidad, perfectos para oficinas, trabajos de oficina y gestión empresarial.</p>
                 <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20corporativo." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+                <div class="info-extra">
+                    <p>💡 Ideal para trabajar o estudiar en serio, con un equipo que no te falle y dure años.</p>
+                </div>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🛒</div>
                 <h4>Equipos de Consumo</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Ideal para el hogar, estudio, navegación y multimedia. Equipos económicos y de excelente rendimiento.</p>
                 <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20de%20consumo." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+                <div class="info-extra">
+                    <p>💡 Perfecto para tareas del hogar, colegio o navegación básica sin gastar mucho.</p>
+                </div>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">🎮</div>
                 <h4>Equipos Gamer</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Máquinas de alto rendimiento para los videojuegos más exigentes. Con las mejores gráficas y procesadores.</p>
                 <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20Gamer." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+                <div class="info-extra">
+                    <p>💡 Hecho para videojuegos y creadores de contenido que exigen máxima potencia.</p>
+                </div>
             </div>
             <div class="tarjeta-venta">
                 <div style="font-size: 3rem; color: var(--acento);">💳</div>
                 <h4>POS (Punto de Venta)</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6;">Sistemas y equipos robustos para comercios, restaurantes y tiendas. Compatibles con tus sistemas de facturación.</p>
                 <a href="https://wa.me/573113944320?text=Hola!%20Me%20interesa%20cotizar%20un%20equipo%20POS." target="_blank" class="boton-venta-wsp">Cotizar ahora</a>
+                <div class="info-extra">
+                    <p>💡 Exclusivo para la caja de tu negocio, con todo listo para vender desde el primer día.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA COMPARATIVA ANIMADA -->
+        <div class="seccion-comparativa">
+            <h2>¿CUÁL EQUIPO ES PARA TI?</h2>
+            
+            <div class="tabla-comparativa">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CARACTERÍSTICA</th>
+                            <th>CONSUMO</th>
+                            <th>CORPORATIVO</th>
+                            <th>GAMER</th>
+                            <th>POS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Precio más económico</td><td class="check-si">✓</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-no">✗</td></tr>
+                        <tr><td>Durabilidad de 5+ años</td><td class="check-no">✗</td><td class="check-si">✓</td><td class="check-si">✓</td><td class="check-si">✓</td></tr>
+                        <tr><td>Resistente a golpes y caídas</td><td class="check-no">✗</td><td class="check-si">✓</td><td class="check-no">✗</td><td class="check-si">✓</td></tr>
+                        <tr><td>Rendimiento multitarea</td><td class="check-no">✗</td><td class="check-si">✓</td><td class="check-si">✓</td><td class="check-no">✗</td></tr>
+                        <tr><td>Potencia para juegos y edición</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-si">✓</td><td class="check-no">✗</td></tr>
+                        <tr><td>Batería de larga duración</td><td class="check-no">✗</td><td class="check-si">✓</td><td class="check-no">✗</td><td class="check-no">✗</td></tr>
+                        <tr><td>Compatible con caja registradora y lector</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-si">✓</td></tr>
+                        <tr><td>Pantalla táctil fácil de limpiar</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-si">✓</td></tr>
+                        <tr><td>Seguridad anti-robo de datos</td><td class="check-no">✗</td><td class="check-si">✓</td><td class="check-si">✓</td><td class="check-si">✓</td></tr>
+                        <tr><td>Diseño personalizable con luces</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-si">✓</td><td class="check-no">✗</td></tr>
+                        <tr><td>Uso intensivo 24/7 sin recalentar</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-no">✗</td><td class="check-si">✓</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE DESCARGAS -->
     <section id="descargas" class="seccion-descargas">
         <h2 class="seccion-titulo"><img src="img/descargas.png" alt="Icono Descargas"> DESCARGAS</h2>
         <p style="text-align: center; margin-bottom: 50px;">Consulta nuestros catálogos y descarga nuestro brochure.</p>
@@ -687,7 +884,6 @@
                 <a href="https://wa.me/c/573113944320" target="_blank" class="boton-glass">Ir al Catálogo</a>
             </div>
             
-            <!-- SOLO APARECE SI ESCRIBES #acceso-interno EN LA URL -->
             <div id="acceso-privado" class="acceso-privado">
                 <h3>🔒 Acceso Interno</h3>
                 <p>Ingrese la contraseña para ver los archivos internos.</p>
@@ -697,7 +893,6 @@
             </div>
         </div>
 
-        <!-- ÁREA INTERNA OCULTA -->
         <div id="area-interna" class="area-interna-oculta">
             <h3 style="text-align: center; margin-bottom: 20px;">📂 Recursos Internos</h3>
             <div class="grid-descargas">
@@ -720,7 +915,6 @@
         </div>
     </section>
 
-    <!-- GALERÍA CON CARRUSEL CSS PURO -->
     <section id="galeria" class="seccion">
         <h2 class="seccion-titulo"><img src="img/nosotros.png" alt="Icono Nosotros"> NUESTRO TRABAJO</h2>
         <div class="carrusel-trabajos">
@@ -759,7 +953,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN FAQ -->
     <section id="faq" class="faq-seccion">
         <h2 class="seccion-titulo"><img src="img/faqs.png" alt="Icono FAQs"> PREGUNTAS FRECUENTES</h2>
         <div class="faq-item">
@@ -780,7 +973,6 @@
         </div>
     </section>
 
-    <!-- VISOR LIGHTBOX -->
     <div id="lightbox" class="lightbox">
         <div class="lightbox-cerrar" onclick="cerrarLightbox()">&times;</div>
         <div class="lightbox-anterior" onclick="cambiarLightbox(-1)">&#10094;</div>
@@ -789,7 +981,6 @@
         <div id="lightbox-contador" class="lightbox-contador"></div>
     </div>
 
-    <!-- SECCIÓN DE CONTACTO -->
     <section id="contacto" class="contacto-seccion">
         <div class="formulario tarjeta">
             <h2 style="margin-top: 0;">¿Listo para resolver tu problema?</h2>
@@ -805,7 +996,7 @@
                 <h4 style="margin: 15px 0 5px 0;">Síguenos y escríbenos</h4>
                 <p style="margin: 0;">
                     <i class="fab fa-instagram"></i> <a href="https://www.instagram.com/mrsolutionsmed" target="_blank" style="color: var(--negro); font-weight: bold;">@mrsolutionsmed</a><br>
-                    <i class="fas fa-envelope"></i> <a href="mailto:mrsistemasyservicios@gmail.com" style="color: var(--negro); font-weight: bold;">mrsistemasyservicios@gmail.com</a>
+                    <i class="fas fa-envelope"></i> <a href="mailto:mrsistemasyservicio@gmail.com" style="color: var(--negro); font-weight: bold;">mrsistemasyservicio@gmail.com</a>
                 </p>
             </div>
         </div>
@@ -827,12 +1018,11 @@
         <div style="margin: 15px 0;">
             <i class="fab fa-instagram"></i> <a href="https://www.instagram.com/mrsolutionsmed" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">@mrsolutionsmed</a>
             <span style="margin: 0 10px; color: #555;">|</span>
-            <i class="fas fa-envelope"></i> <a href="mailto:mrsistemasyservicios@gmail.com" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">mrsistemasyservicios@gmail.com</a>
+            <i class="fas fa-envelope"></i> <a href="mailto:mrsistemasyservicio@gmail.com" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">mrsistemasyservicio@gmail.com</a>
         </div>
         <p><a href="https://wa.me/573113944320" target="_blank" style="color: var(--verde-wsp); text-decoration: none; font-weight: bold;">contáctanos</a></p>
     </footer>
 
-    <!-- CÓDIGO DEL FONDO DE PARTÍCULAS Y LÓGICA -->
     <script>
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
