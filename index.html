@@ -107,71 +107,12 @@
         }
 
         @media (max-width: 768px) {
-            .comparativa-encabezado,
-            .fila-principal {
-                grid-template-columns: 1.8fr 0.9fr 1.1fr 0.9fr;
-                font-size: 0.7rem;
-                padding: 10px 4px;
-                gap: 2px;
-            }
-            .comparativa-encabezado > div {
+            .boton-cotizar-app {
+                margin-left: 0;
+                margin-top: 10px;
+                display: block;
+                width: 100%;
                 text-align: center;
-                padding: 0 2px;
-                font-size: 0.65rem;
-                letter-spacing: 0;
-            }
-            .comparativa-encabezado > div:first-child {
-                padding-left: 6px;
-                text-align: left;
-            }
-            .fila-principal .nombre {
-                padding-left: 6px;
-                font-size: 0.75rem;
-                gap: 4px;
-            }
-            .fila-principal .nombre i {
-                display: none;
-            }
-            .fila-principal .icono-check {
-                font-size: 1rem;
-            }
-            .fila-explicacion p {
-                font-size: 0.8rem;
-            }
-            .bloque-pos {
-                margin: 40px auto 0;
-                max-width: 95%;
-            }
-            .pos-encabezado {
-                flex-direction: column;
-                text-align: center;
-                padding: 20px 15px;
-            }
-            .pos-encabezado h3 {
-                font-size: 1.5rem;
-            }
-            .pos-encabezado p {
-                font-size: 0.9rem;
-            }
-            .pos-cuerpo {
-                padding: 20px 15px;
-            }
-            .pos-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .pos-item {
-                padding: 15px;
-            }
-            .pos-item .texto-pos strong {
-                font-size: 0.95rem;
-            }
-            .pos-item .texto-pos span {
-                font-size: 0.8rem;
-            }
-            .pos-cta a {
-                padding: 12px 25px;
-                font-size: 1rem;
             }
         }
 
@@ -595,28 +536,69 @@
         @media (max-width: 768px) {
             .comparativa-encabezado,
             .fila-principal {
-                grid-template-columns: 1.5fr 1fr 1fr 1fr;
-                font-size: 0.75rem;
-                padding: 12px 5px;
+                grid-template-columns: 1.8fr 0.9fr 1.1fr 0.9fr;
+                font-size: 0.7rem;
+                padding: 10px 4px;
+                gap: 2px;
             }
-            .comparativa-encabezado > div:first-child,
+            .comparativa-encabezado > div {
+                text-align: center;
+                padding: 0 2px;
+                font-size: 0.65rem;
+                letter-spacing: 0;
+            }
+            .comparativa-encabezado > div:first-child {
+                padding-left: 6px;
+                text-align: left;
+            }
             .fila-principal .nombre {
-                padding-left: 8px;
-                font-size: 0.8rem;
-            }
-            .fila-principal .icono-check {
-                font-size: 1rem;
+                padding-left: 6px;
+                font-size: 0.75rem;
+                gap: 4px;
             }
             .fila-principal .nombre i {
                 display: none;
             }
+            .fila-principal .icono-check {
+                font-size: 1rem;
+            }
+            .fila-explicacion p {
+                font-size: 0.8rem;
+            }
+            .bloque-pos {
+                margin: 40px auto 0;
+                max-width: 95%;
+            }
             .pos-encabezado {
                 flex-direction: column;
                 text-align: center;
-                padding: 20px;
+                padding: 20px 15px;
             }
             .pos-encabezado h3 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
+            }
+            .pos-encabezado p {
+                font-size: 0.9rem;
+            }
+            .pos-cuerpo {
+                padding: 20px 15px;
+            }
+            .pos-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .pos-item {
+                padding: 15px;
+            }
+            .pos-item .texto-pos strong {
+                font-size: 0.95rem;
+            }
+            .pos-item .texto-pos span {
+                font-size: 0.8rem;
+            }
+            .pos-cta a {
+                padding: 12px 25px;
+                font-size: 1rem;
             }
         }
 
@@ -777,8 +759,220 @@
 
         iframe { width: 100%; height: 400px; border: 3px solid var(--negro); }
         .info-cobertura { background: var(--negro); color: white; padding: 20px; margin-top: 15px; border-radius: 5px; text-align: center; font-weight: bold; }
-        .boton-flotante { position: fixed; bottom: 25px; right: 25px; z-index: 9999; background-color: var(--verde-wsp); color: white; border-radius: 50%; width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; box-shadow: 4px 4px 10px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; }
-        .boton-flotante:hover { transform: scale(1.1); }
+
+        /* WIDGET FLOTANTE DE WHATSAPP (NUEVO) */
+        .wa-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .wa-burbuja {
+            width: 65px;
+            height: 65px;
+            background: var(--verde-wsp);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: pulso-wa 2s infinite;
+        }
+        .wa-burbuja:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+        }
+        @keyframes pulso-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-notificacion {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #ff3b30;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid white;
+            animation: bounce-notif 1.5s infinite;
+        }
+        @keyframes bounce-notif {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .wa-panel {
+            position: absolute;
+            bottom: 85px;
+            right: 0;
+            width: 320px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .wa-panel.abierto {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .wa-panel-header {
+            background: var(--verde-wsp);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .wa-panel-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .wa-panel-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--verde-wsp);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .wa-panel-header-info h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .wa-panel-header-info p {
+            margin: 2px 0 0 0;
+            font-size: 0.75rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .wa-panel-header-info p::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .wa-panel-cerrar {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .wa-panel-cerrar:hover {
+            opacity: 1;
+        }
+        .wa-panel-cuerpo {
+            padding: 20px;
+            background: #e5ddd5;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 2px, transparent 2px),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.3) 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+        .wa-mensaje {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 10px 10px 10px 0;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.5;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            max-width: 85%;
+            position: relative;
+        }
+        .wa-mensaje strong {
+            color: var(--verde-wsp);
+        }
+        .wa-mensaje::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid white;
+            border-left: 8px solid transparent;
+        }
+        .wa-boton-iniciar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--verde-wsp);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .wa-boton-iniciar:hover {
+            background: white;
+            color: var(--verde-wsp);
+            border: 2px solid var(--verde-wsp);
+            transform: translateY(-2px);
+        }
+        .wa-panel-footer {
+            background: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .wa-widget {
+                bottom: 20px;
+                right: 20px;
+            }
+            .wa-panel {
+                width: calc(100vw - 40px);
+                max-width: 320px;
+                right: 0;
+            }
+            .wa-burbuja {
+                width: 58px;
+                height: 58px;
+                font-size: 1.9rem;
+            }
+        }
+
         footer { background: var(--negro); color: white; text-align: center; padding: 20px; margin-top: 40px; }
     </style>
 </head>
@@ -826,7 +1020,7 @@
         <div id="tab-computadores" class="tab-contenido activo">
             <div class="tarjeta tarjeta-servicio">
                 <img src="img/servicio-computadores.jpg" alt="Computadores" class="imagen-tarjeta">
-                <h3 style="margin-top: 0;">01 · Venta, reparación y mantenimiento de Computadores</h3>
+                <h3 style="margin-top: 0;">01 · Computadores</h3>
                 
                 <div class="acordeon-item">
                     <div class="acordeon-titulo" onclick="toggleAcordeon(this)">Hardware <i class="fas fa-chevron-down"></i></div>
@@ -1091,7 +1285,7 @@
                     <div class="icono-grande">💳</div>
                     <div>
                         <h3>¿Tienes un negocio?</h3>
-                        <p>El <strong>POS (Punto de Venta)</strong> es un equipo diseñado exclusivamente para la caja de tu negocio.  <strong>es único para lo que necesitas.</strong></p>
+                        <p>El <strong>POS (Punto de Venta)</strong> es un equipo diseñado exclusivamente para la caja de tu local comercial. No compite con los otros: <strong>es único para lo que necesitas.</strong></p>
                     </div>
                 </div>
                 <div class="pos-cuerpo">
@@ -1135,7 +1329,7 @@
                             <div class="check-pos">✓</div>
                             <div class="texto-pos">
                                 <strong>Asesoría especializada</strong>
-                                <span>Te ayudamos a configurarlo según el tipo de negocio: tienda, restaurante, droguería, minimarket o cualquier tipo de negocio.</span>
+                                <span>Te ayudamos a configurarlo según el tipo de negocio: tienda, restaurante, droguería o minimarket.</span>
                             </div>
                         </div>
                     </div>
@@ -1294,14 +1488,6 @@
         </div>
     </section>
 
-    <div id="lightbox" class="lightbox">
-        <div class="lightbox-cerrar" onclick="cerrarLightbox()">&times;</div>
-        <div class="lightbox-anterior" onclick="cambiarLightbox(-1)">&#10094;</div>
-        <div class="lightbox-siguiente" onclick="cambiarLightbox(1)">&#10095;</div>
-        <div id="lightbox-contenido"></div>
-        <div id="lightbox-contador" class="lightbox-contador"></div>
-    </div>
-
     <section id="contacto" class="contacto-seccion">
         <div class="formulario tarjeta">
             <h2 style="margin-top: 0;">¿Listo para resolver tu problema?</h2>
@@ -1332,7 +1518,46 @@
         </div>
     </section>
 
-    <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" class="boton-flotante"><i class="fab fa-whatsapp"></i></a>
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-cerrar" onclick="cerrarLightbox()">&times;</div>
+        <div class="lightbox-anterior" onclick="cambiarLightbox(-1)">&#10094;</div>
+        <div class="lightbox-siguiente" onclick="cambiarLightbox(1)">&#10095;</div>
+        <div id="lightbox-contenido"></div>
+        <div id="lightbox-contador" class="lightbox-contador"></div>
+    </div>
+
+    <!-- WIDGET FLOTANTE DE WHATSAPP -->
+    <div class="wa-widget">
+        <div class="wa-panel" id="waPanel">
+            <div class="wa-panel-header">
+                <div class="wa-panel-header-info">
+                    <div class="wa-panel-avatar">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h4>M R Sistemas</h4>
+                        <p>En línea</p>
+                    </div>
+                </div>
+                <button class="wa-panel-cerrar" onclick="toggleWaPanel()">&times;</button>
+            </div>
+            <div class="wa-panel-cuerpo">
+                <div class="wa-mensaje">
+                    ¡Hola! 👋 Soy el equipo de <strong>M R Sistemas y Servicios</strong>. ¿En qué podemos ayudarte hoy?
+                </div>
+                <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" class="wa-boton-iniciar">
+                    <i class="fab fa-whatsapp"></i> Iniciar chat por WhatsApp
+                </a>
+            </div>
+            <div class="wa-panel-footer">
+                Respondemos en minutos ⚡
+            </div>
+        </div>
+        <div class="wa-burbuja" onclick="toggleWaPanel()">
+            <i class="fab fa-whatsapp"></i>
+            <span class="wa-notificacion">1</span>
+        </div>
+    </div>
 
     <footer>
         <p>© 2026 M R Sistemas y Servicios. Todos los derechos reservados.</p>
@@ -1458,6 +1683,11 @@
         function toggleAcordeon(elemento) { var item = elemento.parentElement; item.classList.toggle('abierto'); }
         function toggleFaq(elemento) { var item = elemento.parentElement; item.classList.toggle('abierto'); }
         function toggleMenu() { var nav = document.getElementById('menuNav'); nav.classList.toggle('active'); }
+
+        // FUNCIÓN PARA ABRIR/CERRAR EL PANEL DE WHATSAPP
+        function toggleWaPanel() {
+            document.getElementById('waPanel').classList.toggle('abierto');
+        }
 
         function toggleComparativa(elemento) {
             var filas = document.querySelectorAll('.comparativa-fila');
