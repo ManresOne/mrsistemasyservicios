@@ -81,6 +81,20 @@
 
         .menu-btn { display: none; font-size: var(--font-xl); background: none; border: none; color: var(--negro); cursor: pointer; }
 
+        /* RIPPLE */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animacion 0.6s linear;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes ripple-animacion {
+            to { transform: scale(4); opacity: 0; }
+        }
+
         .boton-glass {
             position: relative;
             display: inline-flex;
@@ -104,20 +118,6 @@
             overflow: hidden;
             -webkit-tap-highlight-color: transparent;
         }
-        .boton-glass::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-            pointer-events: none;
-        }
-        .boton-glass:active::before { width: 300px; height: 300px; transition: 0s; }
         .boton-glass:hover {
             background: rgba(37, 211, 102, 0.9);
             color: var(--blanco);
@@ -142,6 +142,7 @@
             text-decoration: none;
             display: inline-block;
             margin-left: var(--space-md);
+            overflow: hidden;
             -webkit-tap-highlight-color: transparent;
         }
         .boton-cotizar-app:hover,
@@ -199,6 +200,7 @@
             transition: all 0.3s ease;
             box-shadow: 4px 4px 0px var(--negro);
             font-size: var(--font-md);
+            overflow: hidden;
             -webkit-tap-highlight-color: transparent;
         }
         .tab-boton:active { transform: scale(0.96); box-shadow: 2px 2px 0px var(--negro); }
@@ -214,9 +216,8 @@
         .imagen-tarjeta { width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-sm); border: 2px solid var(--negro); margin-bottom: var(--space-md); }
 
         .acordeon-item { border: 2px solid var(--negro); border-radius: var(--radius-sm); margin-bottom: var(--space-sm); overflow: hidden; background: var(--blanco); }
-        .acordeon-titulo { background: var(--gris-claro); padding: var(--space-md) var(--space-md); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; -webkit-tap-highlight-color: transparent; }
+        .acordeon-titulo { background: var(--gris-claro); padding: var(--space-md) var(--space-md); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .acordeon-titulo:hover { background: var(--acento); color: var(--blanco); }
-        .acordeon-titulo:active { background: var(--acento); color: var(--blanco); }
         .acordeon-titulo i { transition: transform 0.3s; }
         .acordeon-item.abierto .acordeon-titulo i { transform: rotate(180deg); }
         .acordeon-contenido { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 var(--space-md); background: var(--blanco); }
@@ -226,7 +227,7 @@
         .detalle-garantia { background: var(--negro); color: var(--blanco); padding: var(--space-md); text-align: center; font-weight: bold; border-radius: 5px; width: 100%; display: flex; justify-content: center; align-items: center; font-size: var(--font-sm); transition: 0.3s; }
         .detalle-garantia:hover { background: var(--acento); }
 
-        /* SECCIÓN NOSOTROS */
+        /* NOSOTROS */
         .nosotros-seccion { padding: var(--space-2xl) 8%; background: rgba(244,244,244,0.95); }
         .nosotros-contenedor { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }
         .nosotros-texto h2 { font-size: var(--font-2xl); text-transform: uppercase; font-weight: 800; margin: 0 0 var(--space-md) 0; color: var(--negro); }
@@ -249,161 +250,64 @@
             .nosotros-badge { bottom: 10px; right: 10px; }
         }
 
-        /* SECCIÓN CONSEJOS CON ACORDEÓN */
+        /* CONSEJOS */
         .consejos-seccion { padding: var(--space-2xl) 8%; background: rgba(255,255,255,0.95); }
-        .consejos-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-lg); }
-        .consejo-tarjeta {
-            background: var(--blanco);
-            border: 3px solid var(--negro);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-duro);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .consejo-tarjeta:hover { transform: translateY(-8px); box-shadow: var(--shadow-duro-hover); }
-        .consejo-imagen {
-            height: 180px;
-            background: linear-gradient(135deg, var(--acento), var(--negro));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blanco);
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .consejo-imagen::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotar-brillo 8s linear infinite;
-        }
+        .consejos-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); align-items: start; }
+        .consejo-tarjeta { background: var(--blanco); border: 3px solid var(--negro); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-duro); transition: all 0.3s ease; display: flex; flex-direction: column; align-self: start; }
+        .consejo-tarjeta:hover { transform: translateY(-5px); box-shadow: var(--shadow-duro-hover); }
+        .consejo-imagen { height: 130px; background: linear-gradient(135deg, var(--acento), var(--negro)); display: flex; align-items: center; justify-content: center; color: var(--blanco); font-size: 3rem; position: relative; overflow: hidden; flex-shrink: 0; }
+        .consejo-imagen::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: rotar-brillo 8s linear infinite; }
         @keyframes rotar-brillo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .consejo-cuerpo { padding: var(--space-lg); display: flex; flex-direction: column; flex-grow: 1; }
-        .consejo-categoria { display: inline-block; background: var(--acento); color: var(--blanco); font-size: var(--font-xs); font-weight: bold; padding: 4px 12px; border-radius: var(--radius-full); margin-bottom: var(--space-md); text-transform: uppercase; letter-spacing: 1px; align-self: flex-start; }
-        .consejo-titulo { font-size: var(--font-lg); font-weight: 800; color: var(--negro); margin: 0 0 var(--space-md) 0; line-height: 1.3; }
-        .consejo-resumen { font-size: var(--font-sm); color: var(--gris-oscuro); line-height: 1.6; margin-bottom: var(--space-md); }
-        
-        /* Acordeón de consejos */
-        .consejo-contenido-completo {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-        .consejo-tarjeta.abierto .consejo-contenido-completo {
-            max-height: 800px;
-        }
-        .consejo-contenido-completo p {
-            font-size: var(--font-sm);
-            line-height: 1.7;
-            color: var(--gris-oscuro);
-            margin-bottom: var(--space-md);
-        }
-        .consejo-contenido-completo ul {
-            margin-bottom: var(--space-md);
-            padding-left: var(--space-md);
-        }
-        .consejo-contenido-completo ul li {
-            font-size: var(--font-sm);
-            line-height: 1.7;
-            color: var(--gris-oscuro);
-            margin-bottom: var(--space-sm);
-            position: relative;
-            padding-left: var(--space-md);
-        }
-        .consejo-contenido-completo ul li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #1da851;
-            font-weight: bold;
-        }
-        .consejo-contenido-completo strong {
-            color: var(--negro);
-        }
-        
-        .consejo-botones {
-            display: flex;
-            gap: var(--space-sm);
-            align-items: center;
-            margin-top: auto;
-            flex-wrap: wrap;
-        }
-        .boton-leer-mas {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-sm);
-            background: var(--negro);
-            color: var(--blanco);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: var(--font-sm);
-            padding: var(--space-md) var(--space-lg);
-            border: 2px solid var(--negro);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 4px 4px 0px var(--gris-oscuro);
-            -webkit-tap-highlight-color: transparent;
-        }
-        .boton-leer-mas:hover {
-            background: var(--acento);
-            border-color: var(--acento);
-            transform: translateY(-2px);
-            box-shadow: 6px 6px 0px var(--negro);
-        }
+        .consejo-cuerpo { padding: var(--space-md); display: flex; flex-direction: column; flex-grow: 1; }
+        .consejo-categoria { display: inline-block; background: var(--acento); color: var(--blanco); font-size: var(--font-xs); font-weight: bold; padding: 3px 10px; border-radius: var(--radius-full); margin-bottom: var(--space-sm); text-transform: uppercase; letter-spacing: 1px; align-self: flex-start; }
+        .consejo-titulo { font-size: var(--font-md); font-weight: 800; color: var(--negro); margin: 0 0 var(--space-sm) 0; line-height: 1.3; }
+        .consejo-resumen { font-size: var(--font-sm); color: var(--gris-oscuro); line-height: 1.5; margin-bottom: var(--space-md); }
+        .consejo-contenido-completo { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, margin-bottom 0.3s ease; margin-bottom: 0; }
+        .consejo-tarjeta.abierto .consejo-contenido-completo { max-height: 600px; margin-bottom: var(--space-md); }
+        .consejo-contenido-completo p { font-size: var(--font-sm); line-height: 1.6; color: var(--gris-oscuro); margin-bottom: var(--space-sm); }
+        .consejo-contenido-completo ul { margin-bottom: var(--space-sm); padding-left: 0; }
+        .consejo-contenido-completo ul li { font-size: var(--font-sm); line-height: 1.6; color: var(--gris-oscuro); margin-bottom: var(--space-xs); position: relative; padding-left: var(--space-md); list-style: none; }
+        .consejo-contenido-completo ul li::before { content: '✓'; position: absolute; left: 0; color: #1da851; font-weight: bold; }
+        .consejo-contenido-completo strong { color: var(--negro); }
+        .consejo-botones { display: flex; gap: var(--space-sm); align-items: center; margin-top: auto; flex-wrap: wrap; }
+        .boton-leer-mas { display: inline-flex; align-items: center; gap: var(--space-xs); background: var(--negro); color: var(--blanco); text-decoration: none; font-weight: bold; font-size: var(--font-xs); padding: 8px 14px; border: 2px solid var(--negro); border-radius: var(--radius-sm); cursor: pointer; transition: all 0.3s ease; box-shadow: 3px 3px 0px var(--gris-oscuro); overflow: hidden; -webkit-tap-highlight-color: transparent; }
+        .boton-leer-mas:hover { background: var(--acento); border-color: var(--acento); transform: translateY(-2px); box-shadow: 5px 5px 0px var(--negro); }
         .boton-leer-mas:active { transform: scale(0.97); }
-        .boton-leer-mas i {
-            transition: transform 0.3s;
-        }
+        .boton-leer-mas i { transition: transform 0.3s; font-size: var(--font-xs); }
         .consejo-tarjeta.abierto .boton-leer-mas i { transform: rotate(180deg); }
-        
-        .boton-consultar {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-sm);
-            background: var(--verde-wsp);
-            color: var(--blanco);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: var(--font-sm);
-            padding: var(--space-md) var(--space-lg);
-            border: 2px solid var(--negro);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 4px 4px 0px var(--negro);
-            -webkit-tap-highlight-color: transparent;
-        }
-        .boton-consultar:hover {
-            background: var(--negro);
-            transform: translateY(-2px);
-            box-shadow: 6px 6px 0px var(--verde-wsp);
-        }
+        .boton-consultar { display: inline-flex; align-items: center; gap: var(--space-xs); background: var(--verde-wsp); color: var(--blanco); text-decoration: none; font-weight: bold; font-size: var(--font-xs); padding: 8px 14px; border: 2px solid var(--negro); border-radius: var(--radius-sm); cursor: pointer; transition: all 0.3s ease; box-shadow: 3px 3px 0px var(--negro); overflow: hidden; -webkit-tap-highlight-color: transparent; }
+        .boton-consultar:hover { background: var(--negro); transform: translateY(-2px); box-shadow: 5px 5px 0px var(--verde-wsp); }
         .boton-consultar:active { transform: scale(0.97); }
+        .boton-consultar i { font-size: var(--font-xs); }
 
-        /* SECCIÓN VENTA */
+        @media (max-width: 768px) {
+            .consejos-seccion { padding: var(--space-xl) 5%; }
+            .consejos-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+            .consejo-imagen { height: 90px; font-size: 2.2rem; }
+            .consejo-cuerpo { padding: var(--space-md) var(--space-sm); }
+            .consejo-titulo { font-size: var(--font-sm); }
+            .consejo-resumen { font-size: var(--font-xs); margin-bottom: var(--space-sm); }
+            .consejo-contenido-completo p,
+            .consejo-contenido-completo ul li { font-size: var(--font-xs); }
+            .boton-leer-mas, .boton-consultar { padding: 6px 10px; font-size: 0.7rem; }
+            .consejo-botones { gap: var(--space-xs); }
+        }
+
+        /* VENTA */
         .seccion-venta { background-color: rgba(17,17,17,0.9); color: var(--blanco); padding: var(--space-2xl) 8%; border-top: 4px solid var(--acento); border-bottom: 4px solid var(--acento); }
         .titulo-venta { text-align: center; font-size: var(--font-2xl); margin: 0 0 var(--space-lg) 0; color: var(--blanco); letter-spacing: 2px; text-transform: uppercase; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: var(--space-md); }
         .titulo-venta img { max-height: 50px; object-fit: contain; }
-
         .tarjeta-venta { background: rgba(51,51,51,0.9); color: var(--blanco); border: 2px solid var(--blanco); box-shadow: 8px 8px 0px var(--acento); border-radius: var(--radius-md); padding: var(--space-lg); display: flex; flex-direction: column; height: 100%; transition: all 0.3s ease; }
         .tarjeta-venta:hover { transform: translateY(-5px); background: rgba(17,17,17,0.9); box-shadow: 10px 10px 0px var(--blanco); }
         .tarjeta-venta h4 { margin-top: var(--space-md); font-size: var(--font-lg); color: var(--acento); }
-        .boton-venta-wsp { background: var(--verde-wsp); color: white; border: none; padding: var(--space-md); margin-top: auto; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none; text-align: center; display: block; transition: 0.3s; -webkit-tap-highlight-color: transparent; }
+        .boton-venta-wsp { background: var(--verde-wsp); color: white; border: none; padding: var(--space-md); margin-top: auto; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none; text-align: center; display: block; transition: 0.3s; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .boton-venta-wsp:hover { background: white; color: var(--verde-wsp); }
         .boton-venta-wsp:active { transform: scale(0.97); }
-
         .info-extra { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease, margin-top 0.4s ease; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm); margin-top: 0; padding: 0 var(--space-sm); }
         .tarjeta-venta:hover .info-extra { max-height: 150px; padding: var(--space-sm); margin-top: var(--space-md); }
         .info-extra p { margin: 0; font-size: var(--font-sm); font-style: italic; color: var(--blanco); text-align: center; line-height: 1.5; }
 
+        /* COMPARATIVA */
         .seccion-comparativa { background: rgba(255,255,255,0.95); padding: var(--space-xl) 8% var(--space-2xl); margin-top: var(--space-xl); border-top: 4px solid var(--acento); border-radius: var(--radius-md); }
         .seccion-comparativa h2 { text-align: center; font-size: var(--font-xl); color: var(--negro); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: var(--space-md); }
         .seccion-comparativa > p { text-align: center; font-size: var(--font-md); color: var(--gris-oscuro); margin-bottom: var(--space-lg); max-width: 700px; margin-left: auto; margin-right: auto; }
@@ -428,6 +332,7 @@
         .fila-explicacion p { margin: 0; font-size: var(--font-sm); line-height: 1.6; }
         .fila-explicacion strong { color: var(--acento); }
 
+        /* BLOQUE POS */
         .bloque-pos { max-width: 1000px; margin: var(--space-xl) auto 0; background: var(--negro); color: var(--blanco); border: 4px solid var(--negro); border-radius: var(--radius-lg); box-shadow: 10px 10px 0px var(--acento); overflow: hidden; position: relative; }
         .bloque-pos::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 5px; background: linear-gradient(90deg, transparent, var(--acento), transparent); animation: barrido 3s linear infinite; }
         @keyframes barrido { 0% { left: -100%; } 100% { left: 100%; } }
@@ -443,7 +348,7 @@
         .pos-item .texto-pos strong { display: block; color: var(--blanco); font-size: var(--font-md); margin-bottom: 5px; font-weight: 700; }
         .pos-item .texto-pos span { color: rgba(255,255,255,0.7); font-size: var(--font-sm); line-height: 1.4; }
         .pos-cta { margin-top: var(--space-lg); text-align: center; }
-        .pos-cta a { display: inline-block; background: var(--verde-wsp); color: white; padding: var(--space-md) var(--space-xl); border-radius: var(--radius-full); text-decoration: none; font-weight: bold; font-size: 1.1rem; border: 2px solid var(--blanco); box-shadow: 6px 6px 0px var(--blanco); transition: all 0.3s ease; -webkit-tap-highlight-color: transparent; }
+        .pos-cta a { display: inline-block; background: var(--verde-wsp); color: white; padding: var(--space-md) var(--space-xl); border-radius: var(--radius-full); text-decoration: none; font-weight: bold; font-size: 1.1rem; border: 2px solid var(--blanco); box-shadow: 6px 6px 0px var(--blanco); transition: all 0.3s ease; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .pos-cta a:hover { transform: translateY(-3px); box-shadow: 8px 8px 0px var(--blanco); filter: brightness(1.1); }
         .pos-cta a:active { transform: translateY(0) scale(0.97); }
 
@@ -455,11 +360,22 @@
             .fila-principal .nombre i { display: none; }
             .fila-principal .icono-check { font-size: 1rem; }
             .fila-explicacion p { font-size: 0.8rem; }
-            .bloque-pos { margin: 40px auto 0; max-width: 95%; }
-            .pos-encabezado { flex-direction: column; text-align: center; padding: var(--space-md); }
-            .pos-encabezado h3 { font-size: var(--font-lg); }
+            .bloque-pos { margin: 30px auto 0; max-width: 95%; }
+            .pos-encabezado { flex-direction: column; text-align: center; padding: var(--space-md); gap: var(--space-sm); }
+            .pos-encabezado .icono-grande { font-size: 2.5rem; }
+            .pos-encabezado h3 { font-size: 1.3rem; }
+            .pos-encabezado p { font-size: 0.8rem; }
             .pos-cuerpo { padding: var(--space-md); }
-            .pos-grid { grid-template-columns: 1fr; }
+            .pos-grid { grid-template-columns: 1fr; gap: var(--space-sm); }
+            .pos-item { padding: var(--space-sm) var(--space-md); padding-right: 40px; flex-direction: column; gap: var(--space-xs); cursor: pointer; position: relative; }
+            .pos-item::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--acento); transition: transform 0.3s; font-size: 0.9rem; }
+            .pos-item.abierto::after { transform: translateY(-50%) rotate(180deg); }
+            .pos-item .texto-pos span { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, margin-top 0.3s ease, opacity 0.3s ease; opacity: 0; display: block; }
+            .pos-item .texto-pos strong { font-size: 0.9rem; margin-bottom: 0; }
+            .pos-item.abierto .texto-pos span { max-height: 200px; margin-top: 8px; opacity: 1; }
+            .pos-item .check-pos { font-size: 1.3rem; position: absolute; top: 12px; left: 12px; }
+            .pos-item .texto-pos { padding-left: 25px; }
+            .pos-cta a { padding: 10px 20px; font-size: 0.95rem; }
         }
 
         .seccion-descargas { padding: var(--space-2xl) 8%; background: rgba(255,255,255,0.9); }
@@ -469,13 +385,13 @@
         .tarjeta-descarga i { font-size: 3rem; margin-bottom: var(--space-md); }
         .tarjeta-descarga h3 { margin: 0 0 var(--space-sm) 0; font-size: var(--font-lg); }
         .tarjeta-descarga p { font-size: var(--font-sm); margin-bottom: var(--space-md); }
-        .boton-descargar { background: var(--blanco); color: var(--negro); padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; border: 2px solid var(--negro); transition: 0.3s; }
+        .boton-descargar { background: var(--blanco); color: var(--negro); padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; border: 2px solid var(--negro); transition: 0.3s; overflow: hidden; }
         .tarjeta-descarga:hover .boton-descargar { background: var(--negro); color: var(--blanco); }
 
         .acceso-privado { display: none; background: var(--blanco); border: 3px solid var(--negro); border-radius: var(--radius-md); box-shadow: var(--shadow-duro); padding: var(--space-lg); max-width: 500px; margin: var(--space-lg) auto 0; text-align: center; }
         .seccion-descargas:target .acceso-privado { display: block; }
         .acceso-privado input { width: 100%; padding: var(--space-md); margin-bottom: var(--space-md); border: 2px solid var(--negro); font-family: inherit; background: var(--blanco); text-align: center; border-radius: var(--radius-sm); }
-        .acceso-privado button { background: var(--negro); color: white; border: none; padding: var(--space-md) var(--space-xl); border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .acceso-privado button { background: var(--negro); color: white; border: none; padding: var(--space-md) var(--space-xl); border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; transition: 0.3s; overflow: hidden; }
         .acceso-privado button:hover { background: var(--acento); }
         .acceso-privado .mensaje-error { color: red; font-weight: bold; margin-top: var(--space-sm); display: none; }
         .area-interna-oculta { display: none; margin-top: var(--space-lg); }
@@ -516,7 +432,7 @@
 
         .faq-seccion { background: rgba(255,255,255,0.9); padding: var(--space-2xl) 8%; }
         .faq-item { border: 2px solid var(--negro); border-radius: 10px; margin-bottom: var(--space-md); overflow: hidden; }
-        .faq-pregunta { background: var(--negro); color: white; padding: var(--space-md) var(--space-lg); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; -webkit-tap-highlight-color: transparent; }
+        .faq-pregunta { background: var(--negro); color: white; padding: var(--space-md) var(--space-lg); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .faq-pregunta:hover { background: var(--acento); }
         .faq-pregunta i { transition: transform 0.3s; }
         .faq-respuesta { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--gris-claro); }
@@ -527,7 +443,7 @@
         .contacto-seccion { background-color: rgba(244,244,244,0.9); padding: var(--space-2xl) 8%; display: flex; flex-wrap: wrap; gap: var(--space-lg); border-top: 3px solid var(--negro); }
         .formulario, .mapa-container { flex: 1; min-width: 300px; }
         input, textarea { width: calc(100% - 24px); padding: var(--space-md); margin: 0 auto var(--space-md) auto; display: block; border: 2px solid var(--negro); font-family: inherit; background: var(--blanco); border-radius: 10px; box-sizing: border-box; }
-        .boton-whatsapp { display: flex; align-items: center; justify-content: center; background-color: var(--verde-wsp); color: white; border: none; padding: var(--space-md); font-size: 1.2rem; font-weight: bold; cursor: pointer; border-radius: var(--radius-full); width: 100%; margin-top: 5px; transition: transform 0.2s, background-color 0.2s; -webkit-tap-highlight-color: transparent; }
+        .boton-whatsapp { display: flex; align-items: center; justify-content: center; background-color: var(--verde-wsp); color: white; border: none; padding: var(--space-md); font-size: 1.2rem; font-weight: bold; cursor: pointer; border-radius: var(--radius-full); width: 100%; margin-top: 5px; transition: transform 0.2s, background-color 0.2s; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .boton-whatsapp:hover { transform: translateY(-2px); background-color: #20b358; }
         .boton-whatsapp:active { transform: scale(0.97); }
         .boton-whatsapp i { margin-right: var(--space-sm); font-size: var(--font-lg); }
@@ -550,7 +466,7 @@
         @keyframes flotar-etiqueta { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
         .wa-widget { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
-        .wa-burbuja { width: 65px; height: 65px; background: var(--verde-wsp); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; color: white; cursor: pointer; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transition: all 0.3s ease; position: relative; animation: pulso-wa 2s infinite; -webkit-tap-highlight-color: transparent; }
+        .wa-burbuja { width: 65px; height: 65px; background: var(--verde-wsp); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; color: white; cursor: pointer; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transition: all 0.3s ease; position: relative; animation: pulso-wa 2s infinite; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .wa-burbuja:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7); }
         .wa-burbuja:active { transform: scale(0.95); }
         @keyframes pulso-wa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
@@ -570,7 +486,7 @@
         .wa-mensaje { background: white; padding: var(--space-md); border-radius: 10px 10px 10px 0; font-size: var(--font-sm); color: #333; line-height: 1.5; box-shadow: 0 1px 2px rgba(0,0,0,0.1); max-width: 85%; position: relative; }
         .wa-mensaje strong { color: var(--verde-wsp); }
         .wa-mensaje::before { content: ''; position: absolute; top: 0; left: -8px; width: 0; height: 0; border-top: 8px solid white; border-left: 8px solid transparent; }
-        .wa-boton-iniciar { display: flex; align-items: center; justify-content: center; gap: var(--space-sm); background: var(--verde-wsp); color: white; padding: var(--space-md); border-radius: 10px; text-decoration: none; font-weight: bold; font-size: var(--font-sm); margin-top: var(--space-md); transition: all 0.3s ease; border: 2px solid transparent; -webkit-tap-highlight-color: transparent; }
+        .wa-boton-iniciar { display: flex; align-items: center; justify-content: center; gap: var(--space-sm); background: var(--verde-wsp); color: white; padding: var(--space-md); border-radius: 10px; text-decoration: none; font-weight: bold; font-size: var(--font-sm); margin-top: var(--space-md); transition: all 0.3s ease; border: 2px solid transparent; overflow: hidden; -webkit-tap-highlight-color: transparent; }
         .wa-boton-iniciar:hover { background: white; color: var(--verde-wsp); border: 2px solid var(--verde-wsp); transform: translateY(-2px); }
         .wa-boton-iniciar:active { transform: scale(0.97); }
         .wa-panel-footer { background: white; padding: var(--space-sm); text-align: center; font-size: var(--font-xs); color: #888; border-top: 1px solid #eee; }
@@ -749,7 +665,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN NOSOTROS -->
     <section id="nosotros" class="nosotros-seccion">
         <div class="nosotros-contenedor">
             <div class="nosotros-texto">
@@ -951,42 +866,42 @@
                 </div>
                 <div class="pos-cuerpo">
                     <div class="pos-grid">
-                        <div class="pos-item">
+                        <div class="pos-item" onclick="togglePosItem(this)">
                             <div class="check-pos">✓</div>
                             <div class="texto-pos">
                                 <strong>Todo listo para vender</strong>
                                 <span>Viene configurado para conectar caja registradora, báscula, lector de barras e impresora de facturas.</span>
                             </div>
                         </div>
-                        <div class="pos-item">
+                        <div class="pos-item" onclick="togglePosItem(this)">
                             <div class="check-pos">✓</div>
                             <div class="texto-pos">
                                 <strong>Pantalla táctil resistente</strong>
                                 <span>Fácil de limpiar y perfecta para atender clientes rápido en mostrador.</span>
                             </div>
                         </div>
-                        <div class="pos-item">
+                        <div class="pos-item" onclick="togglePosItem(this)">
                             <div class="check-pos">✓</div>
                             <div class="texto-pos">
                                 <strong>Uso intensivo 24/7</strong>
                                 <span>Diseñado para quedarse encendido todo el día en tu negocio sin recalentarse ni fallar.</span>
                             </div>
                         </div>
-                        <div class="pos-item">
+                        <div class="pos-item" onclick="togglePosItem(this)">
                             <div class="check-pos">✓</div>
                             <div class="texto-pos">
                                 <strong>Durabilidad de 5+ años</strong>
                                 <span>Construido con materiales reforzados para resistir el uso diario en un local comercial.</span>
                             </div>
                         </div>
-                        <div class="pos-item">
+                        <div class="pos-item" onclick="togglePosItem(this)">
                             <div class="check-pos">✓</div>
                             <div class="texto-pos">
                                 <strong>Seguridad anti-robo de datos</strong>
                                 <span>Protege la información de tus clientes y las transacciones de tu negocio.</span>
                             </div>
                         </div>
-                        <div class="pos-item">
+                        <div class="pos-item" onclick="togglePosItem(this)">
                             <div class="check-pos">✓</div>
                             <div class="texto-pos">
                                 <strong>Asesoría especializada</strong>
@@ -1097,13 +1012,11 @@
         </div>
     </section>
 
-    <!-- SECCIÓN CONSEJOS CON CONTENIDO DESPLEGABLE -->
     <section id="consejos" class="consejos-seccion">
         <h2 class="seccion-titulo"><i class="fas fa-lightbulb" style="color: var(--acento);"></i> CONSEJOS ÚTILES</h2>
         <p style="text-align: center; max-width: 700px; margin: 0 auto var(--space-xl); color: var(--gris-oscuro); font-size: var(--font-md);">Aprende con nuestros expertos y toma mejores decisiones sobre tu tecnología.</p>
         
         <div class="consejos-grid">
-            <!-- CONSEJO 1 -->
             <article class="consejo-tarjeta" id="consejo1">
                 <div class="consejo-imagen">
                     <i class="fas fa-laptop-medical"></i>
@@ -1129,14 +1042,13 @@
                         <button class="boton-leer-mas" onclick="toggleConsejo(this)">
                             Leer más <i class="fas fa-chevron-down"></i>
                         </button>
-                        <a href="https://wa.me/573113944320?text=Hola!%20Quiero%20agendar%20un%20mantenimiento%20para%20mi%20laptop." target="_blank" class="boton-consultar" onclick="vibrar()">
+                        <a href="https://wa.me/573113944320?text=Hola!%20Quiero%20agendar%20un%20mantenimiento%20para%20mi%20laptop." target="_blank" class="boton-consultar">
                             <i class="fab fa-whatsapp"></i> Consultar
                         </a>
                     </div>
                 </div>
             </article>
 
-            <!-- CONSEJO 2 -->
             <article class="consejo-tarjeta" id="consejo2">
                 <div class="consejo-imagen">
                     <i class="fas fa-cash-register"></i>
@@ -1163,14 +1075,13 @@
                         <button class="boton-leer-mas" onclick="toggleConsejo(this)">
                             Leer más <i class="fas fa-chevron-down"></i>
                         </button>
-                        <a href="https://wa.me/573113944320?text=Hola!%20Quiero%20asesor%C3%ADa%20para%20elegir%20un%20POS." target="_blank" class="boton-consultar" onclick="vibrar()">
+                        <a href="https://wa.me/573113944320?text=Hola!%20Quiero%20asesor%C3%ADa%20para%20elegir%20un%20POS." target="_blank" class="boton-consultar">
                             <i class="fab fa-whatsapp"></i> Consultar
                         </a>
                     </div>
                 </div>
             </article>
 
-            <!-- CONSEJO 3 -->
             <article class="consejo-tarjeta" id="consejo3">
                 <div class="consejo-imagen">
                     <i class="fas fa-shield-virus"></i>
@@ -1198,7 +1109,7 @@
                         <button class="boton-leer-mas" onclick="toggleConsejo(this)">
                             Leer más <i class="fas fa-chevron-down"></i>
                         </button>
-                        <a href="https://wa.me/573113944320?text=Hola!%20Quiero%20comprar%20un%20PC%20usado%20con%20garant%C3%ADa." target="_blank" class="boton-consultar" onclick="vibrar()">
+                        <a href="https://wa.me/573113944320?text=Hola!%20Quiero%20comprar%20un%20PC%20usado%20con%20garant%C3%ADa." target="_blank" class="boton-consultar">
                             <i class="fab fa-whatsapp"></i> Consultar
                         </a>
                     </div>
@@ -1301,7 +1212,6 @@
         <div id="lightbox-contador" class="lightbox-contador"></div>
     </div>
 
-    <!-- WIDGET FLOTANTE DE WHATSAPP -->
     <div class="wa-widget">
         <div class="wa-panel" id="waPanel">
             <div class="wa-panel-header">
@@ -1320,7 +1230,7 @@
                 <div class="wa-mensaje">
                     ¡Hola! 👋 Soy el equipo de <strong>M R Sistemas y Servicios</strong>. ¿En qué podemos ayudarte hoy?
                 </div>
-                <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" class="wa-boton-iniciar" onclick="vibrar()">
+                <a href="https://wa.me/573113944320?text=Hola!%20Necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" class="wa-boton-iniciar">
                     <i class="fab fa-whatsapp"></i> Iniciar chat por WhatsApp
                 </a>
             </div>
@@ -1345,11 +1255,43 @@
     </footer>
 
     <script>
+        // FEEDBACK HÁPTICO UNIVERSAL
         function vibrar() {
             if ('vibrate' in navigator) {
-                navigator.vibrate(50);
+                try {
+                    navigator.vibrate([30, 20, 30]);
+                } catch(e) {}
             }
         }
+
+        // EFECTO RIPPLE UNIVERSAL
+        document.addEventListener('click', function(e) {
+            var elemento = e.target.closest('button, a, .tab-boton, .acordeon-titulo, .faq-pregunta, .fila-principal, .item-carrusel, .boton-leer-mas, .boton-consultar, .wa-burbuja, .wa-panel-cerrar, .pos-item');
+            if (!elemento) return;
+            vibrar();
+            var rect = elemento.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var size = Math.max(rect.width, rect.height) * 2;
+            var ripple = document.createElement('span');
+            ripple.className = 'ripple-effect';
+            ripple.style.width = size + 'px';
+            ripple.style.height = size + 'px';
+            ripple.style.left = (x - size / 2) + 'px';
+            ripple.style.top = (y - size / 2) + 'px';
+            if (getComputedStyle(elemento).position === 'static') {
+                elemento.style.position = 'relative';
+            }
+            if (getComputedStyle(elemento).overflow !== 'hidden') {
+                elemento.style.overflow = 'hidden';
+            }
+            elemento.appendChild(ripple);
+            setTimeout(function() {
+                if (ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 600);
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             var tabs = document.getElementById('tabsContenedor');
@@ -1405,11 +1347,16 @@
             elemento.classList.toggle('activa');
         }
 
-        // FUNCIÓN PARA EXPANDIR LOS CONSEJOS
         function toggleConsejo(elemento) {
             var tarjeta = elemento.closest('.consejo-tarjeta');
             tarjeta.classList.toggle('abierto');
-            vibrar();
+        }
+
+        // FUNCIÓN PARA ABRIR/CERRAR LOS ITEMS DEL POS EN CELULAR
+        function togglePosItem(elemento) {
+            if (window.innerWidth <= 768) {
+                elemento.classList.toggle('abierto');
+            }
         }
 
         window.addEventListener('scroll', function() {
@@ -1428,7 +1375,6 @@
             const numeroWhatsApp = "573113944320"; 
             const texto = `Hola, soy ${nombre}. Necesito el siguiente servicio: ${mensaje}.`;
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
-            vibrar();
             window.open(url, '_blank');
         });
 
@@ -1455,7 +1401,6 @@
             indiceActual = Array.from(items).indexOf(elemento) % total;
             document.getElementById('lightbox').classList.add('activo');
             actualizarLightbox();
-            vibrar();
         }
         
         function actualizarLightbox() {
